@@ -1,0 +1,58 @@
+---
+title: "Client setup"
+description: "Configure Sagepilot MCP in MCP-compatible clients."
+icon: "monitor-cog"
+mode: wide
+---
+
+## Generic MCP configuration
+
+Use this in any MCP client that supports remote Streamable HTTP servers and custom headers:
+
+```json
+{
+  "mcpServers": {
+    "sagepilot": {
+      "url": "https://app.sagepilot.ai/platform-api/mcp",
+      "headers": {
+        "Authorization": "Bearer sp_your_token"
+      }
+    }
+  }
+}
+```
+
+For EU-hosted workspaces, replace the URL with:
+
+```text
+https://eu.sagepilot.ai/platform-api/mcp
+```
+
+## Claude Code
+
+```bash
+claude mcp add --transport http sagepilot https://app.sagepilot.ai/platform-api/mcp \
+  --header "Authorization: Bearer sp_your_token"
+```
+
+Then run `/mcp` in Claude Code and confirm Sagepilot is connected.
+
+## Cursor
+
+Add this to `~/.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "sagepilot": {
+      "url": "https://app.sagepilot.ai/platform-api/mcp",
+      "headers": {
+        "Authorization": "Bearer sp_your_token"
+      }
+    }
+  }
+}
+```
+
+Then open **Cursor Settings -> Tools & MCP** and enable or refresh Sagepilot.
+

@@ -1,0 +1,35 @@
+---
+title: "Ticket list filters"
+description: "Filter tickets with Sagepilot MCP list_tickets."
+icon: "list-filter"
+mode: wide
+---
+
+`list_tickets` supports the same request surface as `/platform-api/v1/chats/list`.
+
+| Parameter | Description |
+|-----------|-------------|
+| `date_range` | `today`, `yesterday`, `last_7_days`, `last_30_days`, `start|end`, or an ISO start timestamp. |
+| `date_filter_field` | `created_at`, `last_message_created_at`, `chat_escalated_at`, `closed_at`, or `updated_at`. |
+| `status` | Ticket status. Use `all` or omit to avoid status filtering. |
+| `priority` | Comma-separated priorities. |
+| `assignee_type` | Comma-separated assignee types, such as `agent` or `pilot`. |
+| `assignee` | Comma-separated assignee IDs, or `current` where supported by the API. |
+| `agent_id` | Agent ID filter. The MCP tool maps this into `assignee` + `assignee_type=agent`. |
+| `pilot_id` | AI agent ID filter. The MCP tool maps this into `assignee` + `assignee_type=pilot`. |
+| `channel_kind` | Comma-separated channel kinds, such as `email,whatsapp`. |
+| `channel` | Comma-separated channel IDs. |
+| `unread_status` | Comma-separated booleans, such as `true` or `false`. |
+| `view` | Built-in/custom view code. |
+| `tags` | Comma-separated tag IDs. |
+| `queue_status` | Comma-separated queue statuses. |
+| `team` | Comma-separated team IDs. |
+| `no_assignee` | Use `true` to return unassigned tickets. |
+| `inferred_csat_score` | Comma-separated inferred CSAT scores. |
+| `user_csat_score` | Comma-separated user CSAT scores. |
+| `custom_fields` | Object mapping custom field IDs to filter values. |
+| `sort_by_field` | `created_at`, `last_message_created_at`, `chat_escalated_at`, `closed_at`, or `updated_at`. |
+| `sort_order` | `asc` or `desc`. |
+| `page_size` | 1 to 100. |
+| `cursor` | Cursor returned by the previous page. |
+

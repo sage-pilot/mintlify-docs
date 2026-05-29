@@ -1,0 +1,32 @@
+---
+title: "Authentication"
+description: "Authenticate to Sagepilot MCP with API client tokens."
+icon: "key-round"
+mode: wide
+---
+
+Sagepilot MCP uses Sagepilot API client tokens.
+
+<Steps>
+  <Step title="Open Sagepilot">
+    Sign in to the Sagepilot workspace you want to connect.
+  </Step>
+  <Step title="Go to API Clients">
+    Open **Settings -> API Clients**.
+  </Step>
+  <Step title="Create an API client">
+    Create a new API client and copy the `sp_...` token. It is shown once.
+  </Step>
+  <Step title="Send the token to MCP">
+    Pass the token as an Authorization header.
+  </Step>
+</Steps>
+
+```text
+Authorization: Bearer sp_your_token
+```
+
+<Warning>
+  Treat `sp_...` API client tokens as secrets. Do not commit them to source control or expose them in client-side code.
+</Warning>
+

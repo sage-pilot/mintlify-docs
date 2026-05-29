@@ -1,0 +1,101 @@
+---
+title: "Opening chat"
+description: "Connect Sagepilot chat to app-owned buttons, tabs, badges, and help screens."
+icon: "message-circle"
+mode: wide
+---
+
+The SDK does not force a launcher UI. Use the hook to connect Sagepilot to your own button, tab, badge, or help screen.
+
+```tsx
+import { Pressable, Text } from "react-native";
+import { useSagepilotChat } from "@sagepilot-ai/react-native-sdk";
+
+export function SupportButton() {
+  const { configured, unreadCount, presentMessages } = useSagepilotChat();
+
+  return (
+    <Pressable disabled={!configured} onPress={presentMessages}>
+      <Text>
+        Support{unreadCount > 0 ? ` (${unreadCount})` : ""}
+      </Text>
+    </Pressable>
+  );
+}
+```
+
+## Open helpers
+
+```ts
+SagepilotChat.present();
+SagepilotChat.presentMessages();
+SagepilotChat.presentMessageComposer("I need help with my order");
+SagepilotChat.presentMessageComposer("Start a new request", { mode: "new" });
+```
+
+`presentMessageComposer(message)` pre-fills the composer and lets Sagepilot reuse an existing conversation when one is available. If there is no existing conversation, Sagepilot starts a new one when the customer sends the message.
+
+Use `{ mode: "new" }` only when the button or workflow should always start a fresh conversation.
+
+## Custom launcher example
+
+```tsx
+import { Pressable, Text, View } from "react-native";
+import { MessageCircle } from "lucide-react-native";
+import { useSagepilotChat } from "@sagepilot-ai/react-native-sdk";
+
+export function ChatLauncher() {
+  const { configured, unreadCount, presentMessages, theme } = useSagepilotChat();
+  const launcher = theme.launcher;
+
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={launcher.label}
+      disabled={!configured}
+      onPress={presentMessages}
+      style={({ pressed }) => ({
+        alignItems: "center",
+        backgroundColor: !configured
+          ? launcher.disabledButtonColor
+          : pressed
+            ? launcher.pressedButtonColor
+            : launcher.buttonColor,
+        borderColor: !configured ? launcher.disabledBorderColor : launcher.borderColor,
+        borderRadius: 28,
+        borderWidth: 1,
+        height: 56,
+        justifyContent: "center",
+        width: 56
+      })}
+    >
+      <MessageCircle
+        color={!configured ? launcher.disabledContentColor : launcher.iconColor}
+        fill={!configured ? launcher.disabledContentColor : launcher.iconInsideColor}
+        size={24}
+      />
+      {unreadCount > 0 ? (
+        <View
+          style={{
+            alignItems: "center",
+            backgroundColor: launcher.unreadBadgeColor,
+            borderColor: launcher.unreadBadgeBorderColor,
+            borderRadius: 9,
+            borderWidth: 1,
+            minWidth: 18,
+            paddingHorizontal: 4,
+            position: "absolute",
+            right: -2,
+            top: -2
+          }}
+        >
+          <Text style={{ color: launcher.unreadBadgeTextColor, fontSize: 11 }}>
+            {unreadCount}
+          </Text>
+        </View>
+      ) : null}
+    </Pressable>
+  );
+}
+```
+

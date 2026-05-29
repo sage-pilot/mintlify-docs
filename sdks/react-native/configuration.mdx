@@ -1,0 +1,141 @@
+---
+title: "Configuration"
+description: "Configure the Sagepilot React Native SDK."
+icon: "settings"
+mode: wide
+---
+
+Configure the SDK after your app knows the current workspace/channel and, if available, the current user.
+
+```ts
+await SagepilotChat.configure({
+  key: "workspace_id:channel_id"
+});
+```
+
+If Sagepilot provides a dedicated endpoint for your workspace, pass it as an optional override:
+
+```ts
+await SagepilotChat.configure({
+  key: "workspace_id:channel_id",
+  host: "https://your-sagepilot-host.com"
+});
+```
+
+## Supported options
+
+| Option | Purpose |
+|---|---|
+| `key` | Public routing key in the format `workspace_id:channel_id`. |
+| `host` | Optional Sagepilot host override. Most apps should omit this unless Sagepilot provides a dedicated endpoint. |
+| `widgetHost` | Optional hosted widget origin override. Use only when Sagepilot provides a separate widget endpoint. |
+| `headers` | Additional headers for SDK service requests. Do not pass server API keys or long-lived secrets from a mobile app. |
+| `fetch` | Custom fetch implementation for runtimes that need one. |
+| `tokenStorage` | Secure storage adapter for SDK-created customer session tokens. |
+| `anonymousId` | Optional stable anonymous identifier sent when the SDK creates a customer session. |
+| `metadata` | Optional app metadata merged into the session creation payload. |
+| `deviceInfo` | Optional adapter that returns device metadata to include during session creation. |
+| `presentation.style` | Modal presentation style: `"sheet"`, `"fullScreen"`, or `"push"`. |
+| `presentation.mobile` | Adds `mobile=1` to the hosted widget URL. Defaults to `true` for React Native. |
+| `presentation.showCloseButton` | Controls whether the provider renders a native close button around the WebView. Defaults to `false` so the hosted Sagepilot widget owns close behavior. |
+| `theme.accentColor` | Primary brand color used as the fallback launcher button color. |
+| `theme.logoUrl` | Optional brand logo URL exposed in SDK theme state. |
+| `theme.preferredColorScheme` | Optional hosted chat color scheme hint: `"light"`, `"dark"`, or `"system"`. |
+| `theme.launcher` | Optional chat launcher icon, label, and badge color configuration. |
+| `behavior.preloadWebView` | Preloads a hidden hosted chat WebView after configuration. |
+| `behavior.enableUnreadPolling` | Starts or disables automatic unread-count polling after configuration. |
+| `behavior.unreadPollIntervalMs` | Sets the unread polling interval in milliseconds. |
+
+## Basic setup
+
+```tsx
+import * as Keychain from "react-native-keychain";
+import { useEffect } from "react";
+import {
+  SagepilotChat,
+  SagepilotChatProvider,
+  createKeychainTokenStorage
+} from "@sagepilot-ai/react-native-sdk";
+
+const tokenStorage = createKeychainTokenStorage(Keychain);
+
+export function SagepilotProvider({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    let cancelled = false;
+
+    async function setupSagepilot() {
+      await SagepilotChat.configure({
+        key: "workspace_id:channel_id",
+        tokenStorage,
+        presentation: {
+          style: "sheet",
+          mobile: true
+        },
+        behavior: {
+          preloadWebView: true,
+          enableUnreadPolling: true
+        }
+      });
+
+      if (!cancelled) {
+        await SagepilotChat.identify({
+          userId: "user_123",
+          email: "customer@example.com",
+          name: "Customer Name"
+        });
+      }
+    }
+
+    void setupSagepilot().catch(console.warn);
+
+    return () => {
+      cancelled = true;
+      SagepilotChat.destroy();
+    };
+  }, []);
+
+  return <SagepilotChatProvider>{children}</SagepilotChatProvider>;
+}
+```
+
+Mount the provider once near the top of your app:
+
+```tsx
+export function App() {
+  return (
+    <SagepilotProvider>
+      <RootNavigator />
+    </SagepilotProvider>
+  );
+}
+```
+
+## Chat launcher theme
+
+Use `theme.launcher` to configure the icon button and unread badge colors for your app-owned launcher. The SDK resolves omitted values to Sagepilot defaults.
+
+```ts
+await SagepilotChat.configure({
+  key: "workspace_id:channel_id",
+  theme: {
+    accentColor: "#173c2d",
+    preferredColorScheme: "system",
+    launcher: {
+      label: "Support",
+      buttonColor: "#173c2d",
+      pressedButtonColor: "#225340",
+      disabledButtonColor: "#d8cdbb",
+      borderColor: "#2a5e49",
+      disabledBorderColor: "#cbbda9",
+      iconColor: "#fff8ef",
+      iconInsideColor: "#173c2d",
+      labelColor: "#d4e9dc",
+      disabledContentColor: "#8d8172",
+      unreadBadgeColor: "#e76f51",
+      unreadBadgeTextColor: "#ffffff",
+      unreadBadgeBorderColor: "#efe4d4"
+    }
+  }
+});
+```
+

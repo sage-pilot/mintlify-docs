@@ -1,0 +1,68 @@
+---
+title: "SDK API reference"
+description: "Public API surface for the Sagepilot React Native SDK."
+icon: "square-terminal"
+mode: wide
+---
+
+## Setup
+
+- `SagepilotChat.configure(config)`: initializes the SDK, loads channel config, creates or resumes a customer session, and starts unread polling unless disabled.
+- `SagepilotChat.destroy()`: stops polling, clears in-memory SDK state, and removes listeners.
+- `SagepilotChat.getChannel()`: returns the loaded channel bootstrap data.
+
+## Identity and session
+
+- `SagepilotChat.identify(identity)`: links the active session to a known customer.
+- `SagepilotChat.logout()`: removes known-customer identity from the active session.
+- `SagepilotChat.getSession()`: fetches the current session and returns safe session metadata. It does not expose the session token.
+- `SagepilotChat.getSessionState()`: returns safe local session metadata. It does not expose the session token.
+- `SagepilotChat.getIdentityState()`: returns local identity state.
+- `SagepilotChat.onIdentify(callback)`: subscribes to successful identify events.
+
+## Hosted chat UI
+
+- `SagepilotChat.present()`: opens the hosted chat home screen.
+- `SagepilotChat.presentMessages()`: opens the hosted conversations/messages screen.
+- `SagepilotChat.presentMessageComposer(message?, options?)`: opens the message composer and optionally pre-fills the composer text. By default, Sagepilot reuses an existing conversation when one is available. Pass `{ mode: "new" }` to force a fresh conversation. It does not auto-send.
+- `SagepilotChat.dismiss()`: closes the hosted chat modal.
+- `SagepilotChat.hide()`: alias for `dismiss()`.
+- `SagepilotChat.toggle()`: opens the chat when closed and closes it when open.
+- `SagepilotChat.isPresented()`: returns whether the hosted chat modal is open.
+- `SagepilotChatProvider`: renders the hosted Sagepilot chat inside a React Native modal WebView.
+
+When `SagepilotChatProvider` is mounted, the SDK preloads a hidden hosted WebView after `configure()` so the first visible open can reuse warmed network/cache state. Disable this with `behavior.preloadWebView: false`.
+
+## Unread state
+
+- `SagepilotChat.getUnreadCount()`: fetches and returns the current unread count.
+- `SagepilotChat.onUnreadChange(callback)`: subscribes to unread count changes.
+- `SagepilotChat.startUnreadPolling(intervalMs?)`: starts unread polling.
+- `SagepilotChat.stopUnreadPolling()`: stops unread polling.
+
+## Lifecycle events
+
+- `SagepilotChat.onReady(callback)`: fires when SDK configuration completes.
+- `SagepilotChat.onPresent(callback)`: fires when chat opens.
+- `SagepilotChat.onDismiss(callback)`: fires when chat closes.
+- `SagepilotChat.onError(callback)`: subscribes to SDK errors.
+- `SagepilotChat.onStateChange(callback)`: subscribes to local SDK state changes.
+
+## React hook
+
+- `useSagepilotChat()`: returns presentation helpers, unread count, identity state, and common actions for app-owned launchers and badges.
+
+## Storage helpers
+
+- `createKeychainTokenStorage(keychain, options?)`: adapts `react-native-keychain` for secure session token storage.
+
+## Runtime notes
+
+The React Native UI uses `react-native-webview` to show the Sagepilot-owned hosted conversation. The SDK injects mobile WebView polish for viewport scaling, text selection, tap highlighting, native bridge message forwarding, and secure hosted-auth handoff.
+
+Customers should depend on the public SDK methods and components, not WebView internals or hosted route implementation details.
+
+## License
+
+MIT. The MIT License applies only to this SDK code. It does not grant access to Sagepilot AI services, workspaces, API credentials, hosted infrastructure, models, data, or paid features. Use of Sagepilot AI hosted services, APIs, Workspace IDs, and runtime-generated license keys is governed separately by Sagepilot AI's Terms of Service or the applicable customer agreement.
+

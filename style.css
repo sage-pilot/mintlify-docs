@@ -40,3 +40,13 @@
 #sidebar-content > button:has(.sr-only) {
   display: none !important;
 }
+
+#sidebar-content > div:first-child {
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+#sidebar-content :is(a, button) {
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
