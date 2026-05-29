@@ -1,12 +1,12 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "willow",
-  "name": "Product Guide",
-  "description": "Step-by-step guides for every product—platform setup, analytics, and integrations in one place.",
+  "theme": "palm",
+  "name": "Sagepilot Docs",
+  "description": "Product documentation for Sagepilot workspaces, support operations, AI agents, engagement, integrations, analytics, and settings.",
   "colors": {
     "primary": "#166E3F",
-    "light": "#26BD6C",
-    "dark": "#166E3F"
+    "light": "#22E185",
+    "dark": "#22E185"
   },
   "favicon": "/favicon.ico",
   "icons": {
@@ -18,6 +18,23 @@
   "contextual": {
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
   },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@sagepilot.ai"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Go to Platform",
+      "href": "https://app.sagepilot.ai"
+    }
+  },
   "navigation": {
     "global": {
       "anchors": [
@@ -27,142 +44,135 @@
           "href": "/"
         },
         {
-          "anchor": "Changelog",
-          "icon": "scroll-text",
-          "href": "https://www.mintlify.com/docs/changelog"
-        },
-        {
-          "anchor": "Help",
-          "icon": "life-buoy",
-          "href": "https://www.mintlify.com/docs/contact-support"
+          "anchor": "Open Platform",
+          "icon": "laptop",
+          "href": "https://app.sagepilot.ai"
         }
       ]
     },
-    "directory": "card",
-    "products": [
+    "tabs": [
       {
-        "product": "Platform",
-        "description": "Core platform setup, configuration, and administration.",
-        "icon": "layers",
+        "tab": "Guides",
+        "icon": "book-open",
         "groups": [
           {
             "group": "Getting started",
+            "root": "getting-started/overview",
             "expanded": true,
-            "root": "platform/index",
             "pages": [
-              "platform/quickstart",
-              "platform/key-concepts"
+              "getting-started/workspace-setup",
+              "getting-started/connect-your-first-channel",
+              "getting-started/invite-your-team"
             ]
           },
           {
-            "group": "Configuration",
+            "group": "Support inbox",
+            "root": "support-inbox/overview",
             "expanded": true,
-            "root": "platform/configuration/index",
             "pages": [
-              "platform/configuration/settings",
-              "platform/configuration/user-management"
+              "support-inbox/tickets-and-views",
+              "support-inbox/customers",
+              "support-inbox/calls"
             ]
           },
           {
-            "group": "Administration",
+            "group": "AI agents",
+            "root": "ai-agents/overview",
             "expanded": true,
-            "root": "platform/administration/index",
             "pages": [
-              "platform/administration/roles-permissions",
-              "platform/administration/audit-logs"
+              "ai-agents/support-agents",
+              "ai-agents/voice-agents",
+              "ai-agents/knowledge-base",
+              "ai-agents/manager-mode"
+            ]
+          },
+          {
+            "group": "Engage",
+            "root": "engage/overview",
+            "expanded": true,
+            "pages": [
+              "engage/lists-and-segments",
+              "engage/templates",
+              "engage/journeys",
+              "engage/marketing-ai",
+              "engage/campaign-history"
+            ]
+          },
+          {
+            "group": "Analytics",
+            "root": "analytics/overview",
+            "expanded": true,
+            "pages": [
+              "analytics/support-analytics",
+              "analytics/ai-performance",
+              "analytics/outbound-analytics"
+            ]
+          },
+          {
+            "group": "Workspace settings",
+            "root": "settings/overview",
+            "expanded": true,
+            "pages": [
+              "settings/team-and-permissions",
+              "settings/billing",
+              "settings/branding"
             ]
           }
         ]
       },
       {
-        "product": "Analytics",
-        "description": "Build dashboards, run reports, and analyze your data.",
-        "icon": "chart-bar",
-        "groups": [
-          {
-            "group": "Getting started",
-            "expanded": true,
-            "root": "analytics/index",
-            "pages": [
-              "analytics/quickstart",
-              "analytics/connect-data"
-            ]
-          },
-          {
-            "group": "Dashboards",
-            "expanded": true,
-            "root": "analytics/dashboards/index",
-            "pages": [
-              "analytics/dashboards/create-dashboard",
-              "analytics/dashboards/charts-visualizations",
-              "analytics/dashboards/sharing-exports"
-            ]
-          },
-          {
-            "group": "Reports",
-            "expanded": true,
-            "root": "analytics/reports/index",
-            "pages": [
-              "analytics/reports/build-report",
-              "analytics/reports/scheduled-reports"
-            ]
-          }
-        ]
-      },
-      {
-        "product": "Integrations",
-        "description": "Connect your tools with pre-built connectors and webhooks.",
+        "tab": "Integrations",
         "icon": "plug",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Integrations",
+            "root": "integrations/overview",
             "expanded": true,
-            "root": "integrations/index",
             "pages": [
-              "integrations/quickstart",
-              "integrations/authentication"
-            ]
-          },
-          {
-            "group": "Connectors",
-            "expanded": true,
-            "root": "integrations/connectors/index",
-            "pages": [
-              "integrations/connectors/crm",
-              "integrations/connectors/data-warehouse",
-              "integrations/connectors/messaging"
-            ]
-          },
-          {
-            "group": "Webhooks & events",
-            "expanded": true,
-            "root": "integrations/webhooks/index",
-            "pages": [
-              "integrations/webhooks/configure",
-              "integrations/webhooks/event-types",
-              "integrations/webhooks/retry-policies"
+              "integrations/channels",
+              "integrations/ecommerce",
+              "integrations/helpdesk-and-crm",
+              "integrations/webhooks"
             ]
           }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "square-terminal",
+        "groups": [
+          {
+            "group": "Overview",
+            "root": "api-reference/overview",
+            "expanded": true,
+            "pages": [
+              "api-reference/authentication"
+            ]
+          },
+          {
+            "group": "Resources",
+            "expanded": true,
+            "pages": [
+              "api-reference/tickets",
+              "api-reference/customers",
+              "api-reference/channels",
+              "api-reference/webhooks"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "icon": "history",
+        "pages": [
+          "changelog"
         ]
       }
     ]
   },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
-  },
   "footer": {
     "socials": {
-      "x": "https://x.com/yourcompany",
-      "linkedin": "https://linkedin.com/company/yourcompany"
+      "linkedin": "https://www.linkedin.com/company/sagepilot-ai/"
     }
   }
 }
