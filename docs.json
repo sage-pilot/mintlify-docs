@@ -196,7 +196,9 @@
         "icon": "square-terminal",
         "groups": [
           {
-            "group": "Authentication",
+            "group": "Overview",
+            "icon": "square-terminal",
+            "root": "api-reference/overview",
             "expanded": true,
             "pages": [
               "api-reference/authentication/api-client-v2",
@@ -205,6 +207,7 @@
           },
           {
             "group": "Analytics",
+            "icon": "chart-no-axes-combined",
             "expanded": true,
             "pages": [
               "api-reference/analytics/catalog",
@@ -213,6 +216,8 @@
           },
           {
             "group": "Tickets",
+            "icon": "ticket",
+            "root": "api-reference/tickets",
             "expanded": true,
             "pages": [
               "api-reference/tickets/list",
@@ -225,6 +230,8 @@
           },
           {
             "group": "Calls",
+            "icon": "phone-call",
+            "root": "api-reference/calls",
             "expanded": true,
             "pages": [
               "api-reference/calls/export-voice-calls"
@@ -232,6 +239,8 @@
           },
           {
             "group": "Customers",
+            "icon": "users",
+            "root": "api-reference/customers",
             "expanded": true,
             "pages": [
               "api-reference/customers/recent-chats",

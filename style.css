@@ -52,7 +52,7 @@
 }
 
 a[href="/mcp/overview"].nav-tabs-item > svg {
-  background-color: #166E3F !important;
+  background-color: currentColor !important;
   background-image: none !important;
   mask-image: url("https://img.icons8.com/?size=100&id=pUf6Ty49x4KC&format=png&color=000000") !important;
   mask-position: center !important;
@@ -62,8 +62,4 @@ a[href="/mcp/overview"].nav-tabs-item > svg {
   -webkit-mask-position: center !important;
   -webkit-mask-repeat: no-repeat !important;
   -webkit-mask-size: contain !important;
-}
-
-.dark a[href="/mcp/overview"].nav-tabs-item > svg {
-  background-color: #22E185 !important;
 }

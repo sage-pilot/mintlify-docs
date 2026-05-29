@@ -1,33 +1,85 @@
 ---
 title: "API reference"
-description: "Start here for Sagepilot API concepts, authentication, and resource documentation."
-icon: "square-terminal"
+description: "Start here for supported Sagepilot API functions."
 mode: wide
 ---
 
-Use this section for developer-facing API documentation. Keep it separate from product docs so operators and engineers can find the right material quickly.
+Use this section for the API functions Sagepilot currently supports publicly. Start with authentication, then choose the workflow you are building.
+
+## 1. Authenticate
+
+Every supported API path starts with the right credential model and regional host.
 
 <CardGroup cols={2}>
-  <Card title="API client v2" icon="key-round" href="/api-reference/authentication/api-client-v2">
-    Create API client v2 credentials for Sagepilot platform APIs.
+  <Card title="API client v2" href="/api-reference/authentication/api-client-v2">
+    Use API client v2 tokens for analytics, ticket exports, customer APIs, voice call exports, and new platform integrations.
   </Card>
-  <Card title="Legacy workspace API key" icon="key-square" href="/api-reference/authentication/legacy-workspace-api-key">
-    Use the legacy key flow for existing WhatsApp template-send integrations.
-  </Card>
-  <Card title="Tickets" icon="inbox" href="/api-reference/tickets">
-    Document ticket and conversation endpoints.
-  </Card>
-  <Card title="Customers" icon="users" href="/api-reference/customers">
-    Document customer lookup, profile, and identity endpoints.
-  </Card>
-  <Card title="Calls" icon="phone-call" href="/api-reference/calls">
-    Document voice call endpoints.
-  </Card>
-  <Card title="Webhooks" icon="webhook" href="/api-reference/webhooks">
-    Document outbound events, retry behavior, and verification.
+  <Card title="Legacy workspace API key" href="/api-reference/authentication/legacy-workspace-api-key">
+    Use the legacy workspace key only for the existing WhatsApp template-send integration.
   </Card>
 </CardGroup>
 
-## TODO
+## 2. Send messages
 
-Add the canonical public API surface once the team confirms which endpoints are externally supported.
+Use the currently supported message-send API for WhatsApp template delivery.
+
+<CardGroup cols={2}>
+  <Card title="Send WhatsApp template" href="/api-reference/messages/send-whatsapp-template">
+    Send a WhatsApp template message through the legacy template-send integration.
+  </Card>
+</CardGroup>
+
+## 3. Query analytics
+
+Use analytics APIs to discover available datasets and run analytics queries.
+
+<CardGroup cols={2}>
+  <Card title="Get analytics catalog" href="/api-reference/analytics/catalog">
+    List available analytics datasets, metrics, dimensions, and filters.
+  </Card>
+  <Card title="Query analytics" href="/api-reference/analytics/query">
+    Run an analytics query with selected metrics, dimensions, filters, date ranges, and timezone.
+  </Card>
+</CardGroup>
+
+## 4. Export ticket data
+
+Use ticket APIs when you need paginated support summaries or raw support data for spreadsheets, warehouse jobs, or offline reporting.
+
+<CardGroup cols={2}>
+  <Card title="Tickets overview" href="/api-reference/tickets">
+    Understand the ticket API surface and related authentication requirements.
+  </Card>
+  <Card title="List tickets" href="/api-reference/tickets/list">
+    List paginated ticket summaries with filters, sorting, and cursor pagination.
+  </Card>
+  <Card title="Export tickets" href="/api-reference/tickets/export">
+    Download raw ticket rows as a streamed CSV attachment.
+  </Card>
+</CardGroup>
+
+## 5. Work with support resources
+
+Use customer and call APIs when you need support context outside the ticket list.
+
+<CardGroup cols={2}>
+  <Card title="Customers" href="/api-reference/customers">
+    List, search, create, update, and retrieve customer context.
+  </Card>
+  <Card title="Calls" href="/api-reference/calls">
+    Export voice call rows for reporting and operations workflows.
+  </Card>
+</CardGroup>
+
+## Related developer surfaces
+
+These are not REST API endpoint pages, but they are part of the developer documentation set.
+
+<CardGroup cols={2}>
+  <Card title="React Native SDK" href="/sdks/react-native/overview">
+    Embed Sagepilot chat in iOS and Android apps.
+  </Card>
+  <Card title="Sagepilot MCP" href="/mcp/overview">
+    Connect MCP-compatible AI clients to Sagepilot workspace tools.
+  </Card>
+</CardGroup>
