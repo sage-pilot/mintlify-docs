@@ -1,0 +1,51 @@
+---
+title: "Get analytics catalog"
+sidebarTitle: "Get analytics catalog"
+description: "List available analytics datasets, metrics, dimensions, and filters."
+api: "GET /platform-api/v1/analytics/catalog"
+playground: "interactive"
+icon: "list-tree"
+---
+
+Use this endpoint template for the analytics catalog API. Full request and response details will be added after the final contract is confirmed.
+
+<Panel>
+
+<RequestExample>
+
+```bash cURL
+curl -X GET "https://app.sagepilot.ai/platform-api/v1/analytics/catalog" \
+  -H "Authorization: Bearer sp_<public_key_id>.<secret>"
+```
+
+```json Request JSON
+{}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "datasets": [],
+  "metrics": [],
+  "dimensions": [],
+  "filters": []
+}
+```
+
+</ResponseExample>
+
+</Panel>
+
+## Query parameters
+
+<ParamField query="dataset" type="string">
+  Optional dataset selector. Full supported values will be added after confirmation.
+</ParamField>
+
+## Notes
+
+- This page is a placeholder template.
+- This endpoint uses API client v2 credentials. See [Authentication](/api-reference/authentication).

@@ -5,23 +5,79 @@ icon: "key-round"
 mode: wide
 ---
 
-Use this page to document API authentication.
+Sagepilot currently supports two customer-facing authentication models:
 
-## Suggested sections
+- API client v2 for analytics, exports, and upcoming platform APIs.
+- Legacy workspace API key for existing WhatsApp template-send integrations only.
 
-- API key creation.
-- Request headers.
-- Environment URLs.
-- Error responses.
-- Key rotation.
+## Where to find your API details
 
-## Example shape
+You can find your credentials, channel IDs, and agent IDs in the Sagepilot dashboard:
+
+**Settings** > **API Access**
+
+You must be a workspace admin to view or generate these credentials.
+
+## API client v2
+
+Use API client v2 for:
+
+- Analytics API
+- Ticket exports
+- New platform API integrations
+
+Create API client v2 credentials in:
+
+**Settings** > **API Access** > **API client v2** > **Create key**
+
+Send the token in either of these forms:
 
 ```bash
-curl https://api.sagepilot.ai/example \
-  -H "Authorization: Bearer $SAGEPILOT_API_KEY"
+Authorization: Bearer sp_<public_key_id>.<secret>
 ```
 
-## TODO
+```bash
+X-API-Key: sp_<public_key_id>.<secret>
+```
 
-Replace the placeholder host and header examples with the confirmed public API contract.
+Use the platform host that matches your workspace region:
+
+- Global region: `https://app.sagepilot.ai`
+- Europe region: `https://eu.sagepilot.ai`
+
+Workspace header behavior:
+
+<ParamField header="X-Workspace-Id" type="string">
+  Optional for API client v2 requests. If you send it, it must match the workspace bound to the API client.
+</ParamField>
+
+Typical access requirements:
+
+- Analytics API: `analytics.query` scope plus dataset grants for analytics.
+- Ticket exports: `tickets.export` scope plus `tickets.raw` dataset grant.
+
+Recommended canonical dataset grants:
+
+- `tickets`
+- `messages`
+- `outbound_messages`
+- `csat`
+- `workforce_activity`
+- `tickets.raw`
+
+## Legacy workspace API key
+
+Use the legacy workspace API key only for existing WhatsApp template-send integrations.
+
+Required headers:
+
+```bash
+Authorization: Bearer <legacy_workspace_api_key>
+X-SP-Workspace-Id: <workspace_id>
+```
+
+<Warning>
+This flow is for the legacy WhatsApp template-send route only. Do not use it for analytics, exports, or new integrations.
+</Warning>
+
+The workspace header is always required for the legacy flow.

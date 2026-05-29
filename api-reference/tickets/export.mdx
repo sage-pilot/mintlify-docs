@@ -1,0 +1,179 @@
+---
+title: "Export tickets"
+sidebarTitle: "Export tickets"
+description: "Download raw ticket rows as a streamed CSV attachment."
+api: "POST /platform-api/v1/exports/tickets"
+playground: "interactive"
+icon: "download"
+---
+
+Use the ticket export API to download raw ticket rows as a CSV file.
+
+<Panel>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://app.sagepilot.ai/platform-api/v1/exports/tickets" \
+  -H "Authorization: Bearer sp_<public_key_id>.<secret>" \
+  -H "Content-Type: application/json" \
+  -o tickets.csv \
+  -d '{
+    "format": "csv",
+    "columns": [
+      { "key": "code" },
+      { "key": "status" },
+      { "key": "created_at", "label": "Created at" },
+      { "key": "customer_name" },
+      { "key": "customer_phone" },
+      { "key": "channel_id" }
+    ],
+    "filters": {
+      "channel_ids": ["<channel_id>"],
+      "statuses": ["open"]
+    },
+    "sort": [
+      { "field": "created_at", "direction": "desc" }
+    ],
+    "timezone": "Asia/Kolkata",
+    "limit": 5000
+  }'
+```
+
+```json Request body
+{
+  "format": "csv",
+  "columns": [
+    { "key": "code" },
+    { "key": "status" },
+    { "key": "created_at", "label": "Created at" },
+    { "key": "customer_name" },
+    { "key": "customer_phone" },
+    { "key": "channel_id" }
+  ],
+  "filters": {
+    "channel_ids": ["<channel_id>"],
+    "statuses": ["open"]
+  },
+  "sort": [
+    { "field": "created_at", "direction": "desc" }
+  ],
+  "timezone": "Asia/Kolkata",
+  "limit": 5000
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```csv 200
+code,status,created_at,customer_name,customer_phone,channel_id
+SP-1042,open,2026-05-29T10:20:00Z,Ada Lovelace,+15551234567,ch_123
+```
+
+</ResponseExample>
+
+</Panel>
+
+## Body
+
+<ParamField body="format" type="string" required default="csv">
+  Export format. Currently only `csv` is supported.
+</ParamField>
+
+<ParamField body="columns" type="object[]">
+  Optional list of columns to include. If omitted, Sagepilot exports the default ticket columns and appends workspace custom fields automatically.
+</ParamField>
+
+<ParamField body="columns[].key" type="string">
+  Built-in column key, or any label you want for a custom-field integration column.
+</ParamField>
+
+<ParamField body="columns[].label" type="string">
+  Optional CSV header label.
+</ParamField>
+
+<ParamField body="columns[].field_id" type="string">
+  Sagepilot custom field ID. Include this when exporting a workspace custom field.
+</ParamField>
+
+<ParamField body="filters" type="object">
+  Same filter object used by analytics queries.
+</ParamField>
+
+<ParamField body="filters.channel_ids" type="string[]">
+  Channel IDs to include in the export.
+</ParamField>
+
+<ParamField body="filters.statuses" type="string[]">
+  Ticket statuses to include. Current constraint: at most one status per export request.
+</ParamField>
+
+<ParamField body="sort" type="object[]">
+  Optional sort instructions.
+</ParamField>
+
+<ParamField body="sort[].field" type="string">
+  Field to sort by, such as `created_at`.
+</ParamField>
+
+<ParamField body="sort[].direction" type="string">
+  Sort direction. Use `asc` or `desc`.
+</ParamField>
+
+<ParamField body="timezone" type="string" default="UTC">
+  Timezone used for formatted datetime columns.
+</ParamField>
+
+<ParamField body="limit" type="integer" default="50000">
+  Maximum rows to export. The maximum supported value is `50000`.
+</ParamField>
+
+<ParamField body="date_range" type="string">
+  Optional date preset.
+</ParamField>
+
+<ParamField body="date_filter_field" type="string">
+  Optional date field selector.
+</ParamField>
+
+<ParamField body="view" type="string">
+  Optional saved-view identifier.
+</ParamField>
+
+## Built-in columns
+
+Common built-in column keys include:
+
+- `code`
+- `status`
+- `priority`
+- `created_at`
+- `updated_at`
+- `customer_name`
+- `customer_phone`
+- `customer_email`
+- `channel_id`
+- `tags`
+- `closed_at`
+- `agent_name`
+- `pilot_name`
+
+## Response
+
+The response is a streamed CSV attachment.
+
+<ResponseField name="Content-Type" type="header" required>
+  `text/csv`
+</ResponseField>
+
+<ResponseField name="Content-Disposition" type="header">
+  Attachment header for the generated CSV file.
+</ResponseField>
+
+## Notes
+
+- Replace `app.sagepilot.ai` with `eu.sagepilot.ai` if your workspace is hosted in Sagepilot's European region.
+- Use ticket export when you need row-level CSV data for spreadsheets, warehouse jobs, or offline analysis.
+- Use the analytics API when you need aggregates, ratios, trends, or grouped summaries.

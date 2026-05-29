@@ -1,20 +1,18 @@
 ---
 title: "Tickets"
-description: "Reference material for ticket and conversation APIs."
+description: "Reference material for ticket export APIs."
 icon: "inbox"
 mode: wide
 ---
 
-Use this page for ticket-related API endpoints.
+Use these endpoints to export ticket data from Sagepilot for spreadsheet analysis, warehouse jobs, or offline reporting.
 
-## Suggested endpoints
+<CardGroup cols={2}>
+  <Card title="Export tickets" icon="download" href="/api-reference/tickets/export">
+    Download raw ticket rows as a streamed CSV attachment.
+  </Card>
+</CardGroup>
 
-- List tickets.
-- Get a ticket.
-- Get ticket messages.
-- Update ticket status.
-- Assign a ticket.
+## Related
 
-## TODO
-
-Confirm public endpoint paths, request bodies, and response schemas.
+For credential setup, supported auth headers, and access requirements, see [Authentication](/api-reference/authentication).

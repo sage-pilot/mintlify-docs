@@ -18,6 +18,23 @@
   "contextual": {
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
   },
+  "api": {
+    "playground": {
+      "display": "interactive"
+    },
+    "examples": {
+      "languages": ["curl", "javascript", "python"],
+      "defaults": "required",
+      "prefill": true,
+      "autogenerate": true
+    },
+    "mdx": {
+      "server": ["https://app.sagepilot.ai", "https://eu.sagepilot.ai"],
+      "auth": {
+        "method": "bearer"
+      }
+    }
+  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
@@ -143,17 +160,37 @@
         "groups": [
           {
             "group": "Overview",
-            "root": "api-reference/overview",
             "expanded": true,
             "pages": [
               "api-reference/authentication"
             ]
           },
           {
+            "group": "Messages",
+            "expanded": true,
+            "pages": [
+              "api-reference/messages/send-whatsapp-template"
+            ]
+          },
+          {
+            "group": "Analytics",
+            "expanded": true,
+            "pages": [
+              "api-reference/analytics/catalog",
+              "api-reference/analytics/query"
+            ]
+          },
+          {
+            "group": "Tickets",
+            "expanded": true,
+            "pages": [
+              "api-reference/tickets/export"
+            ]
+          },
+          {
             "group": "Resources",
             "expanded": true,
             "pages": [
-              "api-reference/tickets",
               "api-reference/customers",
               "api-reference/channels",
               "api-reference/webhooks"
@@ -172,6 +209,7 @@
   },
   "footer": {
     "socials": {
+      "website": "https://sagepilot.ai/",
       "linkedin": "https://www.linkedin.com/company/sagepilot-ai/"
     }
   }

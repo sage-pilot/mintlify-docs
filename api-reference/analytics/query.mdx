@@ -1,0 +1,85 @@
+---
+title: "Query analytics"
+sidebarTitle: "Query analytics"
+description: "Run an analytics query with selected metrics, dimensions, filters, and date ranges."
+api: "POST /platform-api/v1/analytics/query"
+playground: "interactive"
+icon: "chart-column"
+---
+
+Use this endpoint template for the analytics query API. Full request and response details will be added after the final contract is confirmed.
+
+<Panel>
+
+<RequestExample>
+
+```bash cURL
+curl -X POST "https://app.sagepilot.ai/platform-api/v1/analytics/query" \
+  -H "Authorization: Bearer sp_<public_key_id>.<secret>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "dataset": "<dataset>",
+    "metrics": ["<metric>"],
+    "dimensions": ["<dimension>"],
+    "filters": {},
+    "date_range": "<date_range>",
+    "timezone": "Asia/Kolkata"
+  }'
+```
+
+```json Request body
+{
+  "dataset": "<dataset>",
+  "metrics": ["<metric>"],
+  "dimensions": ["<dimension>"],
+  "filters": {},
+  "date_range": "<date_range>",
+  "timezone": "Asia/Kolkata"
+}
+```
+
+</RequestExample>
+
+<ResponseExample>
+
+```json 200
+{
+  "columns": [],
+  "rows": []
+}
+```
+
+</ResponseExample>
+
+</Panel>
+
+## Body
+
+<ParamField body="dataset" type="string" required>
+  Dataset to query.
+</ParamField>
+
+<ParamField body="metrics" type="string[]" required>
+  Metrics to calculate.
+</ParamField>
+
+<ParamField body="dimensions" type="string[]">
+  Optional dimensions to group results.
+</ParamField>
+
+<ParamField body="filters" type="object">
+  Optional filter object.
+</ParamField>
+
+<ParamField body="date_range" type="string">
+  Optional date preset.
+</ParamField>
+
+<ParamField body="timezone" type="string">
+  Timezone used to interpret date ranges and formatted datetime fields.
+</ParamField>
+
+## Notes
+
+- This page is a placeholder template.
+- This endpoint uses API client v2 credentials. See [Authentication](/api-reference/authentication).
