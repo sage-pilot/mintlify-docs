@@ -46,7 +46,7 @@
   padding-right: 1rem !important;
 }
 
-#sidebar-content :is(a, button) {
+#sidebar-content > div:first-child :is(a, button) {
   padding-left: 0.5rem !important;
   padding-right: 0.5rem !important;
 }
