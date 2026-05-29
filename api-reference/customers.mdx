@@ -1,6 +1,6 @@
 ---
 title: "Customers"
-description: "Reference material for customer read and write APIs."
+description: "Reference material for customer read APIs."
 icon: "users"
 mode: wide
 ---
@@ -27,6 +27,4 @@ Use these endpoints to read customer profiles, related tickets, calls, notes, an
 
 ## Access
 
-Customer read APIs use API client v2 with `customers:read` scope plus the `customers` dataset grant.
-
-Customer write APIs require `customers:write` plus the `customers` dataset grant, but API client v2 key generation currently exposes only `customers:read` for customer APIs.
+Customer APIs use API client v2 with `customers:read` scope plus the `customers` dataset grant.

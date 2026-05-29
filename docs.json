@@ -243,9 +243,7 @@
               "api-reference/customers/linked-contacts",
               "api-reference/customers/list",
               "api-reference/customers/get",
-              "api-reference/customers/get-by-id",
-              "api-reference/customers/create",
-              "api-reference/customers/update"
+              "api-reference/customers/get-by-id"
             ]
           },
           {
