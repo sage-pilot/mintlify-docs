@@ -42,13 +42,31 @@
 }
 
 #sidebar-content > div:first-child {
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
+  padding-left: 0.75rem !important;
+  padding-right: 0.75rem !important;
 }
 
-#sidebar-content > div:first-child :is(a, button) {
+#sidebar-content a {
   padding-left: 0.5rem !important;
   padding-right: 0.5rem !important;
+}
+
+#sidebar-content button[aria-expanded] {
+  margin-top: 1.35rem !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.04em !important;
+}
+
+#sidebar-content button[aria-expanded]:first-of-type {
+  margin-top: 0.25rem !important;
+}
+
+#sidebar-content button[aria-expanded] + div {
+  margin-left: 0.9rem !important;
+  padding-left: 0.85rem !important;
+  border-left: 1px solid rgb(var(--gray-200)) !important;
 }
 
 a[href="/mcp/overview"].nav-tabs-item > svg {

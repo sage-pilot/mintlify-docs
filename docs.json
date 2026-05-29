@@ -73,7 +73,7 @@
         "icon": "book-open",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "GETTING STARTED",
             "root": "getting-started/overview",
             "expanded": true,
             "pages": [
@@ -83,73 +83,84 @@
             ]
           },
           {
-            "group": "Support inbox",
+            "group": "CHANNEL INTEGRATIONS",
+            "root": "integrations/channels",
+            "expanded": true,
+            "pages": [
+              "integrations/channels/website-widget",
+              "integrations/channels/email",
+              "integrations/channels/whatsapp",
+              "integrations/channels/voice"
+            ]
+          },
+          {
+            "group": "SUPPORT WORKFLOWS",
             "root": "support-inbox/overview",
             "expanded": true,
             "pages": [
               "support-inbox/tickets-and-views",
+              "settings/csat",
+              "settings/business-hours",
+              "settings/ticket-fields",
+              "settings/tags",
               "support-inbox/customers",
-              "support-inbox/calls"
+              "calls/overview",
+              "support-inbox/social-engagement",
+              "support-inbox/backoffice-tasks"
             ]
           },
           {
-            "group": "AI agents",
+            "group": "PLATFORM",
             "root": "ai-agents/overview",
             "expanded": true,
             "pages": [
               "ai-agents/support-agents",
               "ai-agents/voice-agents",
+              "ai-agents/social-agents",
               "ai-agents/knowledge-base",
-              "ai-agents/manager-mode"
+              "ai-agents/manager-mode",
+              "settings/channels",
+              "settings/integrations",
+              "settings/team-and-permissions",
+              "settings/mcp-servers"
             ]
           },
           {
-            "group": "Engage",
+            "group": "OUTBOUND",
             "root": "engage/overview",
             "expanded": true,
             "pages": [
               "engage/lists-and-segments",
               "engage/templates",
+              "engage/campaigns",
               "engage/journeys",
               "engage/marketing-ai",
-              "engage/campaign-history"
+              "engage/history"
             ]
           },
           {
-            "group": "Analytics",
+            "group": "REPORTING AND ANALYTICS",
             "root": "analytics/overview",
             "expanded": true,
             "pages": [
               "analytics/support-analytics",
               "analytics/ai-performance",
-              "analytics/outbound-analytics"
+              "analytics/outbound-analytics",
+              "analytics/social-engagement"
             ]
           },
           {
-            "group": "Workspace settings",
+            "group": "WORKSPACE SETTINGS",
             "root": "settings/overview",
             "expanded": true,
             "pages": [
-              "settings/team-and-permissions",
+              "settings/general",
+              "settings/members",
+              "settings/roles",
+              "settings/teams",
+              "settings/branding",
               "settings/billing",
-              "settings/branding"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Integrations",
-        "icon": "plug",
-        "groups": [
-          {
-            "group": "Integrations",
-            "root": "integrations/overview",
-            "expanded": true,
-            "pages": [
-              "integrations/channels",
-              "integrations/ecommerce",
-              "integrations/helpdesk-and-crm",
-              "integrations/webhooks"
+              "settings/notifications"
             ]
           }
         ]

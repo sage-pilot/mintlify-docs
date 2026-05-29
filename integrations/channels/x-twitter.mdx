@@ -1,0 +1,72 @@
+---
+title: "X / Twitter"
+description: "Connect X for brand monitoring, listening rules, and AI-assisted replies."
+icon: "at-sign"
+mode: wide
+---
+
+The X / Twitter channel monitors brand mentions and configured listening rules, then routes matching social conversations into Sagepilot. Use it for social support, brand monitoring, and response workflows where the team needs reviewable context.
+
+## Before you start
+
+- Confirm you can authorize the X account that should be connected.
+- Select the default AI agent for matching conversations.
+- Define listening rules for mentions, keywords, hashtags, or exact phrases.
+- Decide how AI should respond and when humans should review.
+
+<Tip>
+  Image placeholder: add a screenshot of the **X (Twitter)** card in the Create Channel modal.
+</Tip>
+
+## Create the X / Twitter channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, open **Channels** and click **Create Channel**.
+  </Step>
+  <Step title="Select X / Twitter">
+    Choose **X (Twitter)** from the Social category.
+  </Step>
+  <Step title="Set channel details">
+    Add the channel name and select the default AI agent.
+  </Step>
+  <Step title="Connect the X account">
+    Click **Connect Twitter Account** and complete the authorization flow.
+  </Step>
+  <Step title="Add listening rules">
+    Add rules for `@mentions`, hashtags, exact phrases, account filters, and exclusions. Use X search operators where needed.
+  </Step>
+  <Step title="Configure AI response behavior">
+    Review whether AI can respond automatically, whether follow-ups are enabled, and when conversations auto-close.
+  </Step>
+  <Step title="Test the channel">
+    Create a test post that matches a listening rule and confirm it appears in Sagepilot.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for account connection, listening rules, AI response behavior, follow-ups, auto-close, profile link, and test channel.
+</Tip>
+
+## Listening rule examples
+
+| Goal | Rule pattern |
+| --- | --- |
+| Brand mentions | `@yourbrand` |
+| Campaign hashtag | `#yourcampaign` |
+| Exact phrase | `"your product name"` |
+| Exclude retweets | `@yourbrand -is:retweet` |
+
+## Verify the setup
+
+1. Confirm the connected profile appears in Sagepilot.
+2. Add a listening rule and save the channel.
+3. Publish or find a post matching the rule.
+4. Confirm Sagepilot captures the post or conversation.
+5. Review the AI response behavior before allowing automatic replies.
+
+## Operational notes
+
+- Start with narrow listening rules to avoid noisy queues.
+- Keep social response policies explicit in the assigned AI agent.
+- Review public replies before enabling aggressive automation.

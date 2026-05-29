@@ -1,21 +1,61 @@
 ---
-title: "Channels"
-description: "Connect messaging, email, chat, social, and voice channels."
+title: "Channel integrations"
+description: "Connect customer channels for chat, email, social, voice, SMS, push, helpdesk, and team inbox workflows."
 icon: "radio-tower"
 mode: wide
 ---
 
-Use this page to document channel setup.
+Use channel integrations to bring customer conversations into Sagepilot and route them to AI agents, human teams, or both.
 
-## Channels to cover
+## Start here
 
-- WhatsApp.
-- Email.
-- Website chat widget.
-- Instagram.
-- Facebook Messenger.
-- Voice.
+Open **Channels** in Sagepilot and click **Create Channel**. The setup modal groups channels by the surface they connect:
 
-## TODO
+<CardGroup cols={3}>
+  <Card title="Website" href="/integrations/channels/website-widget">
+    Add Sagepilot chat to your website.
+  </Card>
+  <Card title="Messaging" href="/integrations/channels/email">
+    Connect email, WhatsApp, SMS, and push notification channels.
+  </Card>
+  <Card title="Social" href="/integrations/channels/instagram">
+    Connect Instagram, Facebook Messenger, and X.
+  </Card>
+  <Card title="Helpdesks" href="/integrations/channels/freshdesk">
+    Connect Freshdesk and Zendesk ticket channels.
+  </Card>
+  <Card title="Voice and mobile" href="/integrations/channels/voice">
+    Configure phone calls, SMS, and push.
+  </Card>
+  <Card title="Team inbox" href="/integrations/channels/slack">
+    Connect Slack for internal agent workflows.
+  </Card>
+</CardGroup>
 
-For each channel, document prerequisites, setup steps, test steps, and common errors.
+<Tip>
+  Image placeholder: add a screenshot of the **Channels** page with the **Create Channel** button and channel category modal open.
+</Tip>
+
+## Channel list
+
+<CardGroup cols={2}>
+  <Card title="Website Widget" href="/integrations/channels/website-widget" />
+  <Card title="Email" href="/integrations/channels/email" />
+  <Card title="WhatsApp" href="/integrations/channels/whatsapp" />
+  <Card title="Voice" href="/integrations/channels/voice" />
+  <Card title="SMS" href="/integrations/channels/sms" />
+  <Card title="Push Notifications" href="/integrations/channels/push-notifications" />
+  <Card title="Instagram" href="/integrations/channels/instagram" />
+  <Card title="Facebook Messenger" href="/integrations/channels/facebook-messenger" />
+  <Card title="X / Twitter" href="/integrations/channels/x-twitter" />
+  <Card title="Freshdesk" href="/integrations/channels/freshdesk" />
+  <Card title="Zendesk" href="/integrations/channels/zendesk" />
+  <Card title="Slack" href="/integrations/channels/slack" />
+</CardGroup>
+
+## Before you connect a channel
+
+- Create or choose the AI agent that should respond on the channel.
+- Create teams if escalations should route to a specific team.
+- Keep provider credentials ready for channels that require external authentication.
+- Use a workspace admin account when connecting OAuth-based channels.

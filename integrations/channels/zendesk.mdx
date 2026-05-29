@@ -1,0 +1,70 @@
+---
+title: "Zendesk"
+description: "Connect Zendesk so Sagepilot agents can assist with support tickets."
+icon: "life-buoy"
+mode: wide
+---
+
+The Zendesk channel connects Zendesk tickets to Sagepilot. Use it when your team wants AI-assisted replies or controlled automation while continuing to operate inside Zendesk.
+
+## Before you start
+
+- Confirm the Zendesk subdomain.
+- Make sure you have Zendesk admin access for OAuth authorization.
+- Select the AI agent that should assist with Zendesk tickets.
+- Decide whether responses should be direct, limited, or reviewed by a human first.
+
+<Tip>
+  Image placeholder: add a screenshot of the **Zendesk** card in the Create Channel modal.
+</Tip>
+
+## Create the Zendesk channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, open **Channels** and click **Create Channel**.
+  </Step>
+  <Step title="Select Zendesk">
+    Choose **Zendesk** from the Helpdesks category.
+  </Step>
+  <Step title="Add channel details">
+    Enter the channel name, Zendesk subdomain, and AI agent.
+  </Step>
+  <Step title="Set response behavior">
+    Configure whether Sagepilot should respond directly and any reply limits for the AI agent.
+  </Step>
+  <Step title="Authorize Zendesk">
+    Click **Connect your Zendesk Account** and complete the Zendesk OAuth flow.
+  </Step>
+  <Step title="Save and test">
+    Save the channel and test with a non-production Zendesk ticket.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for Zendesk subdomain, OAuth connection, agent selection, response behavior, and test ticket.
+</Tip>
+
+## Configuration checklist
+
+| Setting | What to decide |
+| --- | --- |
+| Subdomain | The Zendesk workspace Sagepilot should access. |
+| OAuth account | The Zendesk admin account used to authorize the integration. |
+| AI agent | The agent responsible for Zendesk replies. |
+| Response mode | Whether replies are automatic or controlled. |
+| Reply limits | When human review should take over. |
+
+## Verify the setup
+
+1. Complete Zendesk OAuth successfully.
+2. Create or select a test Zendesk ticket.
+3. Confirm Sagepilot can read the ticket context.
+4. Trigger the configured AI behavior.
+5. Confirm the reply or action appears correctly in Zendesk.
+
+## Operational notes
+
+- Reauthorize if the Zendesk account used for OAuth loses access.
+- Keep Zendesk automation rules and Sagepilot AI behavior coordinated to avoid duplicate replies.
+- Start with reviewed or limited responses until the team has approved live behavior.

@@ -1,0 +1,70 @@
+---
+title: "Freshdesk"
+description: "Connect Freshdesk so Sagepilot agents can work on support tickets."
+icon: "headset"
+mode: wide
+---
+
+The Freshdesk channel connects Freshdesk tickets to Sagepilot so AI agents and human teams can assist with ticket replies while preserving the helpdesk workflow.
+
+## Before you start
+
+- Confirm the Freshdesk subdomain.
+- Generate or copy a Freshdesk API key from an admin account.
+- Select the AI agent that should assist with Freshdesk tickets.
+- Decide whether the agent should draft, reply, or operate under a stricter response limit.
+
+<Tip>
+  Image placeholder: add a screenshot of the **Freshdesk** card in the Create Channel modal.
+</Tip>
+
+## Create the Freshdesk channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, open **Channels** and click **Create Channel**.
+  </Step>
+  <Step title="Select Freshdesk">
+    Choose **Freshdesk** from the Helpdesks category.
+  </Step>
+  <Step title="Add account details">
+    Enter the channel name, Freshdesk subdomain, and API key.
+  </Step>
+  <Step title="Choose the AI agent">
+    Select the agent that should read and respond to Freshdesk tickets.
+  </Step>
+  <Step title="Set response behavior">
+    Configure whether Sagepilot should send responses directly and any limits on how many replies it can send.
+  </Step>
+  <Step title="Save and test">
+    Save the channel and use a test Freshdesk ticket to confirm the connection.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for Freshdesk subdomain, API key, agent selection, response behavior, and test ticket.
+</Tip>
+
+## Configuration checklist
+
+| Setting | What to decide |
+| --- | --- |
+| Subdomain | The Freshdesk workspace Sagepilot should connect to. |
+| API key | The credential Sagepilot uses to read and respond to tickets. |
+| AI agent | The support agent responsible for Freshdesk ticket behavior. |
+| Response behavior | Whether the agent sends replies directly or stays more controlled. |
+| Reply limits | How many replies the agent can send before human review is required. |
+
+## Verify the setup
+
+1. Save the Freshdesk channel.
+2. Create or select a test Freshdesk ticket.
+3. Confirm Sagepilot can read the ticket context.
+4. Trigger a reply or draft based on the configured response behavior.
+5. Confirm the response appears correctly in Freshdesk.
+
+## Operational notes
+
+- Use a Freshdesk admin or integration account that your team can rotate safely.
+- Keep the AI agent’s Freshdesk instructions aligned with your helpdesk macros and escalation policy.
+- Use conservative reply limits until the team has reviewed real ticket behavior.

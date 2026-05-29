@@ -1,0 +1,74 @@
+---
+title: "Website Widget"
+description: "Install Sagepilot chat on your website and configure the visitor experience."
+icon: "monitor"
+mode: wide
+---
+
+The Website Widget is the primary web chat channel for site visitors. Use it when customers should be able to start a conversation from your website, get AI-assisted answers, and escalate to the right human team when needed.
+
+## Before you start
+
+- Confirm the website domain where the widget will be installed.
+- Create or select the support AI agent that should answer visitor questions.
+- Create the team that should receive escalations, if escalation should not go to the whole workspace.
+- Prepare brand values such as logo URL, accent color, support label, and legal links.
+- Decide whether visitors should identify themselves with email, phone, OTP, or signed identity verification.
+
+<Tip>
+  Image placeholder: add a screenshot of the **Create Channel** modal with **Website Widget** selected.
+</Tip>
+
+## Create the widget channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, go to **Settings > Channels** or open **Channels** from the workspace sidebar, then click **Create Channel**.
+  </Step>
+  <Step title="Select Website Widget">
+    Choose **Website Widget** from the Website category.
+  </Step>
+  <Step title="Set the basics">
+    Add the widget display name, website URL, and AI agent. The display name appears in the widget header and should match the support experience customers recognize.
+  </Step>
+  <Step title="Tune appearance">
+    Set the accent color, logo URL, launcher position, launcher text, bottom padding, and closed button size so the widget sits cleanly on your site.
+  </Step>
+  <Step title="Write the first interaction">
+    Configure the welcome popup, landing-page greeting, main CTA, conversation starters, and escalation callout. Keep these short and task-oriented.
+  </Step>
+  <Step title="Configure identity and legal settings">
+    Enable contact fields, OTP verification, legal links, and identity verification based on how much customer context your support flow requires.
+  </Step>
+  <Step title="Install the script">
+    Save the channel and add the generated widget script to your website before the closing `</body>` tag or through your tag manager.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for the Basic, Appearance, Messages, Behavior, Contact Form, Authentication, Legal, Identity, and Install Script sections.
+</Tip>
+
+## Recommended configuration
+
+| Area | Recommendation |
+| --- | --- |
+| AI agent | Use the agent that owns public support and has the right knowledge base attached. |
+| Default team | Route escalations to the team that handles website support. |
+| Conversation starters | Use common customer jobs, such as order help, product questions, returns, or account issues. |
+| Contact form | Require email or phone when your team needs reliable follow-up outside the browser session. |
+| Identity verification | Enable signed identity when customers are logged in and support needs account-specific context. |
+
+## Verify the setup
+
+1. Open the website in an incognito browser.
+2. Confirm the launcher placement does not block important page controls.
+3. Start a conversation and send a test message.
+4. Confirm a ticket appears in Sagepilot with the Website Widget channel.
+5. Escalate the conversation and confirm it routes to the expected team.
+
+## Operational notes
+
+- If the widget appears on checkout or app pages, test on mobile and desktop before publishing.
+- If OTP is enabled through your own Email or WhatsApp channel, verify those channels first.
+- If identity verification is enabled, generate the identity hash on your server. Do not expose signing secrets in frontend code.

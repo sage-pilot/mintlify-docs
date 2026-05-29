@@ -1,0 +1,74 @@
+---
+title: "Email"
+description: "Connect a support email address for ticket replies, aliases, and verified sending."
+icon: "mail"
+mode: wide
+---
+
+The Email channel turns customer emails into Sagepilot tickets and lets your team reply from a verified support sender. Use it for shared inboxes such as `support@`, `help@`, or regional support addresses.
+
+## Before you start
+
+- Choose the sender email address and sender display name.
+- Make sure you can update DNS records for the sender domain.
+- Decide whether replies should come from one support identity or named agents.
+- Create the AI agent and default team that should receive email conversations.
+- Prepare any aliases that should route into the same channel.
+
+<Tip>
+  Image placeholder: add a screenshot of the **Email** card in the Create Channel modal.
+</Tip>
+
+## Create the email channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, open **Channels** and click **Create Channel**.
+  </Step>
+  <Step title="Select Email">
+    Choose **Email** from the Messaging category.
+  </Step>
+  <Step title="Add sender details">
+    Enter the channel name, sender name, and sender email address. Use a name customers will recognize in their inbox.
+  </Step>
+  <Step title="Verify the sending domain">
+    Copy the DNS records from Sagepilot into your DNS provider. Return to Sagepilot and refresh verification until the domain is marked verified.
+  </Step>
+  <Step title="Configure routing">
+    Select the default AI agent, human assignment behavior, default team, aliases, and post-escalation behavior.
+  </Step>
+  <Step title="Add an email signature">
+    Configure the signature that should be appended to human replies. Use variables such as `{{agent_name}}` and `{{agent_email}}` where appropriate.
+  </Step>
+  <Step title="Save the channel">
+    Save after DNS verification and routing are complete.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for sender setup, DNS records, verification status, aliases, sender configuration, and signature settings.
+</Tip>
+
+## Configuration checklist
+
+| Setting | What to decide |
+| --- | --- |
+| Sender identity | Whether customers see a team name, company name, or individual agent name. |
+| Aliases | Which inbound addresses should map to this channel. |
+| Default agent | Which AI agent should draft or answer email conversations. |
+| Default team | Which team owns escalated email tickets. |
+| Signature | Whether replies need legal footer text, agent variables, or brand links. |
+
+## Verify the setup
+
+1. Send a test email to the connected address.
+2. Confirm the ticket appears in Sagepilot with the Email channel.
+3. Reply from Sagepilot.
+4. Confirm the customer receives the reply from the expected sender.
+5. Check SPF, DKIM, and DMARC alignment if messages land in spam.
+
+## Operational notes
+
+- DNS verification can take time depending on your DNS provider.
+- Use aliases for routing related addresses into one operational queue; use separate channels when different teams, agents, or sender identities are needed.
+- Keep server API keys out of email channel configuration. Only provider and DNS values required by the UI should be entered.

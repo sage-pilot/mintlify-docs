@@ -1,0 +1,77 @@
+---
+title: "WhatsApp"
+description: "Connect WhatsApp Business for customer messaging, templates, and optional calling."
+icon: "message-circle"
+mode: wide
+---
+
+The WhatsApp channel connects a WhatsApp Business number to Sagepilot. Use it for high-volume customer support, template-based outbound messages, and AI-assisted replies on WhatsApp.
+
+## Before you start
+
+- Confirm you have access to the Meta Business account that owns the WhatsApp Business account.
+- Make sure the phone number is available and approved for WhatsApp Business.
+- Create the default support AI agent and, if needed, a voice AI agent for WhatsApp Calling.
+- Create the team that should receive human escalations.
+- Prepare business profile details, operating hours, and template requirements.
+
+<Tip>
+  Image placeholder: add a screenshot of the **WhatsApp** card in the Create Channel modal.
+</Tip>
+
+## Create the WhatsApp channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, open **Channels** and click **Create Channel**.
+  </Step>
+  <Step title="Select WhatsApp">
+    Choose **WhatsApp** from the Messaging category.
+  </Step>
+  <Step title="Set channel routing">
+    Add the channel name, default AI agent, human assignment behavior, and default team.
+  </Step>
+  <Step title="Connect with Meta">
+    Click **Connect with Meta** and authorize Sagepilot to access the WhatsApp Business account and number.
+  </Step>
+  <Step title="Complete provider authentication">
+    If your setup uses 360dialog, complete authentication and generate the API key when Sagepilot prompts you.
+  </Step>
+  <Step title="Configure business profile">
+    Review the connected number, business details, profile display, and message handling options.
+  </Step>
+  <Step title="Configure optional calling">
+    Enable WhatsApp Calling if customers should be able to call from WhatsApp. Choose visibility, voice AI handling, operating hours, and callback permission.
+  </Step>
+  <Step title="Save and test">
+    Save the channel and send a test WhatsApp message to the connected number.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for Meta authorization, connected number, business profile, WhatsApp Calling, operation hours, widget script, and test message.
+</Tip>
+
+## Recommended configuration
+
+| Area | Recommendation |
+| --- | --- |
+| Default AI agent | Use the support agent trained on policies, order context, and channel-specific tone. |
+| Human assignment | Enable when WhatsApp should move unresolved issues to people automatically. |
+| Operation hours | Set hours if calls or human handoff availability differs by region. |
+| Templates | Keep approved templates ready for outbound campaigns and follow-ups. |
+| WhatsApp widget | Use the generated website script only when visitors should start in WhatsApp instead of web chat. |
+
+## Verify the setup
+
+1. Message the connected number from a phone that is not an admin test account.
+2. Confirm the conversation appears in Sagepilot with the WhatsApp channel.
+3. Reply from Sagepilot and verify delivery in WhatsApp.
+4. If templates are used, send an approved template to a test customer.
+5. If calling is enabled, place a test call and confirm it follows the configured routing.
+
+## Operational notes
+
+- WhatsApp template approval happens through Meta/provider rules and can affect outbound launch timelines.
+- If AI calling is enabled, select a voice AI agent or keep the channel human-only.
+- Keep WhatsApp profile and operating hours aligned with what customers see in Meta surfaces.
