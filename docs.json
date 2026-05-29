@@ -175,7 +175,7 @@
       },
       {
         "tab": "MCP",
-        "icon": "network",
+        "icon": "server-cog",
         "groups": [
           {
             "group": "Sagepilot MCP",
