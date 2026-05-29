@@ -1,0 +1,40 @@
+---
+title: "Assign ticket"
+sidebarTitle: "Assign ticket"
+description: "Assign a ticket to an agent, AI agent, team queue, or unassigned state."
+api: "POST /platform-api/v1/chats/assign"
+playground: "interactive"
+icon: "user-check"
+---
+
+Assign a ticket to a human agent, AI agent, team queue, or unassigned state.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `tickets:assign` | `tickets` |
+
+## Body
+
+<ParamField body="ticket_id" type="string" required>
+  Ticket chat ID to assign.
+</ParamField>
+
+<ParamField body="assignee_type" type="string" required>
+  Assignment type. Supported values are `agent`, `pilot`, `team`, and `unassigned`.
+</ParamField>
+
+<ParamField body="assignee_id" type="string">
+  Assignee ID. Required for `agent`, `pilot`, and `team` assignments. Omit for `unassigned`.
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean" required>
+  Whether the assignment succeeded.
+</ResponseField>
+
+<ResponseField name="chat" type="object" required>
+  Updated ticket chat object.
+</ResponseField>

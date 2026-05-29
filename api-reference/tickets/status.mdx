@@ -1,0 +1,44 @@
+---
+title: "Update ticket status"
+sidebarTitle: "Update ticket status"
+description: "Update a ticket status and optional sub-status."
+api: "POST /platform-api/v1/chats/status"
+playground: "interactive"
+icon: "circle-check"
+---
+
+Update a ticket status and optional sub-status.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `tickets:write` | `tickets` |
+
+## Body
+
+<ParamField body="ticket_id" type="string" required>
+  Ticket chat ID to update.
+</ParamField>
+
+<ParamField body="status" type="string" required>
+  New ticket status.
+</ParamField>
+
+<ParamField body="sub_status" type="string">
+  Optional ticket sub-status.
+</ParamField>
+
+<ParamField body="substatus_expiry_time" type="string">
+  Optional ISO timestamp for when the sub-status expires.
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean" required>
+  Whether the status update succeeded.
+</ResponseField>
+
+<ResponseField name="chat" type="object" required>
+  Updated ticket chat object.
+</ResponseField>

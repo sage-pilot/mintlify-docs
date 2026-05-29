@@ -7,7 +7,1251 @@ playground: "interactive"
 icon: "list-tree"
 ---
 
-Use this endpoint template for the analytics catalog API. Full request and response details will be added after the final contract is confirmed.
+<ResponseExample>
+
+```json 200
+{
+  "datasets": [
+    {
+      "name": "tickets",
+      "label": "Tickets",
+      "description": "Ticket lifecycle, ownership, and backlog analytics.",
+      "default_time_anchor": "created_at",
+      "filter_fields": [
+        "channel_ids",
+        "channel_kinds",
+        "statuses",
+        "priorities",
+        "assignee_ids",
+        "assignee_types",
+        "team_ids",
+        "tag_ids",
+        "queue_statuses",
+        "unread",
+        "response_status",
+        "no_assignee",
+        "inferred_csat_scores",
+        "user_csat_scores",
+        "custom_fields"
+      ],
+      "measures": [
+        {
+          "name": "ticket_count",
+          "label": "Ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "open_ticket_count",
+          "label": "Open ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "closed_ticket_count",
+          "label": "Closed ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "ai_handled_ticket_count",
+          "label": "AI handled ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "human_assigned_ticket_count",
+          "label": "Human assigned ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "human_involved_ticket_count",
+          "label": "Human involved ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "human_resolved_ticket_count",
+          "label": "Human resolved ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "unassigned_ticket_count",
+          "label": "Unassigned ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "escalated_ticket_count",
+          "label": "Escalated ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "ai_deflection_rate",
+          "label": "AI deflection rate",
+          "description": "",
+          "kind": "ratio",
+          "type": null
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "status",
+          "label": "Status",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "priority",
+          "label": "Priority",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "sub_status",
+          "label": "Sub status",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "channel_kind",
+          "label": "Channel kind",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "channel_id",
+          "label": "Channel ID",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "tag_name",
+          "label": "Tag name",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "tag_icon",
+          "label": "Tag icon",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "open_age_bucket",
+          "label": "Open age bucket",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "closed_age_bucket",
+          "label": "Closed age bucket",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "current_assignee_id",
+          "label": "Current assignee ID",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "current_assignee_role",
+          "label": "Current assignee role",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "custom_field_value",
+          "label": "Custom field value",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        }
+      ],
+      "query_shapes": [
+        {
+          "name": "summary",
+          "label": "Ticket summary",
+          "description": "Workspace or filtered ticket summary totals.",
+          "measures": [
+            "ticket_count",
+            "open_ticket_count",
+            "closed_ticket_count",
+            "ai_handled_ticket_count",
+            "human_assigned_ticket_count",
+            "human_involved_ticket_count",
+            "human_resolved_ticket_count",
+            "unassigned_ticket_count",
+            "escalated_ticket_count",
+            "ai_deflection_rate"
+          ],
+          "dimensions": [],
+          "requires_time": false,
+          "allowed_grains": []
+        },
+        {
+          "name": "timeseries",
+          "label": "Ticket trend",
+          "description": "Ticket trends over time.",
+          "measures": [
+            "ticket_count",
+            "open_ticket_count",
+            "ai_handled_ticket_count",
+            "human_involved_ticket_count",
+            "ai_deflection_rate"
+          ],
+          "dimensions": [],
+          "requires_time": true,
+          "allowed_grains": [
+            "day",
+            "week",
+            "month"
+          ]
+        },
+        {
+          "name": "timeseries_by_channel",
+          "label": "Ticket trend by channel",
+          "description": "Ticket counts grouped by channel kind over time.",
+          "measures": [
+            "ticket_count"
+          ],
+          "dimensions": [
+            "channel_kind"
+          ],
+          "requires_time": true,
+          "allowed_grains": [
+            "day",
+            "week",
+            "month"
+          ]
+        },
+        {
+          "name": "tag_trend",
+          "label": "Tag trend",
+          "description": "Ticket counts grouped by tag over time.",
+          "measures": [
+            "ticket_count"
+          ],
+          "dimensions": [
+            "tag_name",
+            "tag_icon"
+          ],
+          "requires_time": true,
+          "allowed_grains": [
+            "day",
+            "week",
+            "month"
+          ]
+        },
+        {
+          "name": "priority_breakdown",
+          "label": "Priority breakdown",
+          "description": "Ticket count by priority.",
+          "measures": [
+            "ticket_count"
+          ],
+          "dimensions": [
+            "priority"
+          ],
+          "requires_time": false,
+          "allowed_grains": []
+        },
+        {
+          "name": "sub_status_breakdown",
+          "label": "Sub-status breakdown",
+          "description": "Ticket count by sub status.",
+          "measures": [
+            "ticket_count"
+          ],
+          "dimensions": [
+            "sub_status"
+          ],
+          "requires_time": false,
+          "allowed_grains": []
+        },
+        {
+          "name": "open_age_breakdown",
+          "label": "Open age breakdown",
+          "description": "Open ticket count bucketed by age.",
+          "measures": [
+            "open_ticket_count"
+          ],
+          "dimensions": [
+            "open_age_bucket"
+          ],
+          "requires_time": false,
+          "allowed_grains": []
+        },
+        {
+          "name": "open_member_breakdown",
+          "label": "Open owner breakdown",
+          "description": "Open ticket count by age bucket and current assignee.",
+          "measures": [
+            "open_ticket_count"
+          ],
+          "dimensions": [
+            "open_age_bucket",
+            "current_assignee_role",
+            "current_assignee_id"
+          ],
+          "requires_time": false,
+          "allowed_grains": []
+        },
+        {
+          "name": "closed_age_breakdown",
+          "label": "Closed age breakdown",
+          "description": "Closed ticket count bucketed by time to close.",
+          "measures": [
+            "closed_ticket_count"
+          ],
+          "dimensions": [
+            "closed_age_bucket"
+          ],
+          "requires_time": true,
+          "allowed_grains": [
+            "day",
+            "week",
+            "month"
+          ]
+        },
+        {
+          "name": "closed_member_breakdown",
+          "label": "Closed owner breakdown",
+          "description": "Closed ticket count by time-to-close bucket and final assignee.",
+          "measures": [
+            "closed_ticket_count"
+          ],
+          "dimensions": [
+            "closed_age_bucket",
+            "current_assignee_role",
+            "current_assignee_id"
+          ],
+          "requires_time": true,
+          "allowed_grains": [
+            "day",
+            "week",
+            "month"
+          ]
+        },
+        {
+          "name": "open_channel_breakdown",
+          "label": "Open channel breakdown",
+          "description": "Open ticket count by age bucket and channel.",
+          "measures": [
+            "open_ticket_count"
+          ],
+          "dimensions": [
+            "open_age_bucket",
+            "channel_kind",
+            "channel_id"
+          ],
+          "requires_time": false,
+          "allowed_grains": []
+        },
+        {
+          "name": "custom_field_trend",
+          "label": "Custom field trend",
+          "description": "Ticket counts over time grouped by custom field value.",
+          "measures": [
+            "ticket_count"
+          ],
+          "dimensions": [
+            "custom_field_value"
+          ],
+          "requires_time": true,
+          "allowed_grains": [
+            "day",
+            "week",
+            "month"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "messages",
+      "label": "Messages",
+      "description": "Inbound, AI, and human message activity analytics.",
+      "default_time_anchor": "message_created_at",
+      "filter_fields": [
+        "channel_ids",
+        "channel_kinds",
+        "statuses",
+        "priorities",
+        "assignee_ids",
+        "assignee_types",
+        "team_ids",
+        "tag_ids",
+        "queue_statuses",
+        "unread",
+        "response_status",
+        "no_assignee",
+        "custom_fields"
+      ],
+      "measures": [
+        {
+          "name": "message_count",
+          "label": "Message count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "conversation_count",
+          "label": "Conversation count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "customer_message_count",
+          "label": "Customer message count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "ai_message_count",
+          "label": "AI message count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "human_message_count",
+          "label": "Human message count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "template_message_count",
+          "label": "Template message count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "average_message_count",
+          "label": "Average message count",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "average_conversation_count",
+          "label": "Average conversation count",
+          "description": "",
+          "kind": "average",
+          "type": null
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "channel_kind",
+          "label": "Channel kind",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "sender_role",
+          "label": "Sender role",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "hour_of_day",
+          "label": "Hour of day",
+          "description": "",
+          "kind": null,
+          "type": "integer"
+        },
+        {
+          "name": "day_of_week",
+          "label": "Day of week",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "sender_agent_id",
+          "label": "Sender agent ID",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "sender_agent_name",
+          "label": "Sender agent name",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "sender_agent_avatar",
+          "label": "Sender agent avatar",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        }
+      ],
+      "query_shapes": [
+        {
+          "name": "summary",
+          "label": "Message summary",
+          "description": "Message and conversation totals.",
+          "measures": [
+            "message_count",
+            "conversation_count",
+            "customer_message_count",
+            "ai_message_count",
+            "human_message_count"
+          ],
+          "dimensions": [],
+          "requires_time": true,
+          "allowed_grains": [
+            "day",
+            "week",
+            "month"
+          ]
+        },
+        {
+          "name": "message_breakdown",
+          "label": "Message breakdown trend",
+          "description": "Customer, AI, and human message trends over time.",
+          "measures": [
+            "conversation_count",
+            "customer_message_count",
+            "ai_message_count",
+            "human_message_count"
+          ],
+          "dimensions": [],
+          "requires_time": true,
+          "allowed_grains": [
+            "day",
+            "week",
+            "month"
+          ]
+        },
+        {
+          "name": "busiest_times",
+          "label": "Busiest times",
+          "description": "Conversation and message volume by weekday and hour.",
+          "measures": [
+            "conversation_count",
+            "message_count"
+          ],
+          "dimensions": [
+            "day_of_week",
+            "hour_of_day"
+          ],
+          "requires_time": true,
+          "allowed_grains": []
+        },
+        {
+          "name": "agent_hourly_activity",
+          "label": "Agent hourly activity",
+          "description": "Human outbound and message activity by agent and hour.",
+          "measures": [
+            "conversation_count",
+            "human_message_count",
+            "template_message_count"
+          ],
+          "dimensions": [
+            "sender_agent_id",
+            "sender_agent_name",
+            "sender_agent_avatar",
+            "hour_of_day"
+          ],
+          "requires_time": true,
+          "allowed_grains": []
+        },
+        {
+          "name": "hourly_averages",
+          "label": "Hourly averages",
+          "description": "Average conversation and message counts by hour.",
+          "measures": [
+            "average_conversation_count",
+            "average_message_count"
+          ],
+          "dimensions": [
+            "hour_of_day"
+          ],
+          "requires_time": true,
+          "allowed_grains": []
+        }
+      ]
+    },
+    {
+      "name": "workforce_activity",
+      "label": "Workforce activity",
+      "description": "Assignee, response-time, and resolution analytics for AI and human handlers.",
+      "default_time_anchor": "created_at",
+      "filter_fields": [
+        "channel_ids",
+        "channel_kinds",
+        "statuses",
+        "priorities",
+        "assignee_ids",
+        "assignee_types",
+        "team_ids",
+        "tag_ids",
+        "queue_statuses",
+        "unread",
+        "response_status",
+        "no_assignee",
+        "inferred_csat_scores",
+        "user_csat_scores",
+        "custom_fields",
+        "actor_ids",
+        "actor_types",
+        "first_response_target_seconds",
+        "resolution_target_seconds"
+      ],
+      "measures": [
+        {
+          "name": "ticket_count",
+          "label": "Ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "closed_ticket_count",
+          "label": "Closed ticket count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "first_response_count",
+          "label": "First response count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "first_response_within_target_count",
+          "label": "First response within target",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "resolution_count",
+          "label": "Resolution count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "resolution_within_target_count",
+          "label": "Resolution within target",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "duration_count",
+          "label": "Duration count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "median_first_response_seconds",
+          "label": "Median first response seconds",
+          "description": "",
+          "kind": "median",
+          "type": null
+        },
+        {
+          "name": "median_first_response_business_hours_seconds",
+          "label": "Median first response BH seconds",
+          "description": "",
+          "kind": "median",
+          "type": null
+        },
+        {
+          "name": "median_response_seconds",
+          "label": "Median response seconds",
+          "description": "",
+          "kind": "median",
+          "type": null
+        },
+        {
+          "name": "median_response_business_hours_seconds",
+          "label": "Median response BH seconds",
+          "description": "",
+          "kind": "median",
+          "type": null
+        },
+        {
+          "name": "median_resolution_seconds",
+          "label": "Median resolution seconds",
+          "description": "",
+          "kind": "median",
+          "type": null
+        },
+        {
+          "name": "median_resolution_business_hours_seconds",
+          "label": "Median resolution BH seconds",
+          "description": "",
+          "kind": "median",
+          "type": null
+        },
+        {
+          "name": "tickets_touched",
+          "label": "Tickets touched",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "resolved_of_touched",
+          "label": "Resolved of touched",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "deflected_of_touched",
+          "label": "Deflected of touched",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "deflection_rate",
+          "label": "Deflection rate",
+          "description": "",
+          "kind": "ratio",
+          "type": null
+        },
+        {
+          "name": "message_count",
+          "label": "Message count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "outbound_message_count",
+          "label": "Outbound message count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "response_pair_count",
+          "label": "Response pair count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "average_response_minutes",
+          "label": "Average response minutes",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "average_response_business_hours_minutes",
+          "label": "Average response BH minutes",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "escalation_response_count",
+          "label": "Escalation response count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "average_escalation_response_minutes",
+          "label": "Average escalation response minutes",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "average_escalation_response_business_hours_minutes",
+          "label": "Average escalation response BH minutes",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "escalation_response_within_target_count",
+          "label": "Escalation response within target",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "time_to_close_from_escalation_count",
+          "label": "Close-from-escalation count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "average_time_to_close_from_escalation_minutes",
+          "label": "Average close-from-escalation minutes",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "time_to_close_from_escalation_within_target_count",
+          "label": "Close-from-escalation within target",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "time_to_close_from_creation_count",
+          "label": "Close-from-creation count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "average_time_to_close_from_creation_minutes",
+          "label": "Average close-from-creation minutes",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "time_to_close_from_escalation_business_hours_count",
+          "label": "Close-from-escalation BH count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "average_time_to_close_from_escalation_business_hours_minutes",
+          "label": "Average close-from-escalation BH minutes",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "time_to_close_from_creation_business_hours_count",
+          "label": "Close-from-creation BH count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "average_time_to_close_from_creation_business_hours_minutes",
+          "label": "Average close-from-creation BH minutes",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "inferred_response_count",
+          "label": "Inferred CSAT response count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "inferred_average_score",
+          "label": "Inferred CSAT average score",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "survey_response_count",
+          "label": "Survey CSAT response count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "survey_average_score",
+          "label": "Survey CSAT average score",
+          "description": "",
+          "kind": "average",
+          "type": null
+        },
+        {
+          "name": "inferred_score_1_count",
+          "label": "Inferred score 1 count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "inferred_score_2_count",
+          "label": "Inferred score 2 count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "inferred_score_3_count",
+          "label": "Inferred score 3 count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "inferred_score_4_count",
+          "label": "Inferred score 4 count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "inferred_score_5_count",
+          "label": "Inferred score 5 count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "survey_score_1_count",
+          "label": "Survey score 1 count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "survey_score_2_count",
+          "label": "Survey score 2 count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "survey_score_3_count",
+          "label": "Survey score 3 count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "survey_score_4_count",
+          "label": "Survey score 4 count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        },
+        {
+          "name": "survey_score_5_count",
+          "label": "Survey score 5 count",
+          "description": "",
+          "kind": "count",
+          "type": null
+        }
+      ],
+      "dimensions": [
+        {
+          "name": "current_assignee_id",
+          "label": "Current assignee ID",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "current_assignee_role",
+          "label": "Current assignee role",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "channel_kind",
+          "label": "Channel kind",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "actor_type",
+          "label": "Actor type",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "actor_id",
+          "label": "Actor ID",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "actor_name",
+          "label": "Actor name",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "actor_avatar",
+          "label": "Actor avatar",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "duration_metric",
+          "label": "Duration metric",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        },
+        {
+          "name": "duration_bucket",
+          "label": "Duration bucket",
+          "description": "",
+          "kind": null,
+          "type": "string"
+        }
+      ],
+      "query_shapes": [
+        {
+          "name": "issues_by_assignee_by_week",
+          "label": "Issues by assignee by week",
+          "description": "Weekly issue counts by current assignee.",
+          "measures": [
+            "ticket_count"
+          ],
+          "dimensions": [
+            "current_assignee_id",
+            "current_assignee_role"
+          ],
+          "requires_time": true,
+          "allowed_grains": [
+            "week"
+          ]
+        },
+        {
+          "name": "issues_by_source_by_assignee",
+          "label": "Issues by source by assignee",
+          "description": "Issue counts by channel and current assignee.",
+          "measures": [
+            "ticket_count"
+          ],
+          "dimensions": [
+            "channel_kind",
+            "current_assignee_id",
+            "current_assignee_role"
+          ],
+          "requires_time": true,
+          "allowed_grains": []
+        },
+        {
+          "name": "median_first_response_by_assignee",
+          "label": "Median first response by assignee",
+          "description": "Median first response time by current assignee.",
+          "measures": [
+            "median_first_response_seconds",
+            "median_first_response_business_hours_seconds"
+          ],
+          "dimensions": [
+            "current_assignee_id",
+            "current_assignee_role"
+          ],
+          "requires_time": true,
+          "allowed_grains": []
+        },
+        {
+          "name": "median_resolution_by_assignee",
+          "label": "Median resolution by assignee",
+          "description": "Median resolution time by current assignee.",
+          "measures": [
+            "median_resolution_seconds",
+            "median_resolution_business_hours_seconds"
+          ],
+          "dimensions": [
+            "current_assignee_id",
+            "current_assignee_role"
+          ],
+          "requires_time": true,
+          "allowed_grains": []
+        },
+        {
+          "name": "assignee_summary",
+          "label": "Assignee summary",
+          "description": "Issue counts and response/resolution medians by assignee.",
+          "measures": [
+            "ticket_count",
+            "closed_ticket_count",
+            "median_first_response_seconds",
+            "median_first_response_business_hours_seconds",
+            "median_response_seconds",
+            "median_response_business_hours_seconds",
+            "median_resolution_seconds",
+            "median_resolution_business_hours_seconds"
+          ],
+          "dimensions": [
+            "current_assignee_id",
+            "current_assignee_role"
+          ],
+          "requires_time": true,
+          "allowed_grains": []
+        },
+        {
+          "name": "org_daily_metrics",
+          "label": "Org daily metrics",
+          "description": "Daily response and resolution medians by handler role.",
+          "measures": [
+            "median_first_response_seconds",
+            "median_first_response_business_hours_seconds",
+            "median_response_seconds",
+            "median_response_business_hours_seconds",
+            "median_resolution_seconds"
+          ],
+          "dimensions": [
+            "current_assignee_role"
+          ],
+          "requires_time": true,
+          "allowed_grains": [
+            "day"
+          ]
+        },
+        {
+          "name": "actor_performance",
+          "label": "Actor performance",
+          "description": "Touched-ticket, response, close, and CSAT measures grouped by actor over a reporting window.",
+          "measures": [
+            "tickets_touched",
+            "resolved_of_touched",
+            "deflected_of_touched",
+            "deflection_rate",
+            "message_count",
+            "outbound_message_count",
+            "response_pair_count",
+            "average_response_minutes",
+            "average_response_business_hours_minutes",
+            "escalation_response_count",
+            "average_escalation_response_minutes",
+            "average_escalation_response_business_hours_minutes",
+            "escalation_response_within_target_count",
+            "time_to_close_from_escalation_count",
+            "average_time_to_close_from_escalation_minutes",
+            "time_to_close_from_escalation_within_target_count",
+            "time_to_close_from_creation_count",
+            "average_time_to_close_from_creation_minutes",
+            "time_to_close_from_escalation_business_hours_count",
+            "average_time_to_close_from_escalation_business_hours_minutes",
+            "time_to_close_from_creation_business_hours_count",
+            "average_time_to_close_from_creation_business_hours_minutes",
+            "inferred_response_count",
+            "inferred_average_score",
+            "survey_response_count",
+            "survey_average_score",
+            "inferred_score_1_count",
+            "inferred_score_2_count",
+            "inferred_score_3_count",
+            "inferred_score_4_count",
+            "inferred_score_5_count",
+            "survey_score_1_count",
+            "survey_score_2_count",
+            "survey_score_3_count",
+            "survey_score_4_count",
+            "survey_score_5_count"
+          ],
+          "dimensions": [
+            "actor_type",
+            "actor_id",
+            "actor_name",
+            "actor_avatar"
+          ],
+          "requires_time": true,
+          "allowed_grains": []
+        },
+        {
+          "name": "duration_distribution_by_handler",
+          "label": "Duration distribution by handler",
+          "description": "First response and resolution duration buckets grouped by AI and human handlers.",
+          "measures": [
+            "duration_count"
+          ],
+          "dimensions": [
+            "duration_metric",
+            "duration_bucket",
+            "current_assignee_role"
+          ],
+          "requires_time": true,
+          "allowed_grains": []
+        }
+      ]
+    }
+  ],
+  "templates": [
+    {
+      "name": "dashboard.ticket_breakdown",
+      "dataset": "tickets",
+      "measures": [
+        "open_ticket_count",
+        "human_assigned_ticket_count",
+        "ai_handled_ticket_count",
+        "unassigned_ticket_count"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "dashboard.conversation_trend",
+      "dataset": "tickets",
+      "measures": [
+        "ticket_count",
+        "open_ticket_count"
+      ],
+      "dimensions": []
+    },
+    {
+      "name": "dashboard.message_breakdown",
+      "dataset": "messages",
+      "measures": [
+        "customer_message_count",
+        "ai_message_count",
+        "human_message_count"
+      ],
+      "dimensions": []
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+Use this endpoint to list the analytics datasets, measures, dimensions, query shapes, and dashboard templates available to the API client.
 
 ## Required access
 
@@ -15,11 +1259,6 @@ Use this endpoint template for the analytics catalog API. Full request and respo
 |----------------|-------|---------------|
 | [API client v2](/api-reference/authentication/api-client-v2) | `analytics.query` | Any analytics dataset you want returned in the catalog, such as `tickets`, `messages`, `outbound_messages`, `marketing_attribution`, `csat`, or `workforce_activity`. |
 
-## Query parameters
-
-<ParamField query="dataset" type="string">
-  Optional dataset selector. Full supported values will be added after confirmation.
-</ParamField>
 
 ## Notes
 

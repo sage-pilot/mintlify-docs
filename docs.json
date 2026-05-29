@@ -204,13 +204,6 @@
             ]
           },
           {
-            "group": "Messages",
-            "expanded": true,
-            "pages": [
-              "api-reference/messages/send-whatsapp-template"
-            ]
-          },
-          {
             "group": "Analytics",
             "expanded": true,
             "pages": [
@@ -223,7 +216,12 @@
             "expanded": true,
             "pages": [
               "api-reference/tickets/list",
-              "api-reference/tickets/export"
+              "api-reference/tickets/export",
+              "api-reference/tickets/mark-read",
+              "api-reference/tickets/assign",
+              "api-reference/tickets/status",
+              "api-reference/tickets/linked",
+              "api-reference/tickets/messages-list"
             ]
           },
           {
@@ -250,6 +248,13 @@
               "api-reference/customers/get-by-id",
               "api-reference/customers/create",
               "api-reference/customers/update"
+            ]
+          },
+          {
+            "group": "Messages",
+            "expanded": true,
+            "pages": [
+              "api-reference/messages/send-whatsapp-template"
             ]
           }
         ]

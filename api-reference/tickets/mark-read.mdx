@@ -1,0 +1,28 @@
+---
+title: "Mark ticket read"
+sidebarTitle: "Mark ticket read"
+description: "Mark a ticket chat as read."
+api: "POST /platform-api/v1/chats/mark_read"
+playground: "interactive"
+icon: "mail-check"
+---
+
+Mark a ticket chat as read. The update runs in the background and the endpoint returns immediately.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | - | `tickets` |
+
+## Body
+
+<ParamField body="chat_id" type="string" required>
+  Ticket chat ID to mark as read.
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean" required>
+  `true` when the mark-read task has been queued.
+</ResponseField>

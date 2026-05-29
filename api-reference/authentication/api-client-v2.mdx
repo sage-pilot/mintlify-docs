@@ -117,6 +117,11 @@ Treat `sp_...` API client tokens as secrets. Do not commit them to source contro
 |----------|----------------|------------------|
 | Analytics catalog and query | `analytics.query` | Matching analytics dataset, such as `tickets`, `messages`, `outbound_messages`, `marketing_attribution`, `csat`, or `workforce_activity`. |
 | Ticket list APIs | `tickets:read` | `tickets` |
+| Mark ticket read | - | `tickets` |
+| Ticket assignment | `tickets:assign` | `tickets` |
+| Ticket status updates | `tickets:write` | `tickets` |
+| Linked ticket APIs | Any ticket scope: `tickets:read`, `tickets:write`, `tickets:assign`, or `tickets:reply` | `tickets` |
+| Ticket messages | Any ticket scope: `tickets:read`, `tickets:write`, `tickets:assign`, or `tickets:reply` | `messages` |
 | Ticket exports | `tickets.export` | `tickets.raw` |
 | Voice call exports | `tickets.export` | `tickets.raw` |
 | Customer read APIs | `customers:read` | `customers` |
