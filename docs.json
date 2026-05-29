@@ -241,7 +241,6 @@
               "api-reference/customers/tickets-stats",
               "api-reference/customers/social-activity",
               "api-reference/customers/linked-contacts",
-              "api-reference/customers/linked",
               "api-reference/customers/list",
               "api-reference/customers/get",
               "api-reference/customers/get-by-id",

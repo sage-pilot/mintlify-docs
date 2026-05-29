@@ -7,6 +7,62 @@ playground: "interactive"
 icon: "phone-call"
 ---
 
+<ResponseExample>
+
+```json 200
+[
+  {
+    "id": "56cd9f21-e1dd-4837-b031-b313f17fba6e",
+    "created_at": "2026-01-26T11:26:02.895027Z",
+    "workspace_id": "ab1360ce-ef91-4397-8fbd-3ed77ef80e08",
+    "status": "missed",
+    "customer_id": "88d44689-1ce7-4033-8256-655a7cd8f90b",
+    "agent_id": null,
+    "type": "inbound",
+    "call_id": "56cd9f21-e1dd-4837-b031-b313f17fba6e",
+    "from_number": "+918003213447",
+    "to_number": "+912261891120",
+    "answered_at": null,
+    "ended_at": "2026-01-26T05:56:10.348382Z",
+    "duration_seconds": 0,
+    "mode": "human",
+    "recordings": "{}",
+    "channel_id": "53f55362-a793-4679-b9b4-40cbb899b8c0",
+    "metadata": "{\"provider\": \"sip_trunk_audiosocket\", \"sip_headers\": {\"X-Sage-SIP-CallID\": \"3F4F776960918B1900@ngn.ttl.in\"}, \"termination_reason\": \"outside_business_hours\", \"outside_hours_recording_url\": \"https://sagepilot-outbound-attachments.s3.ap-south-1.amazonaws.com/workspaces/ab1360ce-ef91-4397-8fbd-3ed77ef80e08/voice_assets/outside_hours_787ccc04-1449-489b-83fc-d5f560b3cfcc\"}",
+    "updated_at": "2026-01-26T11:26:11.540439Z",
+    "pilot_id": null,
+    "usage_stats": null,
+    "hangup_reason": "failed",
+    "dial_status": "failed",
+    "ended_by": "system",
+    "asterisk_ip": null,
+    "asterisk_ari_port": 8088,
+    "conference_id": null,
+    "controller_task_id": null,
+    "disposition": null,
+    "transcription": null,
+    "disposition_set_by": null,
+    "disposition_set_at": null,
+    "customer_journey_id": null,
+    "journey_id": null,
+    "campaign_id": null,
+    "scheduled_at": null,
+    "scheduled_by": null,
+    "schedule_metadata": "{}",
+    "participant_count": 0,
+    "code": 551,
+    "team_id": null,
+    "summary": null,
+    "sentiment": null,
+    "source": "direct",
+    "customer_name": "Vikram Singh Chundawat",
+    "customer_phone": "+918003213447"
+  }
+]
+```
+
+</ResponseExample>
+
 Get recent voice calls for a customer in the authenticated workspace.
 
 ## Required access
