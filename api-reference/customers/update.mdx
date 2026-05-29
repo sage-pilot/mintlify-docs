@@ -1,0 +1,98 @@
+---
+title: "Update customer"
+sidebarTitle: "Update customer"
+description: "Update mutable customer fields."
+api: "PUT /platform-api/v1/customers/{customer_id}"
+playground: "interactive"
+icon: "user-pen"
+---
+
+Update mutable customer fields within the authenticated workspace.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| API client v2 | `customers:write` | `customers` |
+
+<Warning>
+API client v2 key generation currently exposes `customers:read` for customer APIs. Use this endpoint only when your API client has been separately provisioned with `customers:write`.
+</Warning>
+
+## Path parameters
+
+<ParamField path="customer_id" type="string" required>
+  Customer UUID.
+</ParamField>
+
+## Body
+
+<ParamField body="blocked" type="boolean">
+  Whether the customer is blocked.
+</ParamField>
+
+<ParamField body="channel_id" type="string">
+  Channel ID associated with the customer.
+</ParamField>
+
+<ParamField body="chats" type="integer">
+  Chat count value.
+</ParamField>
+
+<ParamField body="company" type="string">
+  Company name.
+</ParamField>
+
+<ParamField body="company_id" type="string">
+  Company ID.
+</ParamField>
+
+<ParamField body="custom_fields" type="object">
+  Customer custom fields.
+</ParamField>
+
+<ParamField body="email" type="string">
+  Customer email.
+</ParamField>
+
+<ParamField body="external_id" type="string">
+  External customer identifier.
+</ParamField>
+
+<ParamField body="instagram_id" type="string">
+  Instagram ID.
+</ParamField>
+
+<ParamField body="instagram_username" type="string">
+  Instagram username.
+</ParamField>
+
+<ParamField body="last_chat_id" type="string">
+  Last chat ID associated with the customer.
+</ParamField>
+
+<ParamField body="name" type="string">
+  Customer name.
+</ParamField>
+
+<ParamField body="phone" type="string">
+  Customer phone number.
+</ParamField>
+
+<ParamField body="segments" type="object">
+  Segment data.
+</ParamField>
+
+<ParamField body="stage" type="string">
+  Customer stage.
+</ParamField>
+
+## Response
+
+<ResponseField name="id" type="string">
+  Customer ID.
+</ResponseField>
+
+<ResponseField name="custom_fields" type="object">
+  Updated custom fields, when present.
+</ResponseField>

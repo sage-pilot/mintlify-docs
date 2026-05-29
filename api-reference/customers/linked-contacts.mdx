@@ -1,0 +1,32 @@
+---
+title: "Get linked contacts"
+sidebarTitle: "Get linked contacts"
+description: "List contacts linked to a customer by tracker."
+api: "POST /platform-api/v1/customers/linked_contacts"
+playground: "interactive"
+icon: "link"
+---
+
+Get contacts linked to a customer through shared identity tracking.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `customers:read` | `customers` |
+
+## Body
+
+<ParamField body="contactId" type="string" required>
+  Contact ID used to find linked contacts.
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean" required>
+  Whether the request succeeded.
+</ResponseField>
+
+<ResponseField name="contacts" type="object[]" required>
+  Linked contacts.
+</ResponseField>

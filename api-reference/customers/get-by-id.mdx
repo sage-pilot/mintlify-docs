@@ -1,0 +1,36 @@
+---
+title: "Get customer by ID"
+sidebarTitle: "Get customer by ID"
+description: "Get a customer by path ID."
+api: "GET /platform-api/v1/customers/{customer_id}"
+playground: "interactive"
+icon: "user"
+---
+
+Get a customer by ID within the authenticated workspace.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `customers:read` | `customers` |
+
+## Path parameters
+
+<ParamField path="customer_id" type="string" required>
+  Customer UUID.
+</ParamField>
+
+## Response
+
+<ResponseField name="id" type="string">
+  Customer ID.
+</ResponseField>
+
+<ResponseField name="custom_fields" type="object">
+  Customer custom fields, when present.
+</ResponseField>
+
+<ResponseField name="created_at" type="string">
+  Customer creation timestamp.
+</ResponseField>

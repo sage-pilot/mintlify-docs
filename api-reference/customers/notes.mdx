@@ -1,0 +1,46 @@
+---
+title: "Get customer notes"
+sidebarTitle: "Get customer notes"
+description: "List notes for a customer."
+api: "POST /platform-api/v1/customers/notes"
+playground: "interactive"
+icon: "notebook-tabs"
+---
+
+Get notes for a customer.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `customers:read` | `customers` |
+
+## Body
+
+<ParamField body="customerId" type="string" required>
+  Customer ID to fetch notes for.
+</ParamField>
+
+<ParamField body="includeLinkedContacts" type="boolean" default="false">
+  Include notes from linked contacts.
+</ParamField>
+
+## Query parameters
+
+<ParamField query="page" type="integer" default="1">
+  Page number.
+</ParamField>
+
+<ParamField query="page_size" type="integer" default="20">
+  Records per page. Maximum value is `200`.
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean" required>
+  Whether the request succeeded.
+</ResponseField>
+
+<ResponseField name="notes" type="object[]" required>
+  Customer notes.
+</ResponseField>

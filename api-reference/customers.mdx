@@ -1,19 +1,32 @@
 ---
 title: "Customers"
-description: "Reference material for customer APIs."
+description: "Reference material for customer read and write APIs."
 icon: "users"
 mode: wide
 ---
 
-Use this page for customer-related API endpoints.
+Use these endpoints to read customer profiles, related tickets, calls, notes, and linked contacts.
 
-## Suggested endpoints
+<CardGroup cols={2}>
+  <Card title="List customers" icon="users" href="/api-reference/customers/list">
+    List, search, and sort customers.
+  </Card>
 
-- Search customers.
-- Get customer by ID.
-- Get customer by email or phone.
-- Update customer attributes.
+  <Card title="Get customer" icon="user-search" href="/api-reference/customers/get">
+    Get a customer by exact ID, email, or phone.
+  </Card>
 
-## TODO
+  <Card title="Recent chats" icon="messages-square" href="/api-reference/customers/recent-chats">
+    List recent chats for a customer.
+  </Card>
 
-Confirm supported identifiers, profile fields, and update behavior.
+  <Card title="Recent calls" icon="phone-call" href="/api-reference/customers/recent-calls">
+    List recent voice calls for a customer.
+  </Card>
+</CardGroup>
+
+## Access
+
+Customer read APIs use API client v2 with `customers:read` scope plus the `customers` dataset grant.
+
+Customer write APIs require `customers:write` plus the `customers` dataset grant, but API client v2 key generation currently exposes only `customers:read` for customer APIs.

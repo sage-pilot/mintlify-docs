@@ -1,0 +1,50 @@
+---
+title: "List customers"
+sidebarTitle: "List customers"
+description: "List, search, and sort customers."
+api: "POST /platform-api/v1/customers/list"
+playground: "interactive"
+icon: "users"
+---
+
+List customers with optional search, sorting, and pagination.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `customers:read` | `customers` |
+
+## Body
+
+<ParamField body="search" type="string">
+  Optional search text for customer lookup.
+</ParamField>
+
+<ParamField body="sort_by" type="string">
+  Field used to sort customers.
+</ParamField>
+
+<ParamField body="sort_order" type="string">
+  Sort direction. Use `asc` or `desc`.
+</ParamField>
+
+## Query parameters
+
+<ParamField query="page" type="integer" default="1">
+  Page number.
+</ParamField>
+
+<ParamField query="page_size" type="integer" default="20">
+  Records per page. Maximum value is `100`.
+</ParamField>
+
+## Response
+
+<ResponseField name="records" type="object[]" required>
+  Customer records.
+</ResponseField>
+
+<ResponseField name="total" type="integer" required>
+  Total matching customer count.
+</ResponseField>

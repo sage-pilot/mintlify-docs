@@ -1,0 +1,36 @@
+---
+title: "Get ticket stats"
+sidebarTitle: "Get ticket stats"
+description: "Get ticket status counts for a customer."
+api: "POST /platform-api/v1/customers/tickets_stats"
+playground: "interactive"
+icon: "chart-no-axes-column"
+---
+
+Get ticket status counts for a customer in the authenticated workspace.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `customers:read` | `customers` |
+
+## Body
+
+<ParamField body="customerId" type="string" required>
+  Customer ID to calculate ticket counts for.
+</ParamField>
+
+<ParamField body="workspaceId" type="string">
+  Optional workspace ID. The authenticated workspace is used by default.
+</ParamField>
+
+<ParamField body="includeLinkedContacts" type="boolean" default="false">
+  Include tickets from linked contacts.
+</ParamField>
+
+## Response
+
+<ResponseField name="<status>" type="integer">
+  Count of tickets for each returned status key.
+</ResponseField>

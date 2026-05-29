@@ -119,5 +119,8 @@ Treat `sp_...` API client tokens as secrets. Do not commit them to source contro
 | Ticket list APIs | `tickets:read` | `tickets` |
 | Ticket exports | `tickets.export` | `tickets.raw` |
 | Voice call exports | `tickets.export` | `tickets.raw` |
-| Customer search and read APIs | `customers:read` | `customers` |
+| Customer read APIs | `customers:read` | `customers` |
 
+<Info>
+Customer write endpoints require `customers:write` plus the `customers` dataset grant in code, but API client v2 key generation currently exposes only `customers:read` for customer APIs.
+</Info>

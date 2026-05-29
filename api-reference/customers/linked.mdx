@@ -1,0 +1,28 @@
+---
+title: "Get linked customers"
+sidebarTitle: "Get linked customers"
+description: "List customers linked by tracker ID."
+api: "GET /platform-api/v1/customers/linked"
+playground: "interactive"
+icon: "link-2"
+---
+
+Get customers linked by `tracker_id`.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `customers:read` | `customers` |
+
+## Query parameters
+
+<ParamField query="tracker_id" type="string" required>
+  Tracker ID used to find linked customers.
+</ParamField>
+
+## Response
+
+<ResponseField name="[]" type="object[]" required>
+  Linked customer records.
+</ResponseField>

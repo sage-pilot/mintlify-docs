@@ -223,17 +223,33 @@
             "expanded": true,
             "pages": [
               "api-reference/tickets/list",
-              "api-reference/tickets/export",
-              "api-reference/tickets/export-voice-calls"
+              "api-reference/tickets/export"
             ]
           },
           {
-            "group": "Resources",
+            "group": "Calls",
             "expanded": true,
             "pages": [
-              "api-reference/customers",
-              "api-reference/channels",
-              "api-reference/webhooks"
+              "api-reference/calls/export-voice-calls"
+            ]
+          },
+          {
+            "group": "Customers",
+            "expanded": true,
+            "pages": [
+              "api-reference/customers/recent-chats",
+              "api-reference/customers/notes",
+              "api-reference/customers/recent-calls",
+              "api-reference/customers/backoffice-tickets",
+              "api-reference/customers/tickets-stats",
+              "api-reference/customers/social-activity",
+              "api-reference/customers/linked-contacts",
+              "api-reference/customers/linked",
+              "api-reference/customers/list",
+              "api-reference/customers/get",
+              "api-reference/customers/get-by-id",
+              "api-reference/customers/create",
+              "api-reference/customers/update"
             ]
           }
         ]

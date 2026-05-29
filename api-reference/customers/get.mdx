@@ -1,0 +1,52 @@
+---
+title: "Get customer"
+sidebarTitle: "Get customer"
+description: "Get a customer by exact ID, email, or phone."
+api: "POST /platform-api/v1/customers/get"
+playground: "interactive"
+icon: "user-search"
+---
+
+Get a single customer by exact ID, email, or phone.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `customers:read` | `customers` |
+
+## Body
+
+<ParamField body="workspaceId" type="string">
+  Optional workspace ID. The authenticated workspace is used by default.
+</ParamField>
+
+<ParamField body="customerId" type="string">
+  Customer ID to look up.
+</ParamField>
+
+<ParamField body="email" type="string">
+  Customer email to look up.
+</ParamField>
+
+<ParamField body="phone" type="string">
+  Customer phone number to look up.
+</ParamField>
+
+## Response
+
+<ResponseField name="id" type="string">
+  Customer ID.
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Customer name.
+</ResponseField>
+
+<ResponseField name="email" type="string">
+  Customer email.
+</ResponseField>
+
+<ResponseField name="phone" type="string">
+  Customer phone number.
+</ResponseField>
