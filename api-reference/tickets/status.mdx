@@ -7,6 +7,52 @@ playground: "interactive"
 icon: "circle-check"
 ---
 
+<ResponseExample>
+
+```json 200
+{
+  "success": true,
+  "chat": {
+    "id": "0e14f204-0f57-4a8d-a105-4e38982238b2",
+    "workspace_id": "ab1360ce-ef91-4397-8fbd-3ed77ef80e08",
+    "status": "closed",
+    "sub_status": null,
+    "priority": "",
+    "last_message_created_at": "2026-05-29T16:49:38+00:00",
+    "pilot_id": null,
+    "agent_id": "912035ba-27d1-4e1c-9ee3-5414a72465cb",
+    "created_at": "2026-05-29T16:49:32.959247+00:00",
+    "updated_at": "2026-05-29T17:04:28.581178+00:00",
+    "assignee_type": "agent",
+    "code": "1143",
+    "unread_status": false,
+    "subject": null,
+    "summary": null,
+    "channel_id": "47ef5902-f2c8-4b97-97d9-fb9b1ba585f5",
+    "team_id": null,
+    "queue_status": null,
+    "closed_at": "2026-05-29T17:04:28.560195+00:00",
+    "customers": {
+      "id": "12290791-dcd4-464f-a2a3-79dce74d01e4",
+      "name": "anushka.pawar",
+      "phone": null,
+      "email": "anushka.pawar@sagepilot.ai",
+      "company": "sagepilot.ai",
+      "instagram_username": null
+    },
+    "channels": {
+      "id": "47ef5902-f2c8-4b97-97d9-fb9b1ba585f5",
+      "name": "New Playground Channel",
+      "kind": "playground"
+    },
+    "chat_tags": [],
+    "chat_custom_field_values": []
+  }
+}
+```
+
+</ResponseExample>
+
 Update a ticket status and optional sub-status.
 
 ## Required access
@@ -18,19 +64,19 @@ Update a ticket status and optional sub-status.
 ## Body
 
 <ParamField body="ticket_id" type="string" required>
-  Ticket chat ID to update.
+  Ticket chat UUID to update. Use the `records[].id` value from [List tickets](/api-reference/tickets/list); do not pass the human-readable ticket `code`.
 </ParamField>
 
 <ParamField body="status" type="string" required>
-  New ticket status.
+  New ticket status. For example, `open`, `closed`, or `reopened`.
 </ParamField>
 
 <ParamField body="sub_status" type="string">
-  Optional ticket sub-status.
+  Optional ticket sub-status. For example, `investigating`, `awaiting_reply`, or `snoozed`.
 </ParamField>
 
 <ParamField body="substatus_expiry_time" type="string">
-  Optional ISO timestamp for when the sub-status expires.
+  Optional ISO timestamp for when the sub-status expires. For example, `2026-05-30T10:00:00.000Z`.
 </ParamField>
 
 ## Response

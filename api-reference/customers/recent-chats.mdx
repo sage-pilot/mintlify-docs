@@ -7,6 +7,34 @@ playground: "interactive"
 icon: "messages-square"
 ---
 
+<ResponseExample>
+
+```json 200
+[
+  {
+    "id": "c8beea3e-8046-4dff-835f-ac2e12238a4a",
+    "workspace_id": "ab1360ce-ef91-4397-8fbd-3ed77ef80e08",
+    "code": 1000,
+    "created_at": "2026-02-07T08:33:06.697712Z",
+    "status": "closed",
+    "subject": "Initial greeting and introduction in a demo environment",
+    "sub_status": null,
+    "priority": "",
+    "agent_id": null,
+    "unread_status": false,
+    "channel_kind": "playground",
+    "message_content": "Hi — I’m here to help with QA and testing of the Sagepilot AI agent in this demo environment. I can run test scenarios, execute specific function calls, reproduce and diagnose errors, validate features or workflows, and fetch product/order data for testing.\n\nWhat would you like me to do right now? If you have a specific function, parameters, or a feature to validate, please share them and I’ll run the test.",
+    "message_role": "pilot",
+    "last_message_created_at": "2026-02-07T08:33:20.521000Z",
+    "message_agent_id": null,
+    "message_pilot_id": "8ecf3ded-7090-4997-9444-6c9f8c367f54",
+    "customer_name": "Vikram Singh Chundawat"
+  }
+]
+```
+
+</ResponseExample>
+
 Get recent chats for a customer in the authenticated workspace.
 
 ## Required access
@@ -18,11 +46,11 @@ Get recent chats for a customer in the authenticated workspace.
 ## Body
 
 <ParamField body="customerId" type="string" required>
-  Customer ID to fetch chats for.
+  Customer UUID to fetch chats for. Open a customer in the Customer module and use the last UUID in the URL: `/dashboard/[workspace_id]/customers/[customer_id]`. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="workspaceId" type="string">
-  Optional workspace ID. The authenticated workspace is used by default.
+  Optional workspace UUID. The authenticated workspace is used by default. Find the current workspace ID in **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="includeLinkedContacts" type="boolean" default="false">

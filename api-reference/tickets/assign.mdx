@@ -7,6 +7,52 @@ playground: "interactive"
 icon: "user-check"
 ---
 
+<ResponseExample>
+
+```json 200
+{
+  "success": true,
+  "chat": {
+    "id": "0e14f204-0f57-4a8d-a105-4e38982238b2",
+    "workspace_id": "ab1360ce-ef91-4397-8fbd-3ed77ef80e08",
+    "status": "open",
+    "sub_status": null,
+    "priority": "",
+    "last_message_created_at": "2026-05-29T16:49:38+00:00",
+    "pilot_id": null,
+    "agent_id": null,
+    "created_at": "2026-05-29T16:49:32.959247+00:00",
+    "updated_at": "2026-05-29T16:55:57.987982+00:00",
+    "assignee_type": "agent",
+    "code": "1143",
+    "unread_status": false,
+    "subject": null,
+    "summary": null,
+    "channel_id": "47ef5902-f2c8-4b97-97d9-fb9b1ba585f5",
+    "team_id": null,
+    "queue_status": null,
+    "closed_at": null,
+    "customers": {
+      "id": "12290791-dcd4-464f-a2a3-79dce74d01e4",
+      "name": "anushka.pawar",
+      "phone": null,
+      "email": "anushka.pawar@sagepilot.ai",
+      "company": "sagepilot.ai",
+      "instagram_username": null
+    },
+    "channels": {
+      "id": "47ef5902-f2c8-4b97-97d9-fb9b1ba585f5",
+      "name": "New Playground Channel",
+      "kind": "playground"
+    },
+    "chat_tags": [],
+    "chat_custom_field_values": []
+  }
+}
+```
+
+</ResponseExample>
+
 Assign a ticket to a human agent, AI agent, team queue, or unassigned state.
 
 ## Required access
@@ -18,15 +64,15 @@ Assign a ticket to a human agent, AI agent, team queue, or unassigned state.
 ## Body
 
 <ParamField body="ticket_id" type="string" required>
-  Ticket chat ID to assign.
+  Ticket chat UUID to assign. Use the `records[].id` value from [List tickets](/api-reference/tickets/list); do not pass the human-readable ticket `code`.
 </ParamField>
 
 <ParamField body="assignee_type" type="string" required>
-  Assignment type. Supported values are `agent`, `pilot`, `team`, and `unassigned`.
+  Assignment type. Supported values are `agent`, `pilot`, `team`, and `unassigned`. Use `agent` for a human agent, `pilot` for an AI agent, `team` for a team queue, and `unassigned` to clear assignment.
 </ParamField>
 
 <ParamField body="assignee_id" type="string">
-  Assignee ID. Required for `agent`, `pilot`, and `team` assignments. Omit for `unassigned`.
+  Assignee UUID. Required for `agent`, `pilot`, and `team` assignments. For `assignee_type: "pilot"`, use an AI agent ID. For `assignee_type: "agent"`, use a human agent ID. For `assignee_type: "team"`, use the team ID. Omit this field for `unassigned`. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 ## Response

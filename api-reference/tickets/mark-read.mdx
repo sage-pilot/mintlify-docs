@@ -18,7 +18,7 @@ Mark a ticket chat as read. The update runs in the background and the endpoint r
 ## Body
 
 <ParamField body="chat_id" type="string" required>
-  Ticket chat ID to mark as read.
+  Ticket chat UUID to mark as read. Use the `records[].id` value from [List tickets](/api-reference/tickets/list); do not pass the human-readable ticket `code`.
 </ParamField>
 
 ## Response

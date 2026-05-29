@@ -23,7 +23,7 @@ Use the legacy workspace API key only for existing WhatsApp template-send integr
     Locate the legacy workspace API key section. You must be a workspace admin to view or generate this credential.
   </Step>
   <Step title="Copy the workspace ID">
-    Copy the UUID from your dashboard URL after `/dashboard/`.
+    Copy the workspace ID from **Settings** > **API Details** > **Channels**.
   </Step>
   <Step title="Send both headers">
     Add the legacy API key in `Authorization` and the workspace ID in `X-SP-Workspace-Id`.
@@ -45,7 +45,7 @@ X-SP-Workspace-Id: <workspace_id>
 </ParamField>
 
 <ParamField header="X-SP-Workspace-Id" type="string" required>
-  Workspace ID for the request. Use the UUID from the Sagepilot dashboard URL after `/dashboard/`. This header is always required for the legacy flow.
+  Workspace ID for the request. Find it in **Settings > API Details > Channels**. This header is always required for the legacy flow.
 </ParamField>
 
 <Warning>

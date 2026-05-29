@@ -56,7 +56,7 @@ Use the voice call export API to download filtered call rows as a CSV file.
 </ParamField>
 
 <ParamField body="filters.channel" type="string">
-  Comma-separated channel IDs.
+  Comma-separated channel UUIDs. Find channel IDs in **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="filters.channel_kind" type="string">
@@ -68,11 +68,11 @@ Use the voice call export API to download filtered call rows as a CSV file.
 </ParamField>
 
 <ParamField body="filters.assignee" type="string">
-  Comma-separated agent or AI agent IDs. Use `current` where the API request is associated with a user context.
+  Comma-separated human agent or AI agent UUIDs. Use `current` where the API request is associated with a user context. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="filters.team" type="string">
-  Comma-separated team IDs.
+  Comma-separated team UUIDs. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="filters.disposition" type="string">
@@ -187,6 +187,5 @@ The CSV includes these default columns, followed by enabled voice-call custom fi
 
 ## Notes
 
-- Replace `app.sagepilot.ai` with `eu.sagepilot.ai` if your workspace is hosted in Sagepilot's European region.
 - Use voice call export when you need row-level CSV data for calls, recordings, transcripts, dispositions, and call-level custom fields.
 - The endpoint appends enabled voice-call custom fields after the default CSV columns.

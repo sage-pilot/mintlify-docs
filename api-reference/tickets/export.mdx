@@ -42,7 +42,7 @@ Use the ticket export API to download raw ticket rows as a CSV file.
 </ParamField>
 
 <ParamField body="filters.channel_ids" type="string[]">
-  Channel IDs to include in the export.
+  Channel UUIDs to include in the export. Find channel IDs in **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="filters.statuses" type="string[]">
@@ -105,6 +105,5 @@ The response is a streamed CSV attachment.
 
 ## Notes
 
-- Replace `app.sagepilot.ai` with `eu.sagepilot.ai` if your workspace is hosted in Sagepilot's European region.
 - Use ticket export when you need row-level CSV data for spreadsheets, warehouse jobs, or offline analysis.
 - Use the analytics API when you need aggregates, ratios, trends, or grouped summaries.

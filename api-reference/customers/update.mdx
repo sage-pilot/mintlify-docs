@@ -22,7 +22,7 @@ API client v2 key generation currently exposes `customers:read` for customer API
 ## Path parameters
 
 <ParamField path="customer_id" type="string" required>
-  Customer UUID.
+  Customer UUID. Open a customer in the Customer module and use the last UUID in the URL: `/dashboard/[workspace_id]/customers/[customer_id]`. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 ## Body
@@ -32,7 +32,7 @@ API client v2 key generation currently exposes `customers:read` for customer API
 </ParamField>
 
 <ParamField body="channel_id" type="string">
-  Channel ID associated with the customer.
+  Channel UUID associated with the customer. Find channel IDs in **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="chats" type="integer">

@@ -104,7 +104,7 @@ X-API-Key: sp_<public_key_id>.<secret>
 ```
 
 <ParamField header="X-Workspace-Id" type="string">
-  Optional for API client v2 requests. If you send it, it must match the workspace bound to the API client. Use the UUID from the Sagepilot dashboard URL after `/dashboard/`.
+  Optional for API client v2 requests. If you send it, it must match the workspace bound to the API client. Find the current workspace ID in **Settings > API Details > Channels**.
 </ParamField>
 
 <Warning>
@@ -120,12 +120,22 @@ Treat `sp_...` API client tokens as secrets. Do not commit them to source contro
 | Mark ticket read | - | `tickets` |
 | Ticket assignment | `tickets:assign` | `tickets` |
 | Ticket status updates | `tickets:write` | `tickets` |
-| Linked ticket APIs | Any ticket scope: `tickets:read`, `tickets:write`, `tickets:assign`, or `tickets:reply` | `tickets` |
 | Ticket messages | Any ticket scope: `tickets:read`, `tickets:write`, `tickets:assign`, or `tickets:reply` | `messages` |
 | Ticket exports | `tickets.export` | `tickets.raw` |
 | Voice call exports | `tickets.export` | `tickets.raw` |
 | Customer read APIs | `customers:read` | `customers` |
 
-<Info>
-Customer write endpoints require `customers:write` plus the `customers` dataset grant in code, but API client v2 key generation currently exposes only `customers:read` for customer APIs.
-</Info>
+## Resource IDs
+
+Use **Settings > API Details** in the Sagepilot dashboard to find the IDs used in API requests.
+
+| Resource | Where to find it | Used for |
+|----------|------------------|----------|
+| Workspace ID | **Settings > API Details > Channels** | `X-Workspace-Id` headers and optional `workspaceId` body fields. This is the current workspace UUID. |
+| Channel ID | **Settings > API Details > Channels** | `channel_id`, `filters.channel_ids`, and channel filters. |
+| Human agent ID | **Settings > API Details > Agents** | `agent_id`, `assignee_id` when `assignee_type` is `agent`, and agent assignment filters. |
+| AI agent ID / pilot ID | **Settings > API Details > Agents** | `pilot_id`, `assignee_id` when `assignee_type` is `pilot`, and AI agent assignment filters. |
+| Team ID | **-** | `assignee_id` when `assignee_type` is `team`, and team filters. |
+| Customer ID | Customer module | Open a customer profile and use the last UUID in the URL: `/dashboard/[workspace_id]/customers/[customer_id]`. |
+
+Use **Settings > API Details > Channels** as the current reference for workspace IDs.

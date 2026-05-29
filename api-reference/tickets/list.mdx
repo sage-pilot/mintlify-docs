@@ -127,7 +127,7 @@ If you omit the request body, Sagepilot treats it as `{}` and applies the defaul
 </ParamField>
 
 <ParamField body="assignee" type="string">
-  Comma-separated assignee IDs. Use `current` where the API request is associated with a user context.
+  Comma-separated human agent or AI agent UUIDs. Use `current` where the API request is associated with a user context. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="channel_kind" type="string">
@@ -135,7 +135,7 @@ If you omit the request body, Sagepilot treats it as `{}` and applies the defaul
 </ParamField>
 
 <ParamField body="channel" type="string">
-  Comma-separated channel IDs.
+  Comma-separated channel UUIDs. Find channel IDs in **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="unread_status" type="string">
@@ -159,7 +159,7 @@ If you omit the request body, Sagepilot treats it as `{}` and applies the defaul
 </ParamField>
 
 <ParamField body="team" type="string">
-  Comma-separated team IDs.
+  Comma-separated team UUIDs. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="no_assignee" type="string">
@@ -337,4 +337,3 @@ If you omit the request body, Sagepilot treats it as `{}` and applies the defaul
 - Use API client v2 credentials with `tickets:read` scope and the `tickets` dataset grant. See [API client v2](/api-reference/authentication/api-client-v2).
 - Multi-value filters are comma-separated strings.
 - Use `assignee` with `assignee_type` to filter by human agents or AI agents.
-- Replace `app.sagepilot.ai` with `eu.sagepilot.ai` if your workspace is hosted in Sagepilot's European region.

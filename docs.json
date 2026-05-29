@@ -220,7 +220,6 @@
               "api-reference/tickets/mark-read",
               "api-reference/tickets/assign",
               "api-reference/tickets/status",
-              "api-reference/tickets/linked",
               "api-reference/tickets/messages-list"
             ]
           },

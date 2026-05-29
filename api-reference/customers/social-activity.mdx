@@ -18,11 +18,11 @@ Get social activity for a customer.
 ## Body
 
 <ParamField body="customerId" type="string" required>
-  Customer ID to fetch social activity for.
+  Customer UUID to fetch social activity for. Open a customer in the Customer module and use the last UUID in the URL: `/dashboard/[workspace_id]/customers/[customer_id]`. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="workspaceId" type="string">
-  Optional workspace ID. The authenticated workspace is used by default.
+  Optional workspace UUID. The authenticated workspace is used by default. Find the current workspace ID in **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
 </ParamField>
 
 <ParamField body="includeLinkedContacts" type="boolean" default="false">
