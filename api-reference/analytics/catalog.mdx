@@ -9,35 +9,11 @@ icon: "list-tree"
 
 Use this endpoint template for the analytics catalog API. Full request and response details will be added after the final contract is confirmed.
 
-<Panel>
+## Required access
 
-<RequestExample>
-
-```bash cURL
-curl -X GET "https://app.sagepilot.ai/platform-api/v1/analytics/catalog" \
-  -H "Authorization: Bearer sp_<public_key_id>.<secret>"
-```
-
-```json Request JSON
-{}
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json 200
-{
-  "datasets": [],
-  "metrics": [],
-  "dimensions": [],
-  "filters": []
-}
-```
-
-</ResponseExample>
-
-</Panel>
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `analytics.query` | Any analytics dataset you want returned in the catalog, such as `tickets`, `messages`, `outbound_messages`, `marketing_attribution`, `csat`, or `workforce_activity`. |
 
 ## Query parameters
 
@@ -47,5 +23,4 @@ curl -X GET "https://app.sagepilot.ai/platform-api/v1/analytics/catalog" \
 
 ## Notes
 
-- This page is a placeholder template.
-- This endpoint uses API client v2 credentials. See [Authentication](/api-reference/authentication).
+- This endpoint uses API client v2 credentials. See [API client v2](/api-reference/authentication/api-client-v2).

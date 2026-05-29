@@ -9,50 +9,11 @@ icon: "send"
 
 Use this endpoint template for the WhatsApp template-send API. Full request and response details will be added after the final contract is confirmed.
 
-<Panel>
+## Required access
 
-<RequestExample>
-
-```bash cURL
-curl -X POST "https://app.sagepilot.ai/send-whatsapp-template" \
-  -H "Authorization: Bearer <legacy_workspace_api_key>" \
-  -H "X-SP-Workspace-Id: <workspace_id>" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "channel_id": "<channel_id>",
-    "customer_phone": "<customer_phone>",
-    "template": {
-      "name": "<template_name>",
-      "language": "en"
-    }
-  }'
-```
-
-```json Request body
-{
-  "channel_id": "<channel_id>",
-  "customer_phone": "<customer_phone>",
-  "template": {
-    "name": "<template_name>",
-    "language": "en"
-  }
-}
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json 200
-{
-  "id": "<message_id>",
-  "status": "queued"
-}
-```
-
-</ResponseExample>
-
-</Panel>
+| Authentication | Required headers |
+|----------------|------------------|
+| [Legacy workspace API key](/api-reference/authentication/legacy-workspace-api-key) | `Authorization: Bearer <legacy_workspace_api_key>` and `X-SP-Workspace-Id: <workspace_id>`. |
 
 ## Body
 
@@ -78,5 +39,4 @@ curl -X POST "https://app.sagepilot.ai/send-whatsapp-template" \
 
 ## Notes
 
-- This page is a placeholder template.
-- This endpoint uses the legacy workspace API key flow. See [Authentication](/api-reference/authentication).
+- This endpoint uses the legacy workspace API key flow. See [Legacy workspace API key](/api-reference/authentication/legacy-workspace-api-key).

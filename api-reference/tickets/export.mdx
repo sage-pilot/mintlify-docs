@@ -9,72 +9,11 @@ icon: "download"
 
 Use the ticket export API to download raw ticket rows as a CSV file.
 
-<Panel>
+## Required access
 
-<RequestExample>
-
-```bash cURL
-curl -X POST "https://app.sagepilot.ai/platform-api/v1/exports/tickets" \
-  -H "Authorization: Bearer sp_<public_key_id>.<secret>" \
-  -H "Content-Type: application/json" \
-  -o tickets.csv \
-  -d '{
-    "format": "csv",
-    "columns": [
-      { "key": "code" },
-      { "key": "status" },
-      { "key": "created_at", "label": "Created at" },
-      { "key": "customer_name" },
-      { "key": "customer_phone" },
-      { "key": "channel_id" }
-    ],
-    "filters": {
-      "channel_ids": ["<channel_id>"],
-      "statuses": ["open"]
-    },
-    "sort": [
-      { "field": "created_at", "direction": "desc" }
-    ],
-    "timezone": "Asia/Kolkata",
-    "limit": 5000
-  }'
-```
-
-```json Request body
-{
-  "format": "csv",
-  "columns": [
-    { "key": "code" },
-    { "key": "status" },
-    { "key": "created_at", "label": "Created at" },
-    { "key": "customer_name" },
-    { "key": "customer_phone" },
-    { "key": "channel_id" }
-  ],
-  "filters": {
-    "channel_ids": ["<channel_id>"],
-    "statuses": ["open"]
-  },
-  "sort": [
-    { "field": "created_at", "direction": "desc" }
-  ],
-  "timezone": "Asia/Kolkata",
-  "limit": 5000
-}
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```csv 200
-code,status,created_at,customer_name,customer_phone,channel_id
-SP-1042,open,2026-05-29T10:20:00Z,Ada Lovelace,+15551234567,ch_123
-```
-
-</ResponseExample>
-
-</Panel>
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `tickets.export` | `tickets.raw` |
 
 ## Body
 

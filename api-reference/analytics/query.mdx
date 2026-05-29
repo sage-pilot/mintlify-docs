@@ -9,49 +9,11 @@ icon: "chart-column"
 
 Use this endpoint template for the analytics query API. Full request and response details will be added after the final contract is confirmed.
 
-<Panel>
+## Required access
 
-<RequestExample>
-
-```bash cURL
-curl -X POST "https://app.sagepilot.ai/platform-api/v1/analytics/query" \
-  -H "Authorization: Bearer sp_<public_key_id>.<secret>" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "dataset": "<dataset>",
-    "metrics": ["<metric>"],
-    "dimensions": ["<dimension>"],
-    "filters": {},
-    "date_range": "<date_range>",
-    "timezone": "Asia/Kolkata"
-  }'
-```
-
-```json Request body
-{
-  "dataset": "<dataset>",
-  "metrics": ["<metric>"],
-  "dimensions": ["<dimension>"],
-  "filters": {},
-  "date_range": "<date_range>",
-  "timezone": "Asia/Kolkata"
-}
-```
-
-</RequestExample>
-
-<ResponseExample>
-
-```json 200
-{
-  "columns": [],
-  "rows": []
-}
-```
-
-</ResponseExample>
-
-</Panel>
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `analytics.query` | The dataset used in the request body, such as `tickets`, `messages`, `outbound_messages`, `marketing_attribution`, `csat`, or `workforce_activity`. |
 
 ## Body
 
@@ -81,5 +43,4 @@ curl -X POST "https://app.sagepilot.ai/platform-api/v1/analytics/query" \
 
 ## Notes
 
-- This page is a placeholder template.
-- This endpoint uses API client v2 credentials. See [Authentication](/api-reference/authentication).
+- This endpoint uses API client v2 credentials. See [API client v2](/api-reference/authentication/api-client-v2).

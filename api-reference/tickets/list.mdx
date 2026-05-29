@@ -1,0 +1,255 @@
+---
+title: "List tickets"
+sidebarTitle: "List tickets"
+description: "List paginated ticket summaries with filters, sorting, and cursor pagination."
+api: "POST /platform-api/v1/chats/list"
+playground: "interactive"
+icon: "list-filter"
+---
+
+Use this endpoint to list ticket summaries for a workspace. The response is paginated and includes the latest message, customer, channel, tag, custom-field, assignee, and queue summary fields used by the Sagepilot ticket list.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `tickets:read` | `tickets` |
+
+## Body
+
+<ParamField body="page_size" type="integer" default="10">
+  Number of records to return. The minimum is `1` and the maximum is `100`.
+</ParamField>
+
+<ParamField body="cursor" type="string">
+  Cursor from the previous response. Pass this value to fetch the next page.
+</ParamField>
+
+<ParamField body="include_total" type="boolean" default="true">
+  Whether to include the total matching record count. Set to `false` for faster cursor syncs when you only need `records` and `cursor`.
+</ParamField>
+
+<ParamField body="status" type="string">
+  Ticket status filter. Use `all` or omit the field to avoid status filtering. Supported view-style values include `open`, `reopened`, `investigating`, `snoozed`, `waiting_on_customer`, and `closed`.
+</ParamField>
+
+<ParamField body="priority" type="string">
+  Comma-separated priorities to include, such as `high,medium`.
+</ParamField>
+
+<ParamField body="assignee_type" type="string">
+  Comma-separated assignee types, such as `agent` or `pilot`.
+</ParamField>
+
+<ParamField body="assignee" type="string">
+  Comma-separated assignee IDs. Use `current` where the API request is associated with a user context.
+</ParamField>
+
+<ParamField body="channel_kind" type="string">
+  Comma-separated channel kinds, such as `email,whatsapp`.
+</ParamField>
+
+<ParamField body="channel" type="string">
+  Comma-separated channel IDs.
+</ParamField>
+
+<ParamField body="unread_status" type="string">
+  Comma-separated boolean values, such as `true` or `false`.
+</ParamField>
+
+<ParamField body="view" type="string">
+  Built-in or custom view code. Built-in values include `needs_attention`, `awaiting_reply`, `needs_first_human_reply`, and `mentions`.
+</ParamField>
+
+<ParamField body="tags" type="string">
+  Comma-separated tag IDs to include.
+</ParamField>
+
+<ParamField body="excluded_tags" type="string">
+  Comma-separated tag IDs to exclude.
+</ParamField>
+
+<ParamField body="queue_status" type="string">
+  Comma-separated queue statuses.
+</ParamField>
+
+<ParamField body="team" type="string">
+  Comma-separated team IDs.
+</ParamField>
+
+<ParamField body="no_assignee" type="string">
+  Use `true` to return tickets without an assigned agent or AI agent.
+</ParamField>
+
+<ParamField body="inferred_csat_score" type="string">
+  Comma-separated inferred CSAT score values.
+</ParamField>
+
+<ParamField body="user_csat_score" type="string">
+  Comma-separated user-submitted CSAT score values.
+</ParamField>
+
+<ParamField body="custom_fields" type="object">
+  Object mapping custom field IDs to filter values. For multiple accepted values on one field, pass a comma-separated string.
+</ParamField>
+
+<ParamField body="custom_fields.<field_id>" type="string">
+  Custom field value filter for the given Sagepilot custom field ID.
+</ParamField>
+
+<ParamField body="date_range" type="string">
+  Date preset or explicit range. Supported values include `today`, `yesterday`, `last_7_days`, `last_30_days`, `start|end`, `start|`, or a start-only ISO timestamp.
+</ParamField>
+
+<ParamField body="date_filter_field" type="string" default="last_message_created_at">
+  Date field used with `date_range`. Supported values are `created_at`, `last_message_created_at`, `chat_escalated_at`, `closed_at`, and `updated_at`.
+</ParamField>
+
+<ParamField body="sort_by_field" type="string" default="last_message_created_at">
+  Field used for ordering and cursor generation. Supported values are `created_at`, `last_message_created_at`, `chat_escalated_at`, `closed_at`, and `updated_at`.
+</ParamField>
+
+<ParamField body="sort_order" type="string" default="desc">
+  Sort direction. Use `asc` or `desc`.
+</ParamField>
+
+## Response
+
+<ResponseField name="records" type="object[]" required>
+  Paginated ticket summaries.
+</ResponseField>
+
+<ResponseField name="records[].id" type="string">
+  Ticket ID.
+</ResponseField>
+
+<ResponseField name="records[].code" type="string">
+  Human-readable ticket code.
+</ResponseField>
+
+<ResponseField name="records[].status" type="string">
+  Ticket status.
+</ResponseField>
+
+<ResponseField name="records[].sub_status" type="string">
+  Ticket sub-status, when present.
+</ResponseField>
+
+<ResponseField name="records[].priority" type="string">
+  Ticket priority.
+</ResponseField>
+
+<ResponseField name="records[].subject" type="string">
+  Ticket subject.
+</ResponseField>
+
+<ResponseField name="records[].summary" type="string">
+  Ticket summary.
+</ResponseField>
+
+<ResponseField name="records[].assignee_type" type="string">
+  Current assignee type, such as `agent` or `pilot`.
+</ResponseField>
+
+<ResponseField name="records[].agent_id" type="string">
+  Assigned human agent ID, when applicable.
+</ResponseField>
+
+<ResponseField name="records[].pilot_id" type="string">
+  Assigned AI agent ID, when applicable.
+</ResponseField>
+
+<ResponseField name="records[].team_id" type="string">
+  Assigned team ID, when applicable.
+</ResponseField>
+
+<ResponseField name="records[].team_name" type="string">
+  Assigned team name, when available.
+</ResponseField>
+
+<ResponseField name="records[].channel_id" type="string">
+  Channel ID for the ticket.
+</ResponseField>
+
+<ResponseField name="records[].unread_status" type="boolean">
+  Whether the ticket has unread messages.
+</ResponseField>
+
+<ResponseField name="records[].total_unread_messages" type="integer">
+  Number of unread messages on the ticket.
+</ResponseField>
+
+<ResponseField name="records[].total_agent_messages" type="integer">
+  Number of human agent messages on the ticket.
+</ResponseField>
+
+<ResponseField name="records[].total_pilot_messages" type="integer">
+  Number of AI agent messages on the ticket.
+</ResponseField>
+
+<ResponseField name="records[].total_user_messages" type="integer">
+  Number of customer messages on the ticket.
+</ResponseField>
+
+<ResponseField name="records[].queue_status" type="string">
+  Queue status, when the ticket is queued.
+</ResponseField>
+
+<ResponseField name="records[].created_at" type="string">
+  Ticket creation timestamp.
+</ResponseField>
+
+<ResponseField name="records[].updated_at" type="string">
+  Ticket update timestamp.
+</ResponseField>
+
+<ResponseField name="records[].last_message_created_at" type="string">
+  Timestamp of the latest message attached to the ticket.
+</ResponseField>
+
+<ResponseField name="records[].closed_at" type="string">
+  Ticket close timestamp, when closed.
+</ResponseField>
+
+<ResponseField name="records[].customers" type="object">
+  Customer summary for the ticket.
+</ResponseField>
+
+<ResponseField name="records[].channels" type="object">
+  Channel summary for the ticket.
+</ResponseField>
+
+<ResponseField name="records[].messages" type="object">
+  Latest message summary for the ticket.
+</ResponseField>
+
+<ResponseField name="records[].pilots" type="object">
+  AI agent summary, when assigned.
+</ResponseField>
+
+<ResponseField name="records[].agent_profile" type="object">
+  Human agent profile summary, when assigned.
+</ResponseField>
+
+<ResponseField name="records[].chat_tags" type="object[]">
+  Tags attached to the ticket.
+</ResponseField>
+
+<ResponseField name="records[].chat_custom_fields" type="object[]">
+  Custom field values attached to the ticket.
+</ResponseField>
+
+<ResponseField name="cursor" type="string">
+  Cursor for the next page. This is `null` when there is no next page.
+</ResponseField>
+
+<ResponseField name="total" type="integer">
+  Total matching records when `include_total` is `true`; otherwise `null`.
+</ResponseField>
+
+## Notes
+
+- Use API client v2 credentials with `tickets:read` scope and the `tickets` dataset grant. See [API client v2](/api-reference/authentication/api-client-v2).
+- Multi-value filters are comma-separated strings.
+- Use `assignee` with `assignee_type` to filter by human agents or AI agents.
+- Replace `app.sagepilot.ai` with `eu.sagepilot.ai` if your workspace is hosted in Sagepilot's European region.
