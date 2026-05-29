@@ -155,6 +155,43 @@
         ]
       },
       {
+        "tab": "SDKs",
+        "icon": "smartphone",
+        "groups": [
+          {
+            "group": "React Native SDK",
+            "root": "sdks/react-native/overview",
+            "expanded": true,
+            "pages": [
+              "sdks/react-native/installation",
+              "sdks/react-native/configuration",
+              "sdks/react-native/secure-session-storage",
+              "sdks/react-native/identity",
+              "sdks/react-native/opening-chat",
+              "sdks/react-native/api-reference"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "MCP",
+        "icon": "network",
+        "groups": [
+          {
+            "group": "Sagepilot MCP",
+            "root": "mcp/overview",
+            "expanded": true,
+            "pages": [
+              "mcp/authentication",
+              "mcp/clients",
+              "mcp/openai-responses-api",
+              "mcp/tools",
+              "mcp/ticket-list-filters"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "API Reference",
         "icon": "square-terminal",
         "groups": [

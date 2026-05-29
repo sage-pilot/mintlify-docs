@@ -1,0 +1,49 @@
+---
+title: "Identity"
+description: "Identify signed-in app users and clear Sagepilot state on logout."
+icon: "user-check"
+mode: wide
+---
+
+Call `identify()` when you know the signed-in app user.
+
+```ts
+await SagepilotChat.identify({
+  userId: user.id,
+  email: user.email,
+  name: user.name,
+  phone: user.phone,
+  customProperties: {
+    plan: "pro",
+    storeId: "store_123"
+  }
+});
+```
+
+## Identity verification
+
+If identity verification is enabled for your workspace, generate `userHash` on your server and pass only the generated hash to the app:
+
+```ts
+await SagepilotChat.identify({
+  userId: user.id,
+  email: user.email,
+  userHash: serverGeneratedUserHash
+});
+```
+
+<Warning>
+  Never generate `userHash` in the mobile app with a signing secret.
+</Warning>
+
+## Logout
+
+When the app user signs out, clear Sagepilot identity/session state:
+
+```ts
+await SagepilotChat.logout();
+await SagepilotChat.destroy();
+```
+
+`logout()` removes the known customer identity from the current SDK session. `destroy()` stops polling, clears in-memory state, and removes SDK listeners.
+

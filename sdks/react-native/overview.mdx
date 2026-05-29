@@ -1,0 +1,55 @@
+---
+title: "React Native SDK"
+description: "Add Sagepilot chat to iOS and Android apps with the official React Native SDK."
+icon: "smartphone"
+mode: wide
+---
+
+`@sagepilot-ai/react-native-sdk` opens the Sagepilot-hosted chat experience inside a React Native WebView and provides APIs for setup, identity, unread count, and app-owned launchers.
+
+## Requirements
+
+- React 18+
+- React Native 0.72+
+- `react-native-webview` 13+
+- A Sagepilot workspace ID and chat channel ID
+- Secure token storage for production apps
+
+## Install
+
+```bash
+npm install @sagepilot-ai/react-native-sdk react-native-webview
+```
+
+For secure persisted sessions, also install one storage library:
+
+```bash
+npm install react-native-keychain
+```
+
+Expo apps can use `expo-secure-store` instead:
+
+```bash
+npx expo install expo-secure-store
+```
+
+## Start here
+
+<CardGroup cols={3}>
+  <Card title="Install the SDK" icon="package" href="/sdks/react-native/installation">
+    Add the SDK, WebView dependency, and secure storage package.
+  </Card>
+  <Card title="Configure chat" icon="settings" href="/sdks/react-native/configuration">
+    Set the workspace/channel key, presentation behavior, and launcher theme.
+  </Card>
+  <Card title="Open chat" icon="message-circle" href="/sdks/react-native/opening-chat">
+    Use hooks and public methods to connect chat to your app-owned UI.
+  </Card>
+</CardGroup>
+
+## Runtime model
+
+`SagepilotChatProvider` renders the Sagepilot-hosted chat UI in a React Native WebView. Most apps do not need a host override. For standard Sagepilot cloud usage, omit `host`; the SDK connects to Sagepilot-hosted endpoints automatically.
+
+Set `host` only when Sagepilot provides a dedicated endpoint for your workspace.
+

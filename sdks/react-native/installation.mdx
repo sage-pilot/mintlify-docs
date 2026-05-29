@@ -1,0 +1,42 @@
+---
+title: "Installation"
+description: "Install the Sagepilot React Native SDK and required dependencies."
+icon: "package"
+mode: wide
+---
+
+Install the SDK and WebView dependency:
+
+```bash
+npm install @sagepilot-ai/react-native-sdk react-native-webview
+```
+
+For secure persisted sessions, also install a native storage library.
+
+## React Native Keychain
+
+```bash
+npm install react-native-keychain
+```
+
+`react-native-keychain` stores values in iOS Keychain and Android secure storage backed by Android Keystore.
+
+## Expo SecureStore
+
+```bash
+npx expo install expo-secure-store
+```
+
+Expo SecureStore uses iOS Keychain and Android encrypted storage backed by Android Keystore.
+
+## Required values
+
+You need:
+
+- A Sagepilot workspace ID
+- A Sagepilot chat channel ID
+- A public SDK key in the format `workspace_id:channel_id`
+- Secure token storage for production apps
+
+The `key` is not a secret. It is safe to ship in a mobile app. Do not put server API keys, signing secrets, or private workspace secrets in a React Native app.
+
