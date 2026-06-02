@@ -1,67 +1,59 @@
 ---
 title: "Changelog"
-description: "Track notable Sagepilot product and documentation updates."
+description: "Track notable Sagepilot product updates."
 icon: "history"
 mode: wide
 ---
 
-Use the changelog for customer-visible product updates, integration changes, API changes, and documentation updates.
 
-## Latest entry template
+## New features
 
-Use one dated entry per release window. Keep the top summary short, then group details by product area.
+### <Badge color="green" size="sm" shape="pill">WhatsApp</Badge> Meta coexistence onboarding support
 
-```mdx
----
-title: "May 29, 2026"
-description: "Short summary of the release."
----
+Teams can now onboard WhatsApp accounts with Meta coexistence support. This makes it easier to connect Sagepilot while continuing to work with existing Meta-connected WhatsApp setups.
 
-## What's new
+### <Badge color="blue" size="sm" shape="pill">Integrations</Badge> Logistics integrations
 
-- One-line customer-visible update.
-- One-line workflow or integration update.
-- One-line API or documentation update.
+Sagepilot now supports Fship, Shadowfax, Ekart, Shiprocket, Openleaf, and Shipway integrations. Teams can connect more delivery and fulfillment providers to improve shipment visibility inside customer and operations workflows.
 
-## Support inbox
+### <Badge color="purple" size="sm" shape="pill">Search</Badge> Unified search
 
-### Clear feature title
+Unified search now brings together chats, calls, contacts, and social platform comments in one place. Teams can find customer conversations and activity faster without switching between separate modules.
 
-Explain what changed, why it matters, and where users can find it.
+### <Badge color="orange" size="sm" shape="pill">SDK</Badge> React Native SDK
 
-## AI agents
+Sagepilot now supports a React Native SDK for mobile app implementations. Teams building native mobile experiences can use Sagepilot messaging and customer workflows directly in their apps.
 
-### Clear feature title
+### <Badge color="surface" size="sm" shape="pill">MCP</Badge> Sage MCP
 
-Explain what changed for agent setup, review, quality, or handoff.
+Sage MCP gives teams a structured way to connect Sagepilot context and supported actions into AI agent workflows. This helps agents work with workspace data through a more reliable integration layer.
 
-## Integrations
+## Enhancements
 
-### Clear feature title
+### <Badge color="blue" size="sm" shape="pill">RCS</Badge> Variable mapping support
 
-Explain what changed for channels, ecommerce, helpdesks, CRMs, or webhooks.
+RCS templates now support variable mapping, so teams can personalize messages with customer, campaign, journey, or order data before sending.
 
-## API Reference
+### <Badge color="green" size="sm" shape="pill">Analytics</Badge> Attribution details API
 
-### Clear feature title
+The analytics API now includes attribution details for journeys and campaigns, helping teams understand which sources, referrals, and campaign paths contributed to customer activity.
 
-Explain new endpoints, changed schemas, authentication changes, or migration notes.
-```
+### <Badge color="purple" size="sm" shape="pill">Voice</Badge> Expanded call workflows
 
-## May 2026
+Voice calls now support back office tickets, tags, transcripts, template sending, and richer filters. This makes call operations easier to manage alongside the rest of the customer support workflow.
 
-<Update label="May 29, 2026" description="Initial Sagepilot docs foundation.">
-  Created the Sagepilot documentation base with top-level areas for getting started, guides, API reference, and changelog.
-</Update>
+### <Badge color="orange" size="sm" shape="pill">Email</Badge> Version-based template duplication
 
-## Changelog rules
+Email templates can now be duplicated from specific versions. Teams can branch from a known working version when creating campaign variants or updating existing templates.
 
-- Lead with what changed for the user.
-- Group details by product area.
-- Link to the relevant guide or API reference page when one exists.
-- Avoid internal implementation details, raw PR titles, and engineering-only labels.
-- Use exact dates for entries.
+### <Badge color="green" size="sm" shape="pill">Website widget</Badge> Cart, CTA, and carousel support
 
-## TODO
+The website widget now supports cart sync and cart management, custom CTAs, and carousel-style experiences. This helps teams create richer storefront and support flows inside the widget.
 
-Decide whether changelog entries live on this single page or move into dated files under a future `updates/YYYY/MM/DD/` folder once volume increases.
+### <Badge color="blue" size="sm" shape="pill">Journeys</Badge> Custom API support for decision nodes
+
+Journey decision nodes can now use custom API calls. Teams can route customers based on external data, business rules, eligibility checks, or operational state.
+
+### <Badge color="purple" size="sm" shape="pill">Instagram</Badge> Carousel support
+
+Instagram carousel content is now better supported across social engagement and conversation workflows, making it easier to handle multi-media posts and comment-to-DM interactions.
