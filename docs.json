@@ -69,103 +69,6 @@
     },
     "tabs": [
       {
-        "tab": "Guides",
-        "icon": "book-open",
-        "groups": [
-          {
-            "group": "GETTING STARTED",
-            "root": "getting-started/overview",
-            "expanded": true,
-            "pages": [
-              "getting-started/workspace-setup",
-              "getting-started/connect-your-first-channel",
-              "getting-started/invite-your-team"
-            ]
-          },
-          {
-            "group": "CHANNEL INTEGRATIONS",
-            "root": "integrations/channels",
-            "expanded": true,
-            "pages": [
-              "integrations/channels/website-widget",
-              "integrations/channels/email",
-              "integrations/channels/whatsapp",
-              "integrations/channels/voice"
-            ]
-          },
-          {
-            "group": "SUPPORT WORKFLOWS",
-            "root": "support-inbox/overview",
-            "expanded": true,
-            "pages": [
-              "support-inbox/tickets-and-views",
-              "settings/csat",
-              "settings/business-hours",
-              "settings/ticket-fields",
-              "settings/tags",
-              "support-inbox/customers",
-              "calls/overview",
-              "support-inbox/social-engagement",
-              "support-inbox/backoffice-tasks"
-            ]
-          },
-          {
-            "group": "PLATFORM",
-            "root": "ai-agents/overview",
-            "expanded": true,
-            "pages": [
-              "ai-agents/support-agents",
-              "ai-agents/voice-agents",
-              "ai-agents/social-agents",
-              "ai-agents/knowledge-base",
-              "ai-agents/manager-mode",
-              "settings/channels",
-              "settings/integrations",
-              "settings/team-and-permissions",
-              "settings/mcp-servers"
-            ]
-          },
-          {
-            "group": "OUTBOUND",
-            "root": "engage/overview",
-            "expanded": true,
-            "pages": [
-              "engage/lists-and-segments",
-              "engage/templates",
-              "engage/campaigns",
-              "engage/journeys",
-              "engage/marketing-ai",
-              "engage/history"
-            ]
-          },
-          {
-            "group": "REPORTING AND ANALYTICS",
-            "root": "analytics/overview",
-            "expanded": true,
-            "pages": [
-              "analytics/support-analytics",
-              "analytics/ai-performance",
-              "analytics/outbound-analytics",
-              "analytics/social-engagement"
-            ]
-          },
-          {
-            "group": "WORKSPACE SETTINGS",
-            "root": "settings/overview",
-            "expanded": true,
-            "pages": [
-              "settings/general",
-              "settings/members",
-              "settings/roles",
-              "settings/teams",
-              "settings/branding",
-              "settings/billing",
-              "settings/notifications"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "SDKs",
         "icon": "smartphone",
         "groups": [
@@ -273,13 +176,6 @@
               "api-reference/messages/send-whatsapp-template"
             ]
           }
-        ]
-      },
-      {
-        "tab": "Changelog",
-        "icon": "history",
-        "pages": [
-          "changelog"
         ]
       }
     ]
