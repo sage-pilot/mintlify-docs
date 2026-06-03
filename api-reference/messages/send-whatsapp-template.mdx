@@ -1,0 +1,41 @@
+---
+title: "Send WhatsApp template"
+sidebarTitle: "Send WhatsApp template"
+description: "Send a WhatsApp template message through the legacy template-send integration."
+api: "POST /send-whatsapp-template"
+playground: "interactive"
+---
+
+Use this endpoint template for the WhatsApp template-send API. Full request and response details will be added after the final contract is confirmed.
+
+## Required access
+
+| Authentication | Required headers |
+|----------------|------------------|
+| [Legacy workspace API key](/api-reference/authentication/legacy-workspace-api-key) | `Authorization: Bearer <legacy_workspace_api_key>` and `X-SP-Workspace-Id: <workspace_id>`. |
+
+## Body
+
+<ParamField body="channel_id" type="string" required>
+  Channel UUID from **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+</ParamField>
+
+<ParamField body="customer_phone" type="string" required>
+  Destination phone number for the template message.
+</ParamField>
+
+<ParamField body="template" type="object" required>
+  WhatsApp template payload.
+</ParamField>
+
+<ParamField body="template.name" type="string" required>
+  Template name.
+</ParamField>
+
+<ParamField body="template.language" type="string" required>
+  Template language code.
+</ParamField>
+
+## Notes
+
+- This endpoint uses the legacy workspace API key flow. See [Legacy workspace API key](/api-reference/authentication/legacy-workspace-api-key).

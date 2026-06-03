@@ -1,0 +1,190 @@
+---
+title: "Export voice calls"
+sidebarTitle: "Export voice calls"
+description: "Download filtered voice call rows as a streamed CSV attachment."
+api: "POST /platform-api/v1/exports/voice_calls"
+playground: "interactive"
+---
+
+Use the voice call export API to download filtered call rows as a CSV file.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `tickets.export` | `tickets.raw` |
+
+## Body
+
+<ParamField body="format" type="string" required default="csv">
+  Export format. Currently only `csv` is supported.
+</ParamField>
+
+<ParamField body="filters" type="object">
+  Voice call filters to apply before exporting rows.
+</ParamField>
+
+<ParamField body="custom_fields" type="object">
+  Optional object mapping voice-call custom field IDs to filter values.
+</ParamField>
+
+<ParamField body="custom_fields.<field_id>" type="string">
+  Custom field value filter for the given Sagepilot custom field ID.
+</ParamField>
+
+<ParamField body="timezone" type="string" default="UTC">
+  Timezone used for formatted datetime columns.
+</ParamField>
+
+<ParamField body="limit" type="integer" default="500000">
+  Maximum number of rows to stream in the CSV export.
+</ParamField>
+
+## Filters
+
+<ParamField body="filters.status" type="string">
+  Call status. Supported values include `pending`, `ended`, `missed`, `failed`, `active`, `scheduled`, or `all`.
+</ParamField>
+
+<ParamField body="filters.mode" type="string">
+  Comma-separated call modes, such as `ai`, `human`, `ai_to_human`, or `human_to_ai`.
+</ParamField>
+
+<ParamField body="filters.direction" type="string">
+  Call direction. Use `inbound` or `outbound`.
+</ParamField>
+
+<ParamField body="filters.channel" type="string">
+  Comma-separated channel UUIDs. Find channel IDs in **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+</ParamField>
+
+<ParamField body="filters.channel_kind" type="string">
+  Comma-separated channel kinds, such as `voice` or `whatsapp`.
+</ParamField>
+
+<ParamField body="filters.customer_id" type="string">
+  Customer UUID to filter calls by.
+</ParamField>
+
+<ParamField body="filters.assignee" type="string">
+  Comma-separated human agent or AI agent UUIDs. Use `current` where the API request is associated with a user context. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+</ParamField>
+
+<ParamField body="filters.team" type="string">
+  Comma-separated team UUIDs. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+</ParamField>
+
+<ParamField body="filters.disposition" type="string">
+  Comma-separated disposition values.
+</ParamField>
+
+<ParamField body="filters.hangup_reason" type="string">
+  Comma-separated terminal reasons, such as `voice_mail`.
+</ParamField>
+
+<ParamField body="filters.tags" type="string">
+  Comma-separated tag IDs.
+</ParamField>
+
+<ParamField body="filters.source" type="string">
+  Comma-separated call sources, such as `direct`, `journey`, or `campaign`.
+</ParamField>
+
+<ParamField body="filters.campaign" type="string">
+  Comma-separated campaign IDs.
+</ParamField>
+
+<ParamField body="filters.journey" type="string">
+  Comma-separated journey IDs.
+</ParamField>
+
+<ParamField body="filters.template" type="string">
+  Comma-separated messaging template IDs sent during the call.
+</ParamField>
+
+<ParamField body="filters.sentiment" type="string">
+  Comma-separated sentiment values, such as `positive`, `neutral`, or `negative`.
+</ParamField>
+
+<ParamField body="filters.has_recording" type="string">
+  Use `true` or `false` to filter by recording availability.
+</ParamField>
+
+<ParamField body="filters.has_transcript" type="string">
+  Use `true` or `false` to filter by transcript availability.
+</ParamField>
+
+<ParamField body="filters.duration_min" type="integer">
+  Minimum call duration in seconds.
+</ParamField>
+
+<ParamField body="filters.duration_max" type="integer">
+  Maximum call duration in seconds.
+</ParamField>
+
+<ParamField body="filters.date_range" type="string">
+  Date preset or explicit range. Supported values include `today`, `yesterday`, `last_7_days`, `last_30_days`, and `start|end`.
+</ParamField>
+
+<ParamField body="filters.date_filter_field" type="string">
+  Date field used with `date_range`. Supported values are `created_at`, `answered_at`, and `ended_at`.
+</ParamField>
+
+<ParamField body="filters.sort_by_field" type="string">
+  Field used for ordering. Supported values include `created_at`, `answered_at`, `ended_at`, and `duration_seconds`.
+</ParamField>
+
+<ParamField body="filters.sort_order" type="string">
+  Sort direction. Use `asc` or `desc`.
+</ParamField>
+
+<ParamField body="filters.no_assignee" type="string">
+  Use `true` to return unassigned calls.
+</ParamField>
+
+## Default columns
+
+The CSV includes these default columns, followed by enabled voice-call custom fields:
+
+- `Call Code`
+- `Call ID`
+- `Direction`
+- `Mode`
+- `Status`
+- `Created At`
+- `Answered At`
+- `Ended At`
+- `Duration`
+- `Hangup Reason`
+- `Ended By`
+- `Customer Name`
+- `Customer Phone`
+- `Customer Email`
+- `Customer Company`
+- `From Number`
+- `To Number`
+- `Agent`
+- `Pilot`
+- `Team`
+- `Channel`
+- `Channel Type`
+- `Disposition`
+- `Disposition Set By`
+- `Summary`
+- `Sentiment`
+- `Recording URL`
+- `Has Transcript`
+- `Source`
+- `Campaign ID`
+- `Journey ID`
+- `Scheduled At`
+- `Scheduled By`
+- `Tags`
+- `Transcript`
+
+
+
+## Notes
+
+- Use voice call export when you need row-level CSV data for calls, recordings, transcripts, dispositions, and call-level custom fields.
+- The endpoint appends enabled voice-call custom fields after the default CSV columns.

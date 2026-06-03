@@ -1,0 +1,69 @@
+---
+title: "Slack"
+description: "Connect Slack so teams can interact with Sagepilot agents from channels and DMs."
+icon: "hash"
+mode: wide
+---
+
+The Slack channel connects a Slack workspace to Sagepilot so teams can interact with agents from Slack channels and direct messages. Use it for internal support workflows, agent notifications, and team-facing AI access.
+
+## Before you start
+
+- Confirm you have permission to install apps in the Slack workspace.
+- Select the AI agent that should respond to Slack mentions and DMs.
+- Decide which internal channels should use Sagepilot.
+- Confirm your team’s policy for AI responses in shared Slack channels.
+
+<Tip>
+  Image placeholder: add a screenshot of the **Slack** card in the Create Channel modal.
+</Tip>
+
+## Create the Slack channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, open **Channels** and click **Create Channel**.
+  </Step>
+  <Step title="Select Slack">
+    Choose **Slack** from the Team Inbox category.
+  </Step>
+  <Step title="Set channel details">
+    Add the Slack channel display name and select the agent that should respond.
+  </Step>
+  <Step title="Connect Slack workspace">
+    Click **Connect Slack Workspace** and approve the requested Slack scopes.
+  </Step>
+  <Step title="Invite the app where needed">
+    Add the Sagepilot app to the Slack channels where the agent should participate.
+  </Step>
+  <Step title="Save and test">
+    Save the channel, then mention the agent or send a DM to confirm the connection.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for Slack agent selection, Slack OAuth authorization, connected workspace details, channel invite, and test mention.
+</Tip>
+
+## Recommended configuration
+
+| Area | Recommendation |
+| --- | --- |
+| Agent | Use an agent with internal-facing instructions, not a customer-facing support script. |
+| Channels | Start with a small test channel before rolling out broadly. |
+| DMs | Use DMs for private operational questions. |
+| Shared channels | Define expectations for when the agent should respond. |
+
+## Verify the setup
+
+1. Confirm Slack OAuth completes successfully.
+2. Invite the Sagepilot app to a test channel.
+3. Mention the agent in the channel.
+4. Send the agent a direct message.
+5. Confirm responses appear in Slack and activity is visible in Sagepilot.
+
+## Operational notes
+
+- Slack app permissions depend on the workspace’s app approval policy.
+- If the agent does not respond in a channel, confirm the app was invited to that channel.
+- Use a dedicated internal agent when Slack usage is for teammate workflows rather than customer replies.

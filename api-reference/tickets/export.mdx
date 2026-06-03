@@ -1,0 +1,108 @@
+---
+title: "Export tickets"
+sidebarTitle: "Export tickets"
+description: "Download raw ticket rows as a streamed CSV attachment."
+api: "POST /platform-api/v1/exports/tickets"
+playground: "interactive"
+---
+
+Use the ticket export API to download raw ticket rows as a CSV file.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `tickets.export` | `tickets.raw` |
+
+## Body
+
+<ParamField body="format" type="string" required default="csv">
+  Export format. Currently only `csv` is supported.
+</ParamField>
+
+<ParamField body="columns" type="object[]">
+  Optional list of columns to include. If omitted, Sagepilot exports the default ticket columns and appends workspace custom fields automatically.
+</ParamField>
+
+<ParamField body="columns[].key" type="string">
+  Built-in column key, or any label you want for a custom-field integration column.
+</ParamField>
+
+<ParamField body="columns[].label" type="string">
+  Optional CSV header label.
+</ParamField>
+
+<ParamField body="columns[].field_id" type="string">
+  Sagepilot custom field ID. Include this when exporting a workspace custom field.
+</ParamField>
+
+<ParamField body="filters" type="object">
+  Same filter object used by analytics queries.
+</ParamField>
+
+<ParamField body="filters.channel_ids" type="string[]">
+  Channel UUIDs to include in the export. Find channel IDs in **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+</ParamField>
+
+<ParamField body="filters.statuses" type="string[]">
+  Ticket statuses to include. Current constraint: at most one status per export request.
+</ParamField>
+
+<ParamField body="sort" type="object[]">
+  Optional sort instructions.
+</ParamField>
+
+<ParamField body="sort[].field" type="string">
+  Field to sort by, such as `created_at`.
+</ParamField>
+
+<ParamField body="sort[].direction" type="string">
+  Sort direction. Use `asc` or `desc`.
+</ParamField>
+
+<ParamField body="timezone" type="string" default="UTC">
+  Timezone used for formatted datetime columns.
+</ParamField>
+
+<ParamField body="limit" type="integer" default="50000">
+  Maximum rows to export. The maximum supported value is `50000`.
+</ParamField>
+
+<ParamField body="date_range" type="string">
+  Optional date preset.
+</ParamField>
+
+<ParamField body="date_filter_field" type="string">
+  Optional date field selector.
+</ParamField>
+
+<ParamField body="view" type="string">
+  Optional saved-view identifier.
+</ParamField>
+
+## Built-in columns
+
+Common built-in column keys include:
+
+- `code`
+- `status`
+- `priority`
+- `created_at`
+- `updated_at`
+- `customer_name`
+- `customer_phone`
+- `customer_email`
+- `channel_id`
+- `tags`
+- `closed_at`
+- `agent_name`
+- `pilot_name`
+
+## Response
+
+The response is a streamed CSV attachment.
+
+## Notes
+
+- Use ticket export when you need row-level CSV data for spreadsheets, warehouse jobs, or offline analysis.
+- Use the analytics API when you need aggregates, ratios, trends, or grouped summaries.

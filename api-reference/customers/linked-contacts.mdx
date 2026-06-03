@@ -1,0 +1,61 @@
+---
+title: "Get linked contacts"
+sidebarTitle: "Get linked contacts"
+description: "List contacts linked to a customer by tracker."
+api: "POST /platform-api/v1/customers/linked_contacts"
+playground: "interactive"
+---
+
+<ResponseExample>
+
+```json 200
+{
+  "success": true,
+  "contacts": [
+    {
+      "id": "8258ac65-4073-44b8-83f5-b459ab9ff68e",
+      "name": "Vikram Singh Chundawat",
+      "email": "vikram@sagepilot.ai",
+      "phone": null,
+      "is_primary": false,
+      "created_at": "2025-03-18T20:49:09.137699Z",
+      "source": "playground"
+    },
+    {
+      "id": "70c42a1c-da1e-488e-b24f-ece6b2f3a5fe",
+      "name": "Vikram Singh Chundawat",
+      "email": "vikram@sagepilot.ai",
+      "phone": "918003213447",
+      "is_primary": false,
+      "created_at": "2025-01-06T19:44:10.643789Z",
+      "source": "web_widget"
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+Get contacts linked to a customer through shared identity tracking.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `customers:read` | `customers` |
+
+## Body
+
+<ParamField body="contactId" type="string" required>
+  Contact/customer UUID used to find linked contacts. Open a customer in the Customer module and use the last UUID in the URL: `/dashboard/[workspace_id]/customers/[customer_id]`. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean" required>
+  Whether the request succeeded.
+</ResponseField>
+
+<ResponseField name="contacts" type="object[]" required>
+  Linked contacts.
+</ResponseField>

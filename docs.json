@@ -1,12 +1,12 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "willow",
-  "name": "Product Guide",
-  "description": "Step-by-step guides for every product—platform setup, analytics, and integrations in one place.",
+  "theme": "palm",
+  "name": "Sagepilot Docs",
+  "description": "Product documentation for Sagepilot workspaces, support operations, AI agents, engagement, integrations, analytics, and settings.",
   "colors": {
     "primary": "#166E3F",
-    "light": "#26BD6C",
-    "dark": "#166E3F"
+    "light": "#22E185",
+    "dark": "#22E185"
   },
   "favicon": "/favicon.ico",
   "icons": {
@@ -18,151 +18,178 @@
   "contextual": {
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
   },
-  "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Home",
-          "icon": "house",
-          "href": "/"
-        },
-        {
-          "anchor": "Changelog",
-          "icon": "scroll-text",
-          "href": "https://www.mintlify.com/docs/changelog"
-        },
-        {
-          "anchor": "Help",
-          "icon": "life-buoy",
-          "href": "https://www.mintlify.com/docs/contact-support"
-        }
-      ]
+  "api": {
+    "playground": {
+      "display": "interactive"
     },
-    "directory": "card",
-    "products": [
-      {
-        "product": "Platform",
-        "description": "Core platform setup, configuration, and administration.",
-        "icon": "layers",
-        "groups": [
-          {
-            "group": "Getting started",
-            "expanded": true,
-            "root": "platform/index",
-            "pages": [
-              "platform/quickstart",
-              "platform/key-concepts"
-            ]
-          },
-          {
-            "group": "Configuration",
-            "expanded": true,
-            "root": "platform/configuration/index",
-            "pages": [
-              "platform/configuration/settings",
-              "platform/configuration/user-management"
-            ]
-          },
-          {
-            "group": "Administration",
-            "expanded": true,
-            "root": "platform/administration/index",
-            "pages": [
-              "platform/administration/roles-permissions",
-              "platform/administration/audit-logs"
-            ]
-          }
-        ]
-      },
-      {
-        "product": "Analytics",
-        "description": "Build dashboards, run reports, and analyze your data.",
-        "icon": "chart-bar",
-        "groups": [
-          {
-            "group": "Getting started",
-            "expanded": true,
-            "root": "analytics/index",
-            "pages": [
-              "analytics/quickstart",
-              "analytics/connect-data"
-            ]
-          },
-          {
-            "group": "Dashboards",
-            "expanded": true,
-            "root": "analytics/dashboards/index",
-            "pages": [
-              "analytics/dashboards/create-dashboard",
-              "analytics/dashboards/charts-visualizations",
-              "analytics/dashboards/sharing-exports"
-            ]
-          },
-          {
-            "group": "Reports",
-            "expanded": true,
-            "root": "analytics/reports/index",
-            "pages": [
-              "analytics/reports/build-report",
-              "analytics/reports/scheduled-reports"
-            ]
-          }
-        ]
-      },
-      {
-        "product": "Integrations",
-        "description": "Connect your tools with pre-built connectors and webhooks.",
-        "icon": "plug",
-        "groups": [
-          {
-            "group": "Getting started",
-            "expanded": true,
-            "root": "integrations/index",
-            "pages": [
-              "integrations/quickstart",
-              "integrations/authentication"
-            ]
-          },
-          {
-            "group": "Connectors",
-            "expanded": true,
-            "root": "integrations/connectors/index",
-            "pages": [
-              "integrations/connectors/crm",
-              "integrations/connectors/data-warehouse",
-              "integrations/connectors/messaging"
-            ]
-          },
-          {
-            "group": "Webhooks & events",
-            "expanded": true,
-            "root": "integrations/webhooks/index",
-            "pages": [
-              "integrations/webhooks/configure",
-              "integrations/webhooks/event-types",
-              "integrations/webhooks/retry-policies"
-            ]
-          }
-        ]
+    "examples": {
+      "languages": ["curl", "javascript", "python"],
+      "defaults": "required",
+      "prefill": false,
+      "autogenerate": true
+    },
+    "mdx": {
+      "server": ["https://app.sagepilot.ai", "https://eu.sagepilot.ai"],
+      "auth": {
+        "method": "bearer"
       }
-    ]
+    }
   },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
   "navbar": {
-    "links": [],
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@sagepilot.ai"
+      }
+    ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Go to Platform",
+      "href": "https://app.sagepilot.ai"
     }
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/sdks/react-native/overview"
+    }
+  ],
+  "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Home",
+          "icon": "house",
+          "href": "/sdks/react-native/overview"
+        },
+        {
+          "anchor": "Open Platform",
+          "icon": "laptop",
+          "href": "https://app.sagepilot.ai"
+        }
+      ]
+    },
+    "tabs": [
+      {
+        "tab": "SDKs",
+        "icon": "smartphone",
+        "groups": [
+          {
+            "group": "React Native SDK",
+            "root": "sdks/react-native/overview",
+            "expanded": true,
+            "pages": [
+              "sdks/react-native/installation",
+              "sdks/react-native/configuration",
+              "sdks/react-native/secure-session-storage",
+              "sdks/react-native/identity",
+              "sdks/react-native/opening-chat",
+              "sdks/react-native/api-reference"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "MCP",
+        "icon": "server-cog",
+        "groups": [
+          {
+            "group": "Sagepilot MCP",
+            "root": "mcp/overview",
+            "expanded": true,
+            "pages": [
+              "mcp/authentication",
+              "mcp/clients",
+              "mcp/openai-responses-api",
+              "mcp/tools",
+              "mcp/ticket-list-filters"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "square-terminal",
+        "groups": [
+          {
+            "group": "Overview",
+            "icon": "square-terminal",
+            "root": "api-reference/overview",
+            "expanded": true,
+            "pages": [
+              "api-reference/authentication/api-client-v2",
+              "api-reference/authentication/legacy-workspace-api-key"
+            ]
+          },
+          {
+            "group": "Analytics",
+            "icon": "chart-no-axes-combined",
+            "expanded": true,
+            "pages": [
+              "api-reference/analytics/catalog",
+              "api-reference/analytics/query"
+            ]
+          },
+          {
+            "group": "Tickets",
+            "icon": "ticket",
+            "root": "api-reference/tickets",
+            "expanded": true,
+            "pages": [
+              "api-reference/tickets/list",
+              "api-reference/tickets/export",
+              "api-reference/tickets/mark-read",
+              "api-reference/tickets/assign",
+              "api-reference/tickets/status",
+              "api-reference/tickets/messages-list"
+            ]
+          },
+          {
+            "group": "Calls",
+            "icon": "phone-call",
+            "root": "api-reference/calls",
+            "expanded": true,
+            "pages": [
+              "api-reference/calls/export-voice-calls"
+            ]
+          },
+          {
+            "group": "Customers",
+            "icon": "users",
+            "root": "api-reference/customers",
+            "expanded": true,
+            "pages": [
+              "api-reference/customers/recent-chats",
+              "api-reference/customers/notes",
+              "api-reference/customers/recent-calls",
+              "api-reference/customers/backoffice-tickets",
+              "api-reference/customers/tickets-stats",
+              "api-reference/customers/social-activity",
+              "api-reference/customers/linked-contacts",
+              "api-reference/customers/list",
+              "api-reference/customers/get",
+              "api-reference/customers/get-by-id"
+            ]
+          },
+          {
+            "group": "Messages",
+            "expanded": true,
+            "pages": [
+              "api-reference/messages/send-whatsapp-template"
+            ]
+          }
+        ]
+      }
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/yourcompany",
-      "linkedin": "https://linkedin.com/company/yourcompany"
+      "website": "https://sagepilot.ai/",
+      "linkedin": "https://www.linkedin.com/company/sagepilot-ai/"
     }
   }
 }

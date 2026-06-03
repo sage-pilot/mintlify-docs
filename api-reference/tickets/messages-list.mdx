@@ -1,0 +1,155 @@
+---
+title: "List ticket messages"
+sidebarTitle: "List ticket messages"
+description: "List paginated messages for a ticket chat."
+api: "POST /platform-api/v1/messages/list"
+playground: "interactive"
+---
+
+<ResponseExample>
+
+```json 200
+{
+  "records": [
+    {
+      "id": "8a7f57ee-0a17-4763-a8a7-cb591adabdb2",
+      "role": "system",
+      "content": "Conversation automatically <strong>Closed</strong> due to inactivity.",
+      "content_html": "Conversation automatically <strong>Closed</strong> due to inactivity.",
+      "created_at": "2026-05-29T06:32:37.091082Z",
+      "attachments": [],
+      "meta_data": null,
+      "status": null,
+      "error_code": null,
+      "error_details": null,
+      "chat_id": "9b7110ad-69b6-4476-a448-e99b4054ad9c",
+      "is_feedback_message": false,
+      "type": "message",
+      "agent_id": null,
+      "pilot_id": null,
+      "links": [],
+      "context_message": null,
+      "outbound_context_message": null
+    },
+    {
+      "id": "209503e7-2877-40ed-89a9-4694e31d4ab4",
+      "role": "pilot",
+      "content": "The result of that calculation is approximately 23,258,354,226.06. Is there anything else I can help you with today?",
+      "content_html": "The result of that calculation is approximately 23,258,354,226.06. Is there anything else I can help you with today?",
+      "created_at": "2026-05-28T18:03:11.500000Z",
+      "attachments": [],
+      "meta_data": null,
+      "status": null,
+      "error_code": null,
+      "error_details": null,
+      "chat_id": "9b7110ad-69b6-4476-a448-e99b4054ad9c",
+      "is_feedback_message": false,
+      "type": "message",
+      "agent_id": null,
+      "pilot_id": "e3638c66-4100-4a13-b6ad-461f41847e46",
+      "links": [],
+      "context_message": null,
+      "outbound_context_message": null
+    },
+    {
+      "id": "740d0262-7f27-46e0-906a-e39e674d9aa7",
+      "role": "user",
+      "content": "what is 1265284626 * 435247 / 23678",
+      "content_html": "what is 1265284626 * 435247 / 23678",
+      "created_at": "2026-05-28T18:02:54.847000Z",
+      "attachments": [],
+      "meta_data": null,
+      "status": null,
+      "error_code": null,
+      "error_details": null,
+      "chat_id": "9b7110ad-69b6-4476-a448-e99b4054ad9c",
+      "is_feedback_message": false,
+      "type": "message",
+      "agent_id": null,
+      "pilot_id": null,
+      "links": [],
+      "context_message": null,
+      "outbound_context_message": null
+    },
+    {
+      "id": "112404ed-e6bc-41c9-b429-2ecf1f64794f",
+      "role": "system",
+      "content": "<strong>Surender Singh</strong> started a conversation via <strong>Playground</strong>",
+      "content_html": "<strong>Surender Singh</strong> started a conversation via <strong>Playground</strong>",
+      "created_at": "2026-05-28T18:02:54.814000Z",
+      "attachments": [],
+      "meta_data": null,
+      "status": null,
+      "error_code": null,
+      "error_details": null,
+      "chat_id": "9b7110ad-69b6-4476-a448-e99b4054ad9c",
+      "is_feedback_message": false,
+      "type": "message",
+      "agent_id": null,
+      "pilot_id": null,
+      "links": [],
+      "context_message": null,
+      "outbound_context_message": null
+    }
+  ],
+  "cursor": null
+}
+```
+
+</ResponseExample>
+
+List paginated messages for a ticket chat.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | Any ticket scope: `tickets:read`, `tickets:write`, `tickets:assign`, or `tickets:reply` | `messages` |
+
+## Body
+
+<ParamField body="chat_id" type="string" required>
+  Ticket chat UUID to list messages for. Use the `records[].id` value from [List tickets](/api-reference/tickets/list); do not pass the human-readable ticket `code`.
+</ParamField>
+
+<ParamField body="cursor" type="string">
+  Cursor from the previous response.
+</ParamField>
+
+<ParamField body="page_size" type="integer" default="25">
+  Number of messages to return. The minimum is `1` and the maximum is `100`.
+</ParamField>
+
+<ParamField body="channel_kind" type="string">
+  Channel kind for channel-specific message shaping, such as `whatsapp`.
+</ParamField>
+
+<ParamField body="platform_facing" type="boolean" default="true">
+  Whether to return platform-facing messages.
+</ParamField>
+
+## Response
+
+<ResponseField name="records" type="object[]" required>
+  Message records.
+</ResponseField>
+
+<ResponseField name="records[].id" type="string">
+  Message ID.
+</ResponseField>
+
+<ResponseField name="records[].role" type="string">
+  Message role.
+</ResponseField>
+
+<ResponseField name="records[].content" type="string">
+  Message content.
+</ResponseField>
+
+<ResponseField name="records[].created_at" type="string">
+  Message creation timestamp.
+</ResponseField>
+
+<ResponseField name="cursor" type="string">
+  Cursor for the next page. This is `null` when there is no next page.
+</ResponseField>

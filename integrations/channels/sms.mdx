@@ -1,0 +1,67 @@
+---
+title: "SMS"
+description: "Connect an SMS provider for customer messaging and outbound workflows."
+icon: "message-square"
+mode: wide
+---
+
+The SMS channel lets Sagepilot send customer messages through an approved SMS provider. Use it for transactional nudges, journey steps, and support workflows where SMS is the right customer surface.
+
+## Before you start
+
+- Choose the SMS provider: TrustSignal or ValueFirst.
+- Keep provider credentials ready.
+- Confirm the sender ID that should appear to recipients.
+- Select an AI agent if replies should be associated with a support workflow.
+- Confirm compliance requirements for the country and message type you plan to send.
+
+<Tip>
+  Image placeholder: add a screenshot of the **SMS** card in the Create Channel modal.
+</Tip>
+
+## Create the SMS channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, open **Channels** and click **Create Channel**.
+  </Step>
+  <Step title="Select SMS">
+    Choose **SMS** from the Voice & Mobile category.
+  </Step>
+  <Step title="Set channel details">
+    Add the channel name, sender ID, and optional AI agent.
+  </Step>
+  <Step title="Choose provider">
+    Select **TrustSignal** or **ValueFirst**. Twilio is shown in the product but is not the recommended setup path unless Sagepilot enables it for your workspace.
+  </Step>
+  <Step title="Enter credentials">
+    For TrustSignal, enter the API key. For ValueFirst, enter the username and password.
+  </Step>
+  <Step title="Save and test">
+    Save the channel and send a test SMS through the workflow that will use this channel.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for provider selection, TrustSignal credentials, ValueFirst credentials, sender ID, and a successful test send.
+</Tip>
+
+## Provider fields
+
+| Provider | Required fields |
+| --- | --- |
+| TrustSignal | Sender ID and API key. |
+| ValueFirst | Sender ID, username, and password. |
+
+## Verify the setup
+
+1. Save the SMS channel without validation errors.
+2. Send a test message to a real test number.
+3. Confirm the message arrives with the expected sender ID.
+4. If the message is part of a journey, confirm the journey event logs show successful delivery.
+
+## Operational notes
+
+- SMS sender registration and country rules vary by provider and region.
+- Keep SMS copy short, explicit, and compliant with opt-out requirements.
+- Use separate SMS channels when different sender IDs, providers, or regions require different credentials.

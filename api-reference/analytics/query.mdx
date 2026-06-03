@@ -1,0 +1,149 @@
+---
+title: "Query analytics"
+sidebarTitle: "Query analytics"
+description: "Run an analytics query with selected measures, dimensions, filters, and time windows."
+api: "POST /platform-api/v1/analytics/query"
+playground: "interactive"
+---
+
+<ResponseExample>
+
+```json 200
+{
+  "dataset": "tickets",
+  "rows": [],
+  "summary": {
+    "ticket_count": 1128
+  },
+  "meta": {
+    "applied_filters": {
+      "channel_ids": [],
+      "channel_kinds": [],
+      "statuses": [],
+      "priorities": [],
+      "assignee_ids": [],
+      "assignee_types": [],
+      "team_ids": [],
+      "tag_ids": [],
+      "excluded_tag_ids": [],
+      "queue_statuses": [],
+      "inferred_csat_scores": [],
+      "user_csat_scores": [],
+      "custom_fields": [],
+      "score_sources": [],
+      "actor_ids": [],
+      "actor_types": [],
+      "entity_types": []
+    },
+    "grain": null,
+    "timezone": "UTC",
+    "time_anchor": "created_at",
+    "requested_measures": [
+      "ticket_count"
+    ],
+    "requested_dimensions": [],
+    "generated_at": "2026-05-29T16:16:53.572328Z",
+    "cursor": null
+  }
+}
+```
+
+</ResponseExample>
+
+Use this endpoint to run analytics queries for a granted dataset. Query results can be returned as summary totals or grouped rows.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `analytics.query` | The dataset used in the request body, such as `tickets`, `messages`, `outbound_messages`, `marketing_attribution`, `csat`, or `workforce_activity`. |
+
+## Body
+
+<ParamField body="dataset" type="string" required>
+  Dataset to query. For example, `tickets`, `messages`, `outbound_messages`, `marketing_attribution`, `csat`, or `workforce_activity`.
+</ParamField>
+
+<ParamField body="measures" type="string[]" required>
+  Measures to calculate. For example, `["ticket_count", "open_ticket_count"]` for the `tickets` dataset or `["message_count", "customer_message_count"]` for the `messages` dataset.
+</ParamField>
+
+<ParamField body="dimensions" type="string[]">
+  Optional dimensions to group results. For example, `["channel_kind"]`, `["priority"]`, or `["day_of_week", "hour_of_day"]`.
+</ParamField>
+
+<ParamField body="filters" type="object">
+  Optional filter object. For example, `{ "channel_ids": ["<channel_id>"], "statuses": ["open"] }`. For channel, agent, pilot, team, or workspace IDs, see [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+</ParamField>
+
+<ParamField body="time" type="object">
+  Optional time window. Include this for trend queries or date-bounded summaries.
+</ParamField>
+
+<ParamField body="time.start" type="string">
+  ISO start timestamp. For example, `2026-05-01T00:00:00.000Z`.
+</ParamField>
+
+<ParamField body="time.end" type="string">
+  ISO end timestamp. For example, `2026-05-29T23:59:59.999Z`.
+</ParamField>
+
+<ParamField body="time.timezone" type="string">
+  Timezone used to interpret the time window. For example, `Asia/Kolkata` or `UTC`.
+</ParamField>
+
+<ParamField body="time.grain" type="string">
+  Time grain for grouped trend results. Use `day`, `week`, or `month`.
+</ParamField>
+
+<ParamField body="time.anchor" type="string">
+  Timestamp field used for the query window. For example, `created_at`, `closed_at`, `message_created_at`, `sent_at`, or `order_created_at`.
+</ParamField>
+
+<ParamField body="business_hours" type="object">
+  Optional business-hours configuration for business-hours duration measures.
+</ParamField>
+
+<ParamField body="business_hours.timezone" type="string">
+  Business-hours timezone. For example, `Asia/Kolkata`.
+</ParamField>
+
+<ParamField body="business_hours.start_time" type="string">
+  Local business day start time. For example, `09:00`.
+</ParamField>
+
+<ParamField body="business_hours.end_time" type="string">
+  Local business day end time. For example, `18:00`.
+</ParamField>
+
+<ParamField body="business_hours.working_days" type="integer[]">
+  Working days as weekday numbers. For example, `[1, 2, 3, 4, 5]` for Monday through Friday.
+</ParamField>
+
+<ParamField body="result_format" type="string" default="rows">
+  Response shape. Use `summary` for aggregate totals or `rows` for grouped rows.
+</ParamField>
+
+<ParamField body="sort" type="object[]">
+  Optional sort instructions. For example, `[{ "field": "ticket_count", "direction": "desc" }]`.
+</ParamField>
+
+<ParamField body="sort[].field" type="string">
+  Field to sort by, usually a requested measure or dimension.
+</ParamField>
+
+<ParamField body="sort[].direction" type="string">
+  Sort direction. Use `asc` or `desc`.
+</ParamField>
+
+<ParamField body="limit" type="integer">
+  Maximum number of rows to return. For example, `100`.
+</ParamField>
+
+<ParamField body="cursor" type="string">
+  Cursor from the previous response when paginating through row results.
+</ParamField>
+
+## Notes
+
+- This endpoint uses API client v2 credentials. See [API client v2](/api-reference/authentication/api-client-v2).

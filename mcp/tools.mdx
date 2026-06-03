@@ -1,0 +1,30 @@
+---
+title: "Available tools"
+description: "Sagepilot MCP tools and access levels."
+icon: "wrench"
+mode: wide
+---
+
+All tools except `get_connection_info` require a `workspace_id` argument. Call `get_connection_info` first, then pass its returned `workspace_id` into workspace-scoped tools.
+
+| Tool | Access | Description |
+|------|--------|-------------|
+| `get_connection_info` | Read | Return MCP session details, resolved workspace ID, and supported datasets. |
+| `get_analytics_catalog` | Read | Discover available analytics metrics, dimensions, and filters. |
+| `query_analytics` | Read | Query tickets, messages, outbound messages, CSAT, and workforce activity. |
+| `list_tickets` | Read | List ticket summaries using Sagepilot ticket-list filters; not full-text search. |
+| `unified_search` | Read | Search tickets, messages, customers, and voice calls through unified OpenSearch. |
+| `list_channels` | Read | List connected Sagepilot channels. |
+| `list_agents` | Read | List AI agents and human workspace members. |
+| `export_tickets_csv` | Read | Export ticket rows as CSV, capped for MCP responses. |
+| `support_get_ticket` | Read | Get a support ticket by ID or code. |
+| `support_get_ticket_messages` | Read | Get messages for a support ticket. |
+| `support_search_customers` | Read | Search customers by name, email, phone, or social identifier. |
+| `support_get_customer` | Read | Get a customer by exact ID, email, or phone. |
+| `support_assign_ticket` | Write | Assign a support ticket to an agent, AI agent, team queue, or unassigned state. |
+| `support_update_ticket_status` | Write | Update ticket status and optional sub-status. |
+
+## Structured outputs
+
+MCP tools use Pydantic-backed structured output schemas where the response shape is stable. If a structured tool returns an unexpected shape, FastMCP validates the response before sending it and returns a schema error with the field path that failed validation.
+

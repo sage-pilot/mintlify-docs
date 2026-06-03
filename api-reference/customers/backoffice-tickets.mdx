@@ -1,0 +1,68 @@
+---
+title: "Get backoffice tickets"
+sidebarTitle: "Get backoffice tickets"
+description: "List backoffice tickets for a customer."
+api: "POST /platform-api/v1/customers/backoffice_tickets"
+playground: "interactive"
+---
+
+<ResponseExample>
+
+```json 200
+[
+  {
+    "id": "48ee1866-6e3e-47cf-8d85-701b788cd7bd",
+    "code": 40,
+    "workspace_id": "ab1360ce-ef91-4397-8fbd-3ed77ef80e08",
+    "title": "Test Backoffice ticket",
+    "status": "new",
+    "priority": null,
+    "source": "manual",
+    "due_date": "2026-05-29T18:30:00Z",
+    "created_at": "2026-05-29T17:31:52.862791Z",
+    "updated_at": "2026-05-29T17:31:52.862791Z",
+    "tags": "[]",
+    "assignee_name": "anushkakpawar25"
+  }
+]
+```
+
+</ResponseExample>
+
+Get backoffice tickets for a customer in the authenticated workspace.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `customers:read` | `customers` |
+
+## Body
+
+<ParamField body="customerId" type="string" required>
+  Customer UUID to fetch tickets for. Open a customer in the Customer module and use the last UUID in the URL: `/dashboard/[workspace_id]/customers/[customer_id]`. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+</ParamField>
+
+<ParamField body="workspaceId" type="string">
+  Optional workspace UUID. The authenticated workspace is used by default. Find the current workspace ID in **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+</ParamField>
+
+<ParamField body="includeLinkedContacts" type="boolean" default="false">
+  Include tickets from linked contacts.
+</ParamField>
+
+## Query parameters
+
+<ParamField query="page" type="integer" default="1">
+  Page number.
+</ParamField>
+
+<ParamField query="page_size" type="integer" default="20">
+  Records per page. Maximum value is `200`.
+</ParamField>
+
+## Response
+
+<ResponseField name="[]" type="object[]" required>
+  Backoffice ticket records for the customer.
+</ResponseField>

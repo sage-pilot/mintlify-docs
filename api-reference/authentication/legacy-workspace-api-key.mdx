@@ -1,0 +1,52 @@
+---
+title: "Legacy workspace API key"
+sidebarTitle: "Legacy workspace API key"
+mode: wide
+---
+
+Use the legacy workspace API key only for existing WhatsApp template-send integrations.
+
+## Base URL
+
+- Global region: `https://app.sagepilot.ai`
+- Europe region: `https://eu.sagepilot.ai`
+
+
+## Setup flow
+
+<Steps>
+  <Step title="Open API Details">
+    In the Sagepilot dashboard, go to **Settings** > **API Details**.
+  </Step>
+  <Step title="Find the legacy workspace key">
+    Locate the legacy workspace API key section. You must be a workspace admin to view or generate this credential.
+  </Step>
+  <Step title="Copy the workspace ID">
+    Copy the workspace ID from **Settings** > **API Details** > **Channels**.
+  </Step>
+  <Step title="Send both headers">
+    Add the legacy API key in `Authorization` and the workspace ID in `X-SP-Workspace-Id`.
+  </Step>
+  <Step title="Use only the legacy route">
+    Use this flow only for the existing WhatsApp template-send route.
+  </Step>
+</Steps>
+
+## Required headers
+
+```bash
+Authorization: Bearer <legacy_workspace_api_key>
+X-SP-Workspace-Id: <workspace_id>
+```
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token using the legacy workspace API key.
+</ParamField>
+
+<ParamField header="X-SP-Workspace-Id" type="string" required>
+  Workspace ID for the request. Find it in **Settings > API Details > Channels**. This header is always required for the legacy flow.
+</ParamField>
+
+<Warning>
+This flow is for the legacy WhatsApp template-send route only. Do not use it for analytics, exports, ticket list APIs, customer APIs, or new integrations.
+</Warning>

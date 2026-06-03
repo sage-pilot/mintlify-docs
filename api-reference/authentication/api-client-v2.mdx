@@ -1,0 +1,140 @@
+---
+title: "API client v2"
+sidebarTitle: "API client v2"
+mode: wide
+---
+
+Use API client v2 credentials for analytics, ticket list APIs, ticket exports, voice call exports, customer read APIs, and new platform integrations.
+
+## Base URL
+
+- Global region: `https://app.sagepilot.ai`
+- Europe region: `https://eu.sagepilot.ai`
+
+
+
+## Create an API client
+
+<Steps>
+  <Step title="Open API Details">
+    In the Sagepilot dashboard, go to **Settings** > **API Details**.
+  </Step>
+  <Step title="Create a v2 client">
+    In **API client v2**, select **Create key**.
+  </Step>
+  <Step title="Add client details">
+    Fill in the label, principal type, and description so the client is identifiable later.
+  </Step>
+  <Step title="Choose scopes">
+    Select only the actions this integration needs.
+  </Step>
+  <Step title="Choose datasets">
+    Select only the datasets this integration needs.
+  </Step>
+  <Step title="Copy the token">
+    Copy the generated `sp_...` token. It is shown once.
+  </Step>
+</Steps>
+
+## Create form fields
+
+<ParamField body="label" type="string" required>
+  Human-readable name for the client, such as `BI warehouse sync` or `Support MCP client`.
+</ParamField>
+
+<ParamField body="principal_type" type="string" default="external">
+  Principal category for the client. Use `external` for third-party systems, customer-managed automations, and external integrations. Use `internal` for Sagepilot-managed internal services.
+</ParamField>
+
+<ParamField body="description" type="string">
+  Optional description of what the client is used for.
+</ParamField>
+
+<ParamField body="scopes" type="string[]">
+  Action permissions granted to the client.
+</ParamField>
+
+<ParamField body="datasets" type="string[]">
+  Dataset grants that restrict which data the client can read or export.
+</ParamField>
+
+## Current scopes
+
+The API Details page currently exposes these API client v2 scope options:
+
+| Scope | Use |
+|-------|-----|
+| `analytics.query` | Run analytics catalog and query endpoints on granted datasets. |
+| `analytics.raw.read` | Reserved for future raw analytics row access. |
+| `ticket.read` | Legacy UI-visible ticket read scope. For new ticket APIs, use `tickets:read`. |
+| `tickets.export` | Export raw ticket rows as CSV. |
+| `tickets:read` | Read ticket lists, ticket details, and ticket messages. |
+| `tickets:write` | Update ticket status and writable ticket fields. |
+| `tickets:assign` | Assign tickets to agents, AI agents, teams, or unassigned state. |
+| `customers:read` | Search and read customer profile data. |
+
+## Current datasets
+
+The API Details page currently exposes these dataset grants:
+
+| Dataset | Use |
+|---------|-----|
+| `tickets` | Ticket list APIs and ticket analytics. |
+| `customers` | Customer search and customer profile APIs. |
+| `messages` | Message analytics. |
+| `workforce_activity` | Workforce activity analytics. |
+| `csat` | CSAT analytics. |
+| `outbound_messages` | Outbound message and delivery analytics. |
+| `marketing_attribution` | Marketing attribution analytics. |
+| `tickets.raw` | Raw ticket and voice call CSV export. |
+
+New API clients should use these canonical dataset names.
+
+## Send credentials
+
+Send the API client token in either header form:
+
+```bash
+Authorization: Bearer sp_<public_key_id>.<secret>
+```
+
+```bash
+X-API-Key: sp_<public_key_id>.<secret>
+```
+
+<ParamField header="X-Workspace-Id" type="string">
+  Optional for API client v2 requests. If you send it, it must match the workspace bound to the API client. Find the current workspace ID in **Settings > API Details > Channels**.
+</ParamField>
+
+<Warning>
+Treat `sp_...` API client tokens as secrets. Do not commit them to source control or expose them in client-side code.
+</Warning>
+
+## Required access by API
+
+| API area | Required scope | Required dataset |
+|----------|----------------|------------------|
+| Analytics catalog and query | `analytics.query` | Matching analytics dataset, such as `tickets`, `messages`, `outbound_messages`, `marketing_attribution`, `csat`, or `workforce_activity`. |
+| Ticket list APIs | `tickets:read` | `tickets` |
+| Mark ticket read | - | `tickets` |
+| Ticket assignment | `tickets:assign` | `tickets` |
+| Ticket status updates | `tickets:write` | `tickets` |
+| Ticket messages | Any ticket scope: `tickets:read`, `tickets:write`, `tickets:assign`, or `tickets:reply` | `messages` |
+| Ticket exports | `tickets.export` | `tickets.raw` |
+| Voice call exports | `tickets.export` | `tickets.raw` |
+| Customer read APIs | `customers:read` | `customers` |
+
+## Resource IDs
+
+Use **Settings > API Details** in the Sagepilot dashboard to find the IDs used in API requests.
+
+| Resource | Where to find it | Used for |
+|----------|------------------|----------|
+| Workspace ID | **Settings > API Details > Channels** | `X-Workspace-Id` headers and optional `workspaceId` body fields. This is the current workspace UUID. |
+| Channel ID | **Settings > API Details > Channels** | `channel_id`, `filters.channel_ids`, and channel filters. |
+| Human agent ID | **Settings > API Details > Agents** | `agent_id`, `assignee_id` when `assignee_type` is `agent`, and agent assignment filters. |
+| AI agent ID / pilot ID | **Settings > API Details > Agents** | `pilot_id`, `assignee_id` when `assignee_type` is `pilot`, and AI agent assignment filters. |
+| Team ID | **-** | `assignee_id` when `assignee_type` is `team`, and team filters. |
+| Customer ID | Customer module | Open a customer profile and use the last UUID in the URL: `/dashboard/[workspace_id]/customers/[customer_id]`. |
+
+Use **Settings > API Details > Channels** as the current reference for workspace IDs.

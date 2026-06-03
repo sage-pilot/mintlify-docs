@@ -1,0 +1,37 @@
+---
+title: "OpenAI Responses API"
+description: "Connect Sagepilot MCP to OpenAI Responses API."
+icon: "code"
+mode: wide
+---
+
+Use Sagepilot MCP as a remote MCP tool server in the OpenAI Responses API.
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.responses.create(
+    model="gpt-5",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "sagepilot",
+            "server_url": "https://app.sagepilot.ai/platform-api/mcp",
+            "authorization": "Bearer sp_your_token",
+            "require_approval": "never",
+        }
+    ],
+    input="List the Sagepilot analytics datasets I can query.",
+)
+
+print(response.output_text)
+```
+
+For EU-hosted workspaces, use:
+
+```text
+https://eu.sagepilot.ai/platform-api/mcp
+```
+

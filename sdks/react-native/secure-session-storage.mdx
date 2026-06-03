@@ -1,0 +1,46 @@
+---
+title: "Secure session storage"
+description: "Persist Sagepilot SDK session tokens securely in React Native apps."
+icon: "shield-check"
+mode: wide
+---
+
+The SDK creates opaque customer session tokens at runtime. These tokens are not exposed through hooks or public session APIs.
+
+If `tokenStorage` is not provided, tokens are kept in memory only and the session will not persist after the app process restarts. Production apps should pass secure native storage.
+
+<Warning>
+  Do not use AsyncStorage for session tokens.
+</Warning>
+
+## React Native Keychain
+
+```ts
+import * as Keychain from "react-native-keychain";
+import {
+  SagepilotChat,
+  createKeychainTokenStorage
+} from "@sagepilot-ai/react-native-sdk";
+
+await SagepilotChat.configure({
+  key: "workspace_id:channel_id",
+  tokenStorage: createKeychainTokenStorage(Keychain)
+});
+```
+
+## Expo SecureStore
+
+```ts
+import * as SecureStore from "expo-secure-store";
+import { SagepilotChat } from "@sagepilot-ai/react-native-sdk";
+
+await SagepilotChat.configure({
+  key: "workspace_id:channel_id",
+  tokenStorage: {
+    getItem: SecureStore.getItemAsync,
+    setItem: SecureStore.setItemAsync,
+    removeItem: SecureStore.deleteItemAsync
+  }
+});
+```
+

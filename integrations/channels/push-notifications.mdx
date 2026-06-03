@@ -1,0 +1,72 @@
+---
+title: "Push Notifications"
+description: "Configure Web Push, Android FCM, and iOS APNs notification delivery."
+icon: "bell-ring"
+mode: wide
+---
+
+The Push Notifications channel lets Sagepilot send browser and mobile notifications through Web Push, Firebase Cloud Messaging, and Apple Push Notification service. Use it for journey steps, app-owned notification flows, and re-engagement messages.
+
+## Before you start
+
+- Decide which platforms you need: Web Push, Android, iOS, or a combination.
+- For Web Push, prepare VAPID public key, VAPID private key, and contact email.
+- For Android, prepare a Firebase service account JSON file.
+- For iOS, prepare APNs team ID, key ID, bundle ID, private key, and sandbox setting.
+- Make sure your app or website can capture and store push tokens for customers.
+
+<Tip>
+  Image placeholder: add a screenshot of the **Push Notifications** card in the Create Channel modal.
+</Tip>
+
+## Create the push channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, open **Channels** and click **Create Channel**.
+  </Step>
+  <Step title="Select Push Notifications">
+    Choose **Push Notifications** from the Voice & Mobile category.
+  </Step>
+  <Step title="Set general details">
+    Add the channel name and enable the provider types you plan to use.
+  </Step>
+  <Step title="Configure Web Push">
+    Add VAPID public key, VAPID private key, and contact email.
+  </Step>
+  <Step title="Configure Android">
+    Upload or paste the Firebase service account JSON. Sagepilot reads the Firebase project details from the JSON.
+  </Step>
+  <Step title="Configure iOS">
+    Add APNs team ID, key ID, bundle ID, private key, and choose production or sandbox mode.
+  </Step>
+  <Step title="Save and test">
+    Save the channel, then use Test Send with a valid device token or FCM registration token.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for General, Web Push, Android, iOS, and Test Send tabs.
+</Tip>
+
+## Platform checklist
+
+| Platform | What to verify |
+| --- | --- |
+| Web Push | Browser permission prompt, service worker registration, VAPID key match. |
+| Android | Firebase project, service account permissions, valid FCM registration token. |
+| iOS | Bundle ID, APNs key, environment mode, app notification permission. |
+
+## Verify the setup
+
+1. Save the channel with the platform provider enabled.
+2. Register a push token from your app or website.
+3. Send a test notification from Sagepilot.
+4. Confirm the device receives the notification.
+5. Confirm failure states are visible if the token is invalid or expired.
+
+## Operational notes
+
+- Do not mix sandbox and production APNs credentials.
+- Store customer push tokens through your app integration before relying on journeys.
+- Rotate provider credentials according to your mobile security policy.

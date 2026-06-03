@@ -1,0 +1,74 @@
+---
+title: "Facebook Messenger"
+description: "Connect a Facebook Page for Messenger conversations and Page comment workflows."
+icon: "messages-square"
+mode: wide
+---
+
+The Facebook Messenger channel connects a Facebook Page to Sagepilot so your team can handle Page messages and comment workflows alongside other support channels.
+
+## Before you start
+
+- Confirm you have admin access to the Facebook Page.
+- Select the default AI agent for Messenger conversations.
+- Select the default team for escalations.
+- Decide whether a social agent should manage Page comments.
+- Decide which comment actions should be enabled for automation.
+
+<Tip>
+  Image placeholder: add a screenshot of the **Messenger** card in the Create Channel modal.
+</Tip>
+
+## Create the Messenger channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, open **Channels** and click **Create Channel**.
+  </Step>
+  <Step title="Select Messenger">
+    Choose **Messenger** from the Social category.
+  </Step>
+  <Step title="Set channel routing">
+    Add the channel name, default AI agent, human assignment behavior, default team, and optional social agent.
+  </Step>
+  <Step title="Connect the Facebook Page">
+    Click **Connect Facebook Page** and authorize Sagepilot through Facebook.
+  </Step>
+  <Step title="Configure comments">
+    Choose whether Sagepilot can reply to comments, hide comments, delete comments, or only monitor them.
+  </Step>
+  <Step title="Review follow-up behavior">
+    Configure follow-ups and auto-close so Messenger conversations are handled consistently.
+  </Step>
+  <Step title="Test the channel">
+    Send a Messenger DM and add a Page comment from a test profile.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for Facebook authorization, connected Page, default agent, comments, follow-ups, auto-close, and test channel.
+</Tip>
+
+## Configuration checklist
+
+| Setting | What to decide |
+| --- | --- |
+| Default AI agent | Who handles private Messenger conversations. |
+| Social agent | Who handles public comments, if enabled. |
+| Human assignment | Whether AI can hand off to support/social teams. |
+| Default team | Where escalated Messenger conversations should go. |
+| Comment actions | Whether automation is allowed to reply, hide, or delete. |
+
+## Verify the setup
+
+1. Send a Messenger message to the connected Page.
+2. Confirm the conversation appears in Sagepilot.
+3. Reply from Sagepilot and verify delivery in Messenger.
+4. Add a test Page comment and confirm the configured comment behavior.
+5. Confirm escalations route to the expected team.
+
+## Operational notes
+
+- Facebook permissions depend on the Page and the user who authorized access.
+- Keep public comment actions conservative until the social team approves the agent behavior.
+- Use separate channels if different Pages need different agents or teams.

@@ -1,0 +1,54 @@
+---
+title: "Get customer by ID"
+sidebarTitle: "Get customer by ID"
+description: "Get a customer by path ID."
+api: "GET /platform-api/v1/customers/{customer_id}"
+playground: "interactive"
+---
+
+<ResponseExample>
+
+```json 200
+{
+  "id": "88d44689-1ce7-4033-8256-655a7cd8f90b",
+  "name": "Vikram Singh Chundawat",
+  "email": "vikram@sagepilot.ai",
+  "phone": "+918003213447",
+  "custom_fields": "{\"country\": \"Rajasthan\", \"location\": \"Bhilwara\", \"popup_submitted\": true, \"campaign.country\": \"Rajasthan\", \"popup_source_url\": \"https://sagepilot-test-account.myshopify.com/\", \"campaign.location\": \"Bhilwara\", \"popup_submitted_at\": \"2025-10-29T10:24:04.225Z\"}",
+  "created_at": "2025-02-18T19:49:12.573277+00:00",
+  "instagram_id": null,
+  "instagram_username": null,
+  "channel_name": "New Playground Channel",
+  "channel_kind": "playground"
+}
+```
+
+</ResponseExample>
+
+Get a customer by ID within the authenticated workspace.
+
+## Required access
+
+| Authentication | Scope | Dataset grant |
+|----------------|-------|---------------|
+| [API client v2](/api-reference/authentication/api-client-v2) | `customers:read` | `customers` |
+
+## Path parameters
+
+<ParamField path="customer_id" type="string" required>
+  Customer UUID. Open a customer in the Customer module and use the last UUID in the URL: `/dashboard/[workspace_id]/customers/[customer_id]`. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+</ParamField>
+
+## Response
+
+<ResponseField name="id" type="string">
+  Customer ID.
+</ResponseField>
+
+<ResponseField name="custom_fields" type="object">
+  Customer custom fields, when present.
+</ResponseField>
+
+<ResponseField name="created_at" type="string">
+  Customer creation timestamp.
+</ResponseField>

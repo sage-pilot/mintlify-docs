@@ -1,0 +1,74 @@
+---
+title: "Voice"
+description: "Configure phone numbers, call routing, and AI voice handling."
+icon: "phone-call"
+mode: wide
+---
+
+The Voice channel connects a phone number to Sagepilot so incoming calls can be routed to humans, AI voice agents, or a mixed workflow. Use it for phone support queues, AI call handling, and reviewed call outcomes.
+
+## Before you start
+
+- Create or select the voice AI agent that should handle calls.
+- Create the default team for human routing.
+- Decide whether calls should be AI-first, human-first, or human-only.
+- Decide whether Sagepilot should provision the number or whether you will connect an existing Plivo account.
+- If using Plivo, keep Auth ID, Auth Token, SIP domain, and number details ready.
+
+<Tip>
+  Image placeholder: add a screenshot of the **Voice** card in the Create Channel modal.
+</Tip>
+
+## Create the voice channel
+
+<Steps>
+  <Step title="Open Channels">
+    In Sagepilot, open **Channels** and click **Create Channel**.
+  </Step>
+  <Step title="Select Voice">
+    Choose **Voice** from the Voice & Mobile category.
+  </Step>
+  <Step title="Set call ownership">
+    Add the channel name, select the voice AI agent, choose the default team, and turn AI voice handling on or off.
+  </Step>
+  <Step title="Choose the account type">
+    Use Sagepilot-managed calling for a Sagepilot-provisioned number, or connect an existing Plivo account.
+  </Step>
+  <Step title="Connect provider details">
+    For Plivo, enter Auth ID, Auth Token, and SIP domain. For Sagepilot-managed calling, continue to number selection.
+  </Step>
+  <Step title="Select a number">
+    Choose a country and available phone number, or attach the existing number supported by your account type.
+  </Step>
+  <Step title="Save and place a test call">
+    Save the channel and call the connected number from an external phone.
+  </Step>
+</Steps>
+
+<Tip>
+  Image placeholder: add screenshots for account type, Plivo credentials, country selection, phone number selection, AI voice toggle, team routing, and test call result.
+</Tip>
+
+## Recommended configuration
+
+| Setting | What it controls |
+| --- | --- |
+| Voice AI Agent | The AI agent that answers or assists calls. |
+| AI Voice Enabled | Whether the AI agent should pick up incoming calls automatically. |
+| Default Team | The team that receives human-routed calls. |
+| Account Type | Whether Sagepilot provisions the number or uses your Plivo account. |
+| Connected Number | The phone number customers will dial. |
+
+## Verify the setup
+
+1. Call the connected number.
+2. Confirm the call lands in Sagepilot.
+3. Check whether AI answers when AI voice handling is enabled.
+4. Transfer or route to a human team if that is part of the flow.
+5. Confirm the call appears in the Calls section with the right channel, status, and recording/transcript behavior.
+
+## Operational notes
+
+- Use a dedicated voice AI agent for phone conversations; chat prompts usually need different pacing and fallback behavior.
+- If a number is not available for the selected country, choose another country or connect your own provider number.
+- Review missed, unassigned, and needs-review calls after launch to tune routing.

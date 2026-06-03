@@ -1,0 +1,44 @@
+---
+title: "Sagepilot MCP"
+description: "Connect any MCP-compatible AI client to your Sagepilot workspace."
+icon: "server-cog"
+mode: wide
+---
+
+Sagepilot MCP lets AI clients query workspace analytics, search support data, inspect customers and tickets, list channels and agents, and perform supported support actions.
+
+## Server URL
+
+```text
+https://app.sagepilot.ai/platform-api/mcp
+```
+
+EU-hosted workspaces:
+
+```text
+https://eu.sagepilot.ai/platform-api/mcp
+```
+
+## Start here
+
+<CardGroup cols={3}>
+  <Card title="Authenticate" icon="key-round" href="/mcp/authentication">
+    Create a Sagepilot API client token and send it as a Bearer token.
+  </Card>
+  <Card title="Set up clients" icon="monitor-cog" href="/mcp/clients">
+    Configure Claude Code, Cursor, and generic MCP clients.
+  </Card>
+  <Card title="Use tools" icon="wrench" href="/mcp/tools">
+    See available MCP tools and their workspace-scoped usage model.
+  </Card>
+</CardGroup>
+
+## Requirements
+
+Your MCP client must support:
+
+1. Remote Streamable HTTP.
+2. Custom HTTP headers.
+3. `Authorization: Bearer ...`.
+
+If a client says `auth unsupported`, it usually means that client UI expects interactive OAuth connector setup. Sagepilot MCP uses API client tokens instead. Use a header-token MCP configuration.
