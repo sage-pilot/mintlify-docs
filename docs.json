@@ -52,13 +52,19 @@
       "href": "https://app.sagepilot.ai"
     }
   },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/sdks/react-native/overview"
+    }
+  ],
   "navigation": {
     "global": {
       "anchors": [
         {
           "anchor": "Home",
           "icon": "house",
-          "href": "/"
+          "href": "/sdks/react-native/overview"
         },
         {
           "anchor": "Open Platform",
