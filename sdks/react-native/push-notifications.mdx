@@ -1,0 +1,32 @@
+---
+title: "Push notifications"
+description: "Use Sagepilot webhooks to trigger app-owned push notifications for React Native chat."
+icon: "bell-ring"
+mode: wide
+---
+
+The React Native SDK does not register APNs or FCM device tokens and does not send operating-system push notifications directly. Use Sagepilot webhooks to connect customer-visible support messages to your own push-notification system.
+
+## Recommended flow
+
+<Steps>
+  <Step title="Store the app user's push token">
+    Register the device for notifications in your app and store the APNs, FCM, or provider token in your backend.
+  </Step>
+  <Step title="Subscribe to message webhooks">
+    Configure a Sagepilot webhook subscription for `support.message.created`.
+  </Step>
+  <Step title="Map the webhook to an app user">
+    Use the webhook's customer, conversation, message, and SDK context to find the user and decide whether they should be notified.
+  </Step>
+  <Step title="Send the notification">
+    Send the push notification from your backend through APNs, FCM, or your notification provider.
+  </Step>
+</Steps>
+
+Keep push-token storage and notification preferences in your app/backend.
+
+## Related setup
+
+- Configure webhook subscriptions in Sagepilot settings before relying on push delivery.
+- Use [Opening chat](/sdks/react-native/opening-chat) to route a push tap back into the chat experience.

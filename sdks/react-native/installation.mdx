@@ -29,6 +29,26 @@ npx expo install expo-secure-store
 
 Expo SecureStore uses iOS Keychain and Android encrypted storage backed by Android Keystore.
 
+## Native file picker dependencies
+
+If you enable the native file picker for camera, gallery, or document attachments, install only the modules your app needs.
+
+```bash
+# Camera and photo gallery
+npm install react-native-image-picker
+
+# Document/file picking
+npm install @react-native-documents/picker
+
+# Reliable document reads and durable file storage
+npm install react-native-blob-util
+
+# Durable picked-file batch manifests
+npm install @react-native-async-storage/async-storage
+```
+
+See [Native file picker](/sdks/react-native/native-file-picker) for configuration and upload limits.
+
 ## Required values
 
 You need:
@@ -39,4 +59,3 @@ You need:
 - Secure token storage for production apps
 
 The `key` is not a secret. It is safe to ship in a mobile app. Do not put server API keys, signing secrets, or private workspace secrets in a React Native app.
-
