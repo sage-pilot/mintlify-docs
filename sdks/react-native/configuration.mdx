@@ -32,6 +32,9 @@ await SagepilotChat.configure({
 | `headers` | Additional headers for SDK service requests. Do not pass server API keys or long-lived secrets from a mobile app. |
 | `fetch` | Custom fetch implementation for runtimes that need one. |
 | `tokenStorage` | Secure storage adapter for SDK-created customer session tokens. |
+| `cacheStorage` | Optional durable cache adapter used by SDK features such as native file-picker batch recovery. |
+| `filePicker` | Optional native picker adapter created with `createSagepilotFilePicker(...)` for camera, gallery, and document attachments. |
+| `fileStore` | Optional native file-store adapter created with `createSagepilotFileStore(...)` for durable picked-file bytes. |
 | `anonymousId` | Optional stable anonymous identifier sent when the SDK creates a customer session. |
 | `metadata` | Optional app metadata merged into the session creation payload. |
 | `deviceInfo` | Optional adapter that returns device metadata to include during session creation. |
@@ -45,6 +48,8 @@ await SagepilotChat.configure({
 | `behavior.preloadWebView` | Preloads a hidden hosted chat WebView after configuration. |
 | `behavior.enableUnreadPolling` | Starts or disables automatic unread-count polling after configuration. |
 | `behavior.unreadPollIntervalMs` | Sets the unread polling interval in milliseconds. |
+
+For attachment setup, see [Native file picker](/sdks/react-native/native-file-picker). For push notifications, see [Push notifications](/sdks/react-native/push-notifications).
 
 ## Basic setup
 
@@ -138,4 +143,3 @@ await SagepilotChat.configure({
   }
 });
 ```
-

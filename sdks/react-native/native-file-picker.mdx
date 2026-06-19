@@ -1,0 +1,86 @@
+---
+title: "Native file picker"
+description: "Use native camera, gallery, and document pickers for React Native chat attachments."
+icon: "paperclip"
+mode: wide
+---
+
+By default, the hosted chat widget's attach button uses the WebView file input. On low-RAM Android devices this can be unreliable because the system camera can kill the WebView render process while capture is in progress.
+
+Configure `filePicker` so the attach button uses native pickers instead. Picked files are delivered to the hosted widget over the SDK bridge, mirrored to cache when configured, and re-delivered until the widget acknowledges them.
+
+## Install optional dependencies
+
+Install the picker modules your app needs:
+
+```bash
+# Camera and photo gallery
+npm install react-native-image-picker
+
+# Document/file picking
+npm install @react-native-documents/picker
+
+# Reliable document reads and durable file storage
+npm install react-native-blob-util
+
+# Durable picked-file batch manifests
+npm install @react-native-async-storage/async-storage
+```
+
+## Configure native attachments
+
+For the strongest recovery path, pass `cacheStorage`, `fileStore`, and `filePicker`.
+
+```ts
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as imagePicker from "react-native-image-picker";
+import * as documentsPicker from "@react-native-documents/picker";
+import ReactNativeBlobUtil from "react-native-blob-util";
+import {
+  SagepilotChat,
+  createAsyncStorageCacheStorage,
+  createSagepilotFilePicker,
+  createSagepilotFileStore
+} from "@sagepilot-ai/react-native-sdk";
+
+await SagepilotChat.configure({
+  key: "workspace_id:channel_id",
+  cacheStorage: createAsyncStorageCacheStorage(AsyncStorage),
+  fileStore: createSagepilotFileStore(ReactNativeBlobUtil),
+  filePicker: createSagepilotFilePicker({
+    imagePicker,
+    documentsPicker,
+    fileReader: ReactNativeBlobUtil
+  })
+});
+```
+
+`cacheStorage` stores the picked-file batch manifest. `fileStore` stores picked-file bytes in app-private storage so a captured photo or document can survive an app-process restart within the hosted widget's upload limits.
+
+## Upload limits
+
+The hosted widget enforces the final attachment limits for both WebView and native picker flows.
+
+| Limit | Value |
+| --- | --- |
+| Files per send | Up to 5 files |
+| Previewable images | Up to 5 MB total |
+| Non-image files | Up to 10 MB total |
+
+The native picker also applies earlier safety guards before files are read into memory.
+
+| Guard | Default |
+| --- | --- |
+| Gallery multi-select | 5 files |
+| Documents | Reject above 20 MB |
+| Images | Reject above 15 MB |
+
+These picker guards reduce out-of-memory risk. They do not raise the hosted widget's final upload limits.
+
+## Platform notes
+
+- Camera and gallery images are downscaled natively to keep memory and upload sizes low.
+- Picker failures are surfaced with typed error codes such as `permission_denied`, `camera_unavailable`, `encode_failed`, `file_too_large`, and `read_failed`.
+- Android apps that declare the `CAMERA` permission in their manifest must grant it at runtime. The SDK requests it before opening the camera.
+- iOS apps need `NSCameraUsageDescription` and `NSPhotoLibraryUsageDescription` in `Info.plist`.
+- Apps that skip `filePicker` keep the WebView file input. The SDK can recover from WebView renderer crashes, but a photo captured at crash time cannot be restored in that mode.

@@ -24,11 +24,12 @@ mode: wide
 
 - `SagepilotChat.present()`: opens the hosted chat home screen.
 - `SagepilotChat.presentMessages()`: opens the hosted conversations/messages screen.
-- `SagepilotChat.presentMessageComposer(message?, options?)`: opens the message composer and optionally pre-fills the composer text. By default, Sagepilot reuses an existing conversation when one is available. Pass `{ mode: "new" }` to force a fresh conversation. It does not auto-send.
+- `SagepilotChat.presentMessageComposer(message?, options?)`: opens the message composer and optionally pre-fills the composer text. By default, Sagepilot reuses an existing conversation when one is available. Pass `{ mode: "new" }` to force a fresh conversation, or `{ chatId }` to open a specific conversation. It does not auto-send.
 - `SagepilotChat.dismiss()`: closes the hosted chat modal.
 - `SagepilotChat.hide()`: alias for `dismiss()`.
 - `SagepilotChat.toggle()`: opens the chat when closed and closes it when open.
 - `SagepilotChat.isPresented()`: returns whether the hosted chat modal is open.
+- `SagepilotChat.onConversationCreated(callback)`: subscribes to hosted conversations created from the React Native widget and returns `chat_id` plus any composer metadata.
 - `SagepilotChatProvider`: renders the hosted Sagepilot chat inside a React Native modal WebView.
 
 When `SagepilotChatProvider` is mounted, the SDK preloads a hidden hosted WebView after `configure()` so the first visible open can reuse warmed network/cache state. Disable this with `behavior.preloadWebView: false`.
@@ -55,6 +56,15 @@ When `SagepilotChatProvider` is mounted, the SDK preloads a hidden hosted WebVie
 ## Storage helpers
 
 - `createKeychainTokenStorage(keychain, options?)`: adapts `react-native-keychain` for secure session token storage.
+- `createAsyncStorageCacheStorage(asyncStorage)`: adapts AsyncStorage for SDK cache features such as native file-picker batch recovery.
+
+Do not use AsyncStorage for session tokens.
+
+## Attachment helpers
+
+- `createSagepilotFilePicker(options)`: creates a native camera, gallery, and document picker adapter for `filePicker`.
+- `createSagepilotFileStore(blobUtil, options?)`: creates durable app-private storage for picked-file bytes.
+- `SagepilotFilePickerError`: typed error class surfaced when the picker fails for permission, camera, file-size, encoding, read, or unknown errors.
 
 ## Runtime notes
 
@@ -65,4 +75,3 @@ Customers should depend on the public SDK methods and components, not WebView in
 ## License
 
 MIT. The MIT License applies only to this SDK code. It does not grant access to Sagepilot AI services, workspaces, API credentials, hosted infrastructure, models, data, or paid features. Use of Sagepilot AI hosted services, APIs, Workspace IDs, and runtime-generated license keys is governed separately by Sagepilot AI's Terms of Service or the applicable customer agreement.
-

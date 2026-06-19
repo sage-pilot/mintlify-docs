@@ -85,6 +85,8 @@
             "pages": [
               "sdks/react-native/installation",
               "sdks/react-native/configuration",
+              "sdks/react-native/native-file-picker",
+              "sdks/react-native/push-notifications",
               "sdks/react-native/secure-session-storage",
               "sdks/react-native/identity",
               "sdks/react-native/opening-chat",

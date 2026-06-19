@@ -31,11 +31,30 @@ SagepilotChat.present();
 SagepilotChat.presentMessages();
 SagepilotChat.presentMessageComposer("I need help with my order");
 SagepilotChat.presentMessageComposer("Start a new request", { mode: "new" });
+SagepilotChat.presentMessageComposer("I need help with this order", { chatId: savedChatId });
 ```
 
 `presentMessageComposer(message)` pre-fills the composer and lets Sagepilot reuse an existing conversation when one is available. If there is no existing conversation, Sagepilot starts a new one when the customer sends the message.
 
 Use `{ mode: "new" }` only when the button or workflow should always start a fresh conversation.
+
+Use `{ chatId }` when an app-owned surface should reopen a specific conversation, such as an order help button.
+
+Subscribe to conversation creation when your app needs to store a newly created chat ID:
+
+```ts
+SagepilotChat.presentMessageComposer("I need help with this order", {
+  mode: "new",
+  metadata: { source: "order_help", orderId },
+  onConversationCreated: ({ chat_id, metadata }) => {
+    saveChatForOrder(metadata?.orderId, chat_id);
+  }
+});
+
+const unsubscribe = SagepilotChat.onConversationCreated(({ chat_id }) => {
+  cacheCreatedChat(chat_id);
+});
+```
 
 ## Custom launcher example
 
@@ -98,4 +117,3 @@ export function ChatLauncher() {
   );
 }
 ```
-

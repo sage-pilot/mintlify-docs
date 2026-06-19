@@ -42,6 +42,12 @@ npx expo install expo-secure-store
   <Card title="Configure chat" icon="settings" href="/sdks/react-native/configuration">
     Set the workspace/channel key, presentation behavior, and launcher theme.
   </Card>
+  <Card title="Handle attachments" icon="paperclip" href="/sdks/react-native/native-file-picker">
+    Use native camera, gallery, and document pickers for more reliable uploads.
+  </Card>
+  <Card title="Enable push notifications" icon="bell-ring" href="/sdks/react-native/push-notifications">
+    Connect Sagepilot message webhooks to your app-owned push system.
+  </Card>
   <Card title="Open chat" icon="message-circle" href="/sdks/react-native/opening-chat">
     Use hooks and public methods to connect chat to your app-owned UI.
   </Card>
@@ -52,4 +58,3 @@ npx expo install expo-secure-store
 `SagepilotChatProvider` renders the Sagepilot-hosted chat UI in a React Native WebView. Most apps do not need a host override. For standard Sagepilot cloud usage, omit `host`; the SDK connects to Sagepilot-hosted endpoints automatically.
 
 Set `host` only when Sagepilot provides a dedicated endpoint for your workspace.
-
