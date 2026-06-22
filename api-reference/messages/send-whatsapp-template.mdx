@@ -1,12 +1,18 @@
 ---
 title: "Send WhatsApp template"
 sidebarTitle: "Send WhatsApp template"
-description: "Send a WhatsApp template message through the legacy template-send integration."
-api: "POST /send-whatsapp-template"
+description: "Send an approved WhatsApp template message through the legacy template-send API."
+api: "POST https://api.sagepilot.ai/send-whatsapp-template"
 playground: "interactive"
 ---
 
-Use this endpoint template for the WhatsApp template-send API. Full request and response details will be added after the final contract is confirmed.
+Use this endpoint to send an approved WhatsApp template from one of your connected WhatsApp channels to a customer.
+
+This endpoint uses the legacy template-send contract. You pass the template name and a Meta-style `parameters` component list.
+
+<Warning>
+Marketing templates may require the recipient to start or reopen a WhatsApp conversation with your business before testing. Ask the test recipient to send a message such as `Hi` to your connected WhatsApp number first.
+</Warning>
 
 ## Required access
 
@@ -14,28 +20,326 @@ Use this endpoint template for the WhatsApp template-send API. Full request and 
 |----------------|------------------|
 | [Legacy workspace API key](/api-reference/authentication/legacy-workspace-api-key) | `Authorization: Bearer <legacy_workspace_api_key>` and `X-SP-Workspace-Id: <workspace_id>`. |
 
+## Headers
+
+<ParamField header="Authorization" type="string" required>
+  Bearer token using the legacy workspace API key.
+</ParamField>
+
+<ParamField header="X-SP-Workspace-Id" type="string" required>
+  Workspace ID for the request. This header is required so Sagepilot can resolve the workspace, channel, template, and customer record before sending the WhatsApp template.
+</ParamField>
+
+<Note>
+  Send the workspace ID in the `X-SP-Workspace-Id` header. Do not send it as `workspace_id` inside the JSON body.
+</Note>
+
+## Before you send
+
+<Steps>
+  <Step title="Get your workspace API details">
+    In Sagepilot, go to **Settings > API Details**. Copy your workspace ID and generate or copy a legacy workspace API key.
+  </Step>
+  <Step title="Choose the WhatsApp channel">
+    Use the `channel_id` for the WhatsApp number you want to send from. Each connected number has its own channel ID.
+  </Step>
+  <Step title="Confirm the approved template name">
+    Use the template name exactly as it appears in Sagepilot or Meta, for example `checkout_1`. Template names are case-sensitive.
+  </Step>
+  <Step title="Map every template variable">
+    For each `{{1}}`, `{{2}}`, or media/button placeholder in the template, add the matching entry in `parameters`.
+  </Step>
+  <Step title="Send to a phone number with country code">
+    Send `customer_phone` as digits only with the country code first, such as `918888888888` for India or `14155550123` for the United States.
+  </Step>
+  <Step title="Validate required fields before testing">
+    Confirm that `X-SP-Workspace-Id`, `customer_name`, `customer_phone`, `channel_id`, `template_name`, `parameter_type`, and `parameters` are present before sending the request.
+  </Step>
+</Steps>
+
 ## Body
 
 <ParamField body="channel_id" type="string" required>
-  Channel UUID from **Settings > API Details > Channels**. See [Resource IDs](/api-reference/authentication/api-client-v2#resource-ids).
+  WhatsApp channel UUID from **Settings > API Details > Channels**. This decides which connected WhatsApp number sends the message.
 </ParamField>
 
-<ParamField body="customer_phone" type="string" required>
-  Destination phone number for the template message.
+<ParamField body="customer_phone" type="string" required placeholder="918888888888">
+  Destination phone number with country code at the start. Use digits only. Do not include `+`, spaces, brackets, or hyphens.
+
+  Examples: `918888888888`, `14155550123`, `447700900123`.
 </ParamField>
 
-<ParamField body="template" type="object" required>
-  WhatsApp template payload.
+<ParamField body="message_type" type="string" required default="template">
+  Must be `template`.
 </ParamField>
 
-<ParamField body="template.name" type="string" required>
-  Template name.
+<ParamField body="template_name" type="string" required placeholder="checkout_1">
+  Approved WhatsApp template name. Use the exact name from Sagepilot or Meta.
 </ParamField>
 
-<ParamField body="template.language" type="string" required>
-  Template language code.
+<ParamField body="customer_name" type="string" required placeholder="Ankita">
+  Customer name to associate with the recipient. This is required for the legacy send flow because Sagepilot creates or updates the customer record before queueing the WhatsApp template.
+
+  This does not automatically fill a template variable unless you also pass the same value in `parameters`.
 </ParamField>
 
-## Notes
+<ParamField body="parameter_type" type="string" required default="list">
+  Must be `list`. This tells Sagepilot that `parameters` is already in Meta's positional component format.
+</ParamField>
 
-- This endpoint uses the legacy workspace API key flow. See [Legacy workspace API key](/api-reference/authentication/legacy-workspace-api-key).
+<ParamField body="parameters" type="object" required>
+  Meta-style template component payload. Supported component types include `body`, `header`, and `button`.
+
+  For a body template such as `Hi {{1}}`, pass:
+
+  ```json
+  [
+    {
+      "type": "body",
+      "parameters": [
+        { "type": "text", "text": "Ankita" }
+      ]
+    }
+  ]
+  ```
+
+  For an image header and one body variable, pass:
+
+  ```json
+  [
+    {
+      "type": "header",
+      "parameters": [
+        {
+          "type": "image",
+          "image": {
+            "link": "https://example.com/product-image.png"
+          }
+        }
+      ]
+    },
+    {
+      "type": "body",
+      "parameters": [
+        { "type": "text", "text": "Ankita" }
+      ]
+    }
+  ]
+  ```
+</ParamField>
+
+## Phone number format
+
+Always include the country code at the start of `customer_phone`.
+
+| Customer location | Correct | Incorrect |
+|-------------------|---------|-----------|
+| India | `918888888888` | `8080365185`, `+91 8080365185` |
+| United States | `14155550123` | `4155550123`, `+1 (415) 555-0123` |
+| United Kingdom | `447700900123` | `07700900123`, `+44 7700 900123` |
+
+If the phone number is missing the country code, WhatsApp cannot reliably route the message.
+
+## How template variables map
+
+WhatsApp templates use positional placeholders such as `{{1}}`, `{{2}}`, and `{{3}}`. The API does not use the placeholder names from your internal systems. It uses component order.
+
+### Body text variables
+
+For this template body:
+
+```text
+Hi {{1}}, your order {{2}} is ready.
+```
+
+Send this body component:
+
+```json
+{
+  "type": "body",
+  "parameters": [
+    { "type": "text", "text": "Ankita" },
+    { "type": "text", "text": "#1001" }
+  ]
+}
+```
+
+`Ankita` fills `{{1}}`. `#1001` fills `{{2}}`.
+
+### Header media variables
+
+If the template has an image header, send:
+
+```json
+{
+  "type": "header",
+  "parameters": [
+    {
+      "type": "image",
+      "image": {
+        "link": "https://example.com/product-image.png"
+      }
+    }
+  ]
+}
+```
+
+For a document header, use `document` instead:
+
+```json
+{
+  "type": "header",
+  "parameters": [
+    {
+      "type": "document",
+      "document": {
+        "link": "https://example.com/invoice.pdf"
+      }
+    }
+  ]
+}
+```
+
+The media URL must be publicly accessible by WhatsApp.
+
+### Dynamic URL buttons
+
+If the template has a URL button with a dynamic placeholder, add a `button` component.
+
+```json
+{
+  "type": "button",
+  "sub_type": "url",
+  "index": 0,
+  "parameters": [
+    {
+      "type": "text",
+      "text": "https%3A%2F%2Fstore.example.com%2Fcart%3Fid%3Dtest123"
+    }
+  ]
+}
+```
+
+Use `index: 0` for the first button, `index: 1` for the second button, and so on.
+
+For Sagepilot CTA buttons such as `https://app.sagepilot.ai/cta?redirect={{1}}`, pass only the encoded destination URL as the button text. Do not pass the full Sagepilot CTA wrapper URL.
+
+## Complete example
+
+This example sends an abandoned checkout template with:
+
+- An image header.
+- One body variable for the customer name.
+- One dynamic URL button for the checkout link.
+
+```bash
+curl --request POST \
+  --url "https://api.sagepilot.ai/send-whatsapp-template" \
+  --header "Authorization: Bearer <legacy_workspace_api_key>" \
+  --header "X-SP-Workspace-Id: <workspace_id>" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "channel_id": "<channel_id_uuid>",
+    "customer_phone": "918888888888",
+    "message_type": "template",
+    "template_name": "checkout_1",
+    "customer_name": "Ankita",
+    "parameter_type": "list",
+    "parameters": [
+      {
+        "type": "header",
+        "parameters": [
+          {
+            "type": "image",
+            "image": {
+              "link": "https://example.png"
+            }
+          }
+        ]
+      },
+      {
+        "type": "body",
+        "parameters": [
+          {
+            "type": "text",
+            "text": "Ankita"
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "sub_type": "url",
+        "index": 0,
+        "parameters": [
+          {
+            "type": "text",
+            "text": "https%3A%2F%2Fstore.example.com%2Fcart%3Fid%3Dtest123"
+          }
+        ]
+      }
+    ]
+  }'
+```
+
+## Body-only example
+
+Use this shape when the template has only body text placeholders and no header media or buttons.
+
+```bash
+curl --request POST \
+  --url "https://api.sagepilot.ai/send-whatsapp-template" \
+  --header "Authorization: Bearer <legacy_workspace_api_key>" \
+  --header "X-SP-Workspace-Id: <workspace_id>" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "channel_id": "<whatsapp_channel_id>",
+    "customer_phone": "918888888888",
+    "message_type": "template",
+    "template_name": "order_shipped_3291",
+    "customer_name": "Anushka Pawar",
+    "parameter_type": "list",
+    "parameters": [
+      {
+        "type": "body",
+        "parameters": [
+          { "type": "text", "text": "Anushka" },
+          { "type": "text", "text": "#1234" },
+          { "type": "text", "text": "Rs. 100" },
+          { "type": "text", "text": "https://sagepilot.ai" }
+        ]
+      }
+    ]
+  }'
+```
+
+## Successful response
+
+<ResponseExample>
+
+```json 200
+{
+  "message_id": "0fa3bc4b-50b0-446c-842f-cc7b36f57151",
+  "success": true
+}
+```
+
+</ResponseExample>
+
+## Common errors
+
+| Error | What it means | How to fix it |
+|-------|---------------|---------------|
+| `Template <name> not found` | The template name does not exist for the selected channel or workspace. | Confirm the exact `template_name`, `channel_id`, and `X-SP-Workspace-Id`. |
+| Missing workspace ID | The legacy route cannot resolve the workspace context. | Send `X-SP-Workspace-Id` as a request header, not as a body field. |
+| Missing customer name | The legacy route creates or updates a customer profile before queueing the template. | Send `customer_name` in the request body. |
+| Missing or invalid phone number | `customer_phone` is empty or not routable. | Pass digits only with country code at the start. |
+| Template variable mismatch | The template has placeholders that are missing from `parameters`, or the order is wrong. | Match each Meta component and placeholder in order. |
+| Media cannot be fetched | WhatsApp cannot access the header media URL. | Use a public HTTPS URL for image, video, or document media. |
+| Marketing template not received during testing | The recipient may not have an open WhatsApp conversation with the business. | Ask the recipient to message your business number first, then retry. |
+
+## Meta template component reference
+
+The `parameters` array follows Meta's WhatsApp template component structure. Refer to Meta's WhatsApp template documentation when mapping body placeholders, media headers, and URL buttons:
+
+- [Meta WhatsApp message templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)
+- [Meta Cloud API template messages](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates)
