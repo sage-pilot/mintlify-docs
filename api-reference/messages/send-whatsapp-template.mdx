@@ -281,6 +281,50 @@ curl --request POST \
   }'
 ```
 
+## OTP / authentication template example
+
+Use this shape for authentication templates that send a one-time password and include a Copy Code button.
+
+For example, the approved authentication template `otp_authentication` expects the OTP in the body and in the OTP button parameter. Use the same code in both places.
+
+```bash
+curl --request POST \
+  --url "https://api.sagepilot.ai/send-whatsapp-template" \
+  --header "Authorization: Bearer <legacy_workspace_api_key>" \
+  --header "X-SP-Workspace-Id: <workspace_id>" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "channel_id": "<whatsapp_channel_id>",
+    "customer_phone": "918888888888",
+    "message_type": "template",
+    "template_name": "otp_authentication",
+    "customer_name": "Ankita",
+    "parameter_type": "list",
+    "parameters": [
+      {
+        "type": "body",
+        "parameters": [
+          {
+            "type": "text",
+            "text": "123456"
+          }
+        ]
+      },
+      {
+        "type": "button",
+        "sub_type": "url",
+        "index": 0,
+        "parameters": [
+          {
+            "type": "text",
+            "text": "123456"
+          }
+        ]
+      }
+    ]
+  }'
+```
+
 ## Body-only example
 
 Use this shape when the template has only body text placeholders and no header media or buttons.
@@ -342,4 +386,4 @@ curl --request POST \
 The `parameters` array follows Meta's WhatsApp template component structure. Refer to Meta's WhatsApp template documentation when mapping body placeholders, media headers, and URL buttons:
 
 - [Meta WhatsApp message templates](https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates)
-- [Meta Cloud API template messages](https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates)
+- [Meta Cloud API template messages](https://developers.facebook.com/documentation/business-messaging/whatsapp/templates/overview)
