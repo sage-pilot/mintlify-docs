@@ -1,21 +1,32 @@
 ---
 title: "Authentication"
-description: "Authenticate to Sagepilot MCP with API client tokens."
+description: "Authenticate to Sagepilot MCP with hosted OAuth or API client tokens."
 icon: "key-round"
 mode: wide
 ---
 
-Sagepilot MCP uses Sagepilot API client tokens.
+Sagepilot MCP supports two authentication modes.
+
+| Mode | Use when | Credential |
+|------|----------|------------|
+| Hosted OAuth | The client can open a Sagepilot browser sign-in flow. | No token to copy. The user signs in and approves access. |
+| API token | The client cannot complete OAuth, or you are running private server-side automation. | `Authorization: Bearer sp_...` |
+
+For ChatGPT, Claude, Codex, and similar hosted clients, start with [Hosted connectors](/mcp/hosted-connectors).
+
+## API token authentication
+
+Use this only when hosted OAuth is not available.
 
 <Steps>
   <Step title="Open Sagepilot">
     Sign in to the Sagepilot workspace you want to connect.
   </Step>
-  <Step title="Go to API Clients">
-    Open **Settings -> API Clients**.
+  <Step title="Go to API Details">
+    Open **Settings -> API Details -> API client v2**.
   </Step>
   <Step title="Create an API client">
-    Create a new API client and copy the `sp_...` token. It is shown once.
+    Create a new API client with the access your MCP client needs, then copy the `sp_...` token. It is shown once.
   </Step>
   <Step title="Send the token to MCP">
     Pass the token as an Authorization header.
@@ -26,7 +37,8 @@ Sagepilot MCP uses Sagepilot API client tokens.
 Authorization: Bearer sp_your_token
 ```
 
+Some MCP clients also support `X-API-Key: sp_your_token`. Prefer the `Authorization` header unless your client requires a separate API-key header field.
+
 <Warning>
   Treat `sp_...` API client tokens as secrets. Do not commit them to source control or expose them in client-side code.
 </Warning>
-

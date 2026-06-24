@@ -1,0 +1,53 @@
+---
+title: "Hosted connectors"
+description: "Connect ChatGPT, Claude, CLI clients, and custom MCP hosts with Sagepilot OAuth."
+icon: "plug-zap"
+mode: wide
+---
+
+Hosted OAuth is the recommended setup for ChatGPT, Claude, Codex, and any MCP host that can open a browser sign-in flow.
+
+## Prerequisites
+
+- You have access to the Sagepilot workspace you want to connect.
+- The AI host supports remote Streamable HTTP MCP servers.
+- The AI host can complete browser-based OAuth sign-in.
+
+## Connect
+
+<Steps>
+  <Step title="Copy the MCP URL">
+    In Sagepilot, open **Settings -> API Details -> MCP connector** and copy the MCP URL.
+  </Step>
+  <Step title="Add Sagepilot in the AI host">
+    In ChatGPT, Claude, Codex, or another MCP host, add a custom MCP connector and paste the MCP URL.
+  </Step>
+  <Step title="Sign in with Sagepilot">
+    The host redirects you to Sagepilot. Sign in and choose the workspace you want to connect.
+  </Step>
+  <Step title="Approve access">
+    Review the workspace and available capabilities, then click **Allow access**.
+  </Step>
+</Steps>
+
+For the US app, the MCP URL is:
+
+```text
+https://app.sagepilot.ai/mcp
+```
+
+For EU-hosted workspaces, use `https://eu.sagepilot.ai/mcp`.
+
+## What to expect
+
+- You do not need an API key, client ID, or client secret for the standard hosted connector.
+- Some hosts may display the full Sagepilot tool list.
+- Sagepilot still checks the connected user's role before a tool can read or change data.
+
+## Troubleshooting
+
+| Issue | What to do |
+|-------|------------|
+| The host says OAuth or browser sign-in is unsupported. | Use [API token authentication](/mcp/authentication#api-token-authentication). |
+| The host asks for an API token while you are setting up hosted OAuth. | Switch to the OAuth/browser sign-in option, or use the API-token setup instead. |
+| The connector is connected but a tool returns an access error. | Check the connected user's Sagepilot role and workspace permissions. |

@@ -104,6 +104,7 @@
             "root": "mcp/overview",
             "expanded": true,
             "pages": [
+              "mcp/hosted-connectors",
               "mcp/authentication",
               "mcp/clients",
               "mcp/openai-responses-api",

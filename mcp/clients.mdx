@@ -5,15 +5,33 @@ icon: "monitor-cog"
 mode: wide
 ---
 
-## Generic MCP configuration
+## Hosted OAuth
 
-Use this in any MCP client that supports remote Streamable HTTP servers and custom headers:
+For ChatGPT, Claude, and other hosted MCP clients, paste the MCP URL from **Settings -> API Details -> MCP connector** and complete the Sagepilot sign-in flow.
+
+See [Hosted connectors](/mcp/hosted-connectors) for the full OAuth flow.
+
+### Codex CLI
+
+```bash
+SAGEPILOT_MCP_URL="https://app.sagepilot.ai/mcp"
+
+codex mcp add sagepilot \
+  --url "$SAGEPILOT_MCP_URL" \
+  --oauth-resource "$SAGEPILOT_MCP_URL"
+
+codex mcp login sagepilot
+```
+
+## API-token MCP configuration
+
+Use this in any MCP client that supports remote Streamable HTTP servers and custom headers but cannot complete browser-based OAuth:
 
 ```json
 {
   "mcpServers": {
     "sagepilot": {
-      "url": "https://app.sagepilot.ai/platform-api/mcp",
+      "url": "https://app.sagepilot.ai/mcp",
       "headers": {
         "Authorization": "Bearer sp_your_token"
       }
@@ -22,16 +40,14 @@ Use this in any MCP client that supports remote Streamable HTTP servers and cust
 }
 ```
 
-For EU-hosted workspaces, replace the URL with:
-
-```text
-https://eu.sagepilot.ai/platform-api/mcp
-```
+For EU-hosted workspaces, replace the URL with `https://eu.sagepilot.ai/mcp`.
 
 ## Claude Code
 
+If you are using an API client token in Claude Code:
+
 ```bash
-claude mcp add --transport http sagepilot https://app.sagepilot.ai/platform-api/mcp \
+claude mcp add --transport http sagepilot https://app.sagepilot.ai/mcp \
   --header "Authorization: Bearer sp_your_token"
 ```
 
@@ -45,7 +61,7 @@ Add this to `~/.cursor/mcp.json`:
 {
   "mcpServers": {
     "sagepilot": {
-      "url": "https://app.sagepilot.ai/platform-api/mcp",
+      "url": "https://app.sagepilot.ai/mcp",
       "headers": {
         "Authorization": "Bearer sp_your_token"
       }
@@ -55,4 +71,3 @@ Add this to `~/.cursor/mcp.json`:
 ```
 
 Then open **Cursor Settings -> Tools & MCP** and enable or refresh Sagepilot.
-

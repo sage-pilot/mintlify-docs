@@ -7,6 +7,8 @@ mode: wide
 
 Use Sagepilot MCP as a remote MCP tool server in the OpenAI Responses API.
 
+The Responses API example below uses an API client token because the request passes authentication directly. For browser-based ChatGPT connector setup, use [Hosted connectors](/mcp/hosted-connectors).
+
 ```python
 from openai import OpenAI
 
@@ -18,7 +20,7 @@ response = client.responses.create(
         {
             "type": "mcp",
             "server_label": "sagepilot",
-            "server_url": "https://app.sagepilot.ai/platform-api/mcp",
+            "server_url": "https://app.sagepilot.ai/mcp",
             "authorization": "Bearer sp_your_token",
             "require_approval": "never",
         }
@@ -32,6 +34,5 @@ print(response.output_text)
 For EU-hosted workspaces, use:
 
 ```text
-https://eu.sagepilot.ai/platform-api/mcp
+https://eu.sagepilot.ai/mcp
 ```
-
